@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { SanityDocument } from "next-sanity";
-import { useOptimistic } from "next-sanity/hooks";
-import Link from "next/link";
+import type { SanityDocument } from 'next-sanity';
+import type { GetPageQueryResult } from '@/sanity.types';
+import { useOptimistic } from 'next-sanity/hooks';
 
-import BlockRenderer from "@/app/components/BlockRenderer";
-import { GetPageQueryResult } from "@/sanity.types";
-import { dataAttr } from "@/sanity/lib/utils";
-import { studioUrl } from "@/sanity/lib/api";
+import Link from 'next/link';
+import BlockRenderer from '@/app/components/BlockRenderer';
+import { studioUrl } from '@/sanity/lib/api';
+import { dataAttr } from '@/sanity/lib/utils';
 
-type PageBuilderPageProps = {
+interface PageBuilderPageProps {
   page: GetPageQueryResult;
-};
+}
 
-type PageBuilderSection = {
+interface PageBuilderSection {
   _key: string;
   _type: string;
-};
+}
 
-type PageData = {
+interface PageData {
   _id: string;
   _type: string;
-  pageBuilder?: PageBuilderSection[];
-};
+  pageBuilder?: Array<PageBuilderSection>;
+}
 
 /**
  * The PageBuilder component is used to render the blocks from the `pageBuilder` field in the Page type in your Sanity Studio.
  */
 
 function renderSections(
-  pageBuilderSections: PageBuilderSection[],
+  pageBuilderSections: Array<PageBuilderSection>,
   page: GetPageQueryResult,
 ) {
   if (!page) {
@@ -40,7 +40,7 @@ function renderSections(
       data-sanity={dataAttr({
         id: page._id,
         type: page._type,
-        path: `pageBuilder`,
+        path: 'pageBuilder',
       }).toString()}
     >
       {pageBuilderSections.map((block: any, index: number) => (
@@ -84,7 +84,7 @@ function renderEmptyState(page: GetPageQueryResult) {
 
 export default function PageBuilder({ page }: PageBuilderPageProps) {
   const pageBuilderSections = useOptimistic<
-    PageBuilderSection[] | undefined,
+    Array<PageBuilderSection> | undefined,
     SanityDocument<PageData>
   >(page?.pageBuilder || [], (currentSections, action) => {
     // The action contains updated document data from Sanity

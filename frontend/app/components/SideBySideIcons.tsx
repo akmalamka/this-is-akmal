@@ -45,7 +45,7 @@ export default function SideBySideIcons() {
         >
           <mask
             id="mask0_408_139"
-            style={{ maskType: "alpha" }}
+            style={{ maskType: 'alpha' }}
             maskUnits="userSpaceOnUse"
             x="0"
             y="0"

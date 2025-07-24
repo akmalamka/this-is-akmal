@@ -1,12 +1,12 @@
-import { type PortableTextBlock } from "next-sanity";
+import type { PortableTextBlock } from 'next-sanity';
 
-import PortableText from "@/app/components/PortableText";
-import { InfoSection } from "@/sanity.types";
+import type { InfoSection } from '@/sanity.types';
+import PortableText from '@/app/components/PortableText';
 
-type InfoProps = {
+interface InfoProps {
   block: InfoSection;
   index: number;
-};
+}
 
 export default function CTA({ block }: InfoProps) {
   return (
@@ -26,7 +26,7 @@ export default function CTA({ block }: InfoProps) {
           {block?.content?.length && (
             <PortableText
               className=""
-              value={block.content as PortableTextBlock[]}
+              value={block.content as Array<PortableTextBlock>}
             />
           )}
         </div>

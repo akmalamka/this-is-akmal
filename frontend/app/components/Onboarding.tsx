@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
 /**
  * This file is used for onboarding when you don't have content yet and are using the template for the first time.
  * Once you have provided a url for the environment variable NEXT_PUBLIC_SANITY_STUDIO_URL, and have content, you can delete this file.
  */
 
-import Link from "next/link";
-import { useIsPresentationTool } from "next-sanity/hooks";
-import { createDataAttribute } from "next-sanity";
-import { uuid } from "@sanity/uuid";
+import { uuid } from '@sanity/uuid';
+import { createDataAttribute } from 'next-sanity';
+import { useIsPresentationTool } from 'next-sanity/hooks';
+import Link from 'next/link';
 
-import { studioUrl } from "@/sanity/lib/api";
+import { studioUrl } from '@/sanity/lib/api';
 
-type OnboardingMessageProps = {
+interface OnboardingMessageProps {
   message: {
     title: string;
     description: string;
@@ -24,14 +24,14 @@ type OnboardingMessageProps = {
   };
   type?: string;
   path?: string;
-};
+}
 
-const OnboardingMessage = ({
+function OnboardingMessage({
   message,
   link,
   type,
   path,
-}: OnboardingMessageProps) => {
+}: OnboardingMessageProps) {
   const isPresentation = useIsPresentationTool();
 
   return (
@@ -42,50 +42,52 @@ const OnboardingMessage = ({
       </div>
 
       <div>
-        {!isPresentation ? (
-          <Link
-            className="inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-brand focus:bg-brand hover:text-white focus:text-white py-3 px-6 transition-colors duration-200"
-            href={link.href}
-            target="_blank"
-          >
-            {link.title}
-            {(link.showIcon ?? true) && (
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+        {!isPresentation
+          ? (
+              <Link
+                className="inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-brand focus:bg-brand hover:text-white focus:text-white py-3 px-6 transition-colors duration-200"
+                href={link.href}
+                target="_blank"
               >
-                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-              </svg>
-            )}
-          </Link>
-        ) : (
-          <button
-            className="cursor-pointer inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-blue focus:bg-blue py-3 px-6 transition-colors duration-200"
-            data-sanity={createDataAttribute({
-              id: uuid(),
-              type,
-              path,
-            }).toString()}
-          >
-            {link.title}
-            {(link.showIcon ?? true) && (
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+                {link.title}
+                {(link.showIcon ?? true) && (
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                  </svg>
+                )}
+              </Link>
+            )
+          : (
+              <button
+                className="cursor-pointer inline-flex rounded-full gap-2 items-center bg-white text-brand hover:bg-blue focus:bg-blue py-3 px-6 transition-colors duration-200"
+                data-sanity={createDataAttribute({
+                  id: uuid(),
+                  type,
+                  path,
+                }).toString()}
               >
-                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-              </svg>
+                {link.title}
+                {(link.showIcon ?? true) && (
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                  </svg>
+                )}
+              </button>
             )}
-          </button>
-        )}
       </div>
     </>
   );
-};
+}
 
 export default function Onboarding() {
   return (
@@ -117,11 +119,11 @@ export default function Onboarding() {
       </svg>
       <OnboardingMessage
         message={{
-          title: "No posts yet",
-          description: "Get started by creating a new post.",
+          title: 'No posts yet',
+          description: 'Get started by creating a new post.',
         }}
         link={{
-          title: "Create Post",
+          title: 'Create Post',
           href: `${studioUrl}/structure/intent/create/template=post;type=post;path=title`,
         }}
         type="post"
@@ -161,11 +163,11 @@ export function PageOnboarding() {
       </svg>
       <OnboardingMessage
         message={{
-          title: "About Page (/about) does not exist yet",
-          description: "Get started by creating an about page.",
+          title: 'About Page (/about) does not exist yet',
+          description: 'Get started by creating an about page.',
         }}
         link={{
-          title: "Create Page",
+          title: 'Create Page',
           href: `${studioUrl}/structure/intent/create/template=page;type=page;path=name`,
         }}
         type="page"

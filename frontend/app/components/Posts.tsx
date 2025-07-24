@@ -1,20 +1,20 @@
-import Link from "next/link";
+import type { AllPostsQueryResult } from '@/sanity.types';
 
-import { sanityFetch } from "@/sanity/lib/live";
-import { morePostsQuery, allPostsQuery } from "@/sanity/lib/queries";
-import { Post as PostType, AllPostsQueryResult } from "@/sanity.types";
-import DateComponent from "@/app/components/Date";
-import OnBoarding from "@/app/components/Onboarding";
-import Avatar from "@/app/components/Avatar";
-import { createDataAttribute } from "next-sanity";
+import { createDataAttribute } from 'next-sanity';
+import Link from 'next/link';
+import Avatar from '@/app/components/Avatar';
+import DateComponent from '@/app/components/Date';
+import OnBoarding from '@/app/components/Onboarding';
+import { sanityFetch } from '@/sanity/lib/live';
+import { allPostsQuery, morePostsQuery } from '@/sanity/lib/queries';
 
-const Post = ({ post }: { post: AllPostsQueryResult[number] }) => {
+function Post({ post }: { post: AllPostsQueryResult[number] }) {
   const { _id, title, slug, excerpt, date, author } = post;
 
   const attr = createDataAttribute({
     id: _id,
-    type: "post",
-    path: "title",
+    type: 'post',
+    path: 'title',
   });
 
   return (
@@ -48,9 +48,9 @@ const Post = ({ post }: { post: AllPostsQueryResult[number] }) => {
       </div>
     </article>
   );
-};
+}
 
-const Posts = ({
+function Posts({
   children,
   heading,
   subHeading,
@@ -58,27 +58,29 @@ const Posts = ({
   children: React.ReactNode;
   heading?: string;
   subHeading?: string;
-}) => (
-  <div>
-    {heading && (
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-        {heading}
-      </h2>
-    )}
-    {subHeading && (
-      <p className="mt-2 text-lg leading-8 text-gray-600">{subHeading}</p>
-    )}
-    <div className="pt-6 space-y-6">{children}</div>
-  </div>
-);
+}) {
+  return (
+    <div>
+      {heading && (
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          {heading}
+        </h2>
+      )}
+      {subHeading && (
+        <p className="mt-2 text-lg leading-8 text-gray-600">{subHeading}</p>
+      )}
+      <div className="pt-6 space-y-6">{children}</div>
+    </div>
+  );
+}
 
-export const MorePosts = async ({
+export async function MorePosts({
   skip,
   limit,
 }: {
   skip: string;
   limit: number;
-}) => {
+}) {
   const { data } = await sanityFetch({
     query: morePostsQuery,
     params: { skip, limit },
@@ -95,23 +97,24 @@ export const MorePosts = async ({
       ))}
     </Posts>
   );
-};
+}
 
-export const AllPosts = async () => {
+export async function AllPosts() {
   const { data } = await sanityFetch({ query: allPostsQuery });
 
   if (!data || data.length === 0) {
     return <OnBoarding />;
   }
+  const subheadingBlog = data.length === 1 ? 'This blog post is' : `These ${data.length} blog posts are`;
 
   return (
     <Posts
       heading="Recent Posts"
-      subHeading={`${data.length === 1 ? "This blog post is" : `These ${data.length} blog posts are`} populated from your Sanity Studio.`}
+      subHeading={`${subheadingBlog} populated from your Sanity Studio.`}
     >
       {data.map((post: any) => (
         <Post key={post._id} post={post} />
       ))}
     </Posts>
   );
-};
+}

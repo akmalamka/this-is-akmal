@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function GetStartedCode() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(
-      "npm create sanity@latest -- --template sanity-io/sanity-template-nextjs-clean",
+      'npm create sanity@latest -- --template sanity-io/sanity-template-nextjs-clean',
     );
     setShowTooltip(true);
     setTimeout(() => setShowTooltip(false), 2000);
@@ -25,7 +25,7 @@ export default function GetStartedCode() {
         aria-label="Copy to clipboard"
       >
         <span className="md:hidden">
-          {showTooltip ? "Copied!" : "Copy Snippet"}
+          {showTooltip ? 'Copied!' : 'Copy Snippet'}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ export default function GetStartedCode() {
         </svg>
         <span
           className={`hidden md:block absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-4 bg-yellow text-black text-xs rounded py-2 px-4 transition-opacity duration-300 ${
-            showTooltip ? "opacity-100" : "opacity-0 pointer-events-none"
+            showTooltip ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
           Copied!

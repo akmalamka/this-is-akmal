@@ -1,17 +1,18 @@
-import { Suspense } from "react";
-import Link from "next/link";
+/* eslint-disable sonar/no-commented-code */
+import Link from 'next/link';
+import { Suspense } from 'react';
 // import { PortableText } from "@portabletext/react";
 
-import { AllPosts } from "@/app/components/Posts";
-import GetStartedCode from "@/app/components/GetStartedCode";
-import SideBySideIcons from "@/app/components/SideBySideIcons";
-import { settingsQuery } from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/live";
+import GetStartedCode from '@/app/components/GetStartedCode';
+import { AllPosts } from '@/app/components/Posts';
+import SideBySideIcons from '@/app/components/SideBySideIcons';
+// import { sanityFetch } from '@/sanity/lib/live';
+// import { settingsQuery } from '@/sanity/lib/queries';
 
 export default async function Page() {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-  });
+  // const { data: settings } = await sanityFetch({
+  //   query: settingsQuery,
+  // });
 
   return (
     <>

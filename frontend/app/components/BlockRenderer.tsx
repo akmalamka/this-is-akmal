@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import Cta from "@/app/components/Cta";
-import Info from "@/app/components/InfoSection";
-import { dataAttr } from "@/sanity/lib/utils";
+import Cta from '@/app/components/Cta';
+import Info from '@/app/components/InfoSection';
+import { dataAttr } from '@/sanity/lib/utils';
 
-type BlocksType = {
+interface BlocksType {
   [key: string]: React.FC<any>;
-};
+}
 
-type BlockType = {
+interface BlockType {
   _type: string;
   _key: string;
-};
+}
 
-type BlockProps = {
+interface BlockProps {
   index: number;
   block: BlockType;
   pageId: string;
   pageType: string;
-};
+}
 
 const Blocks: BlocksType = {
   callToAction: Cta,
@@ -35,7 +35,7 @@ export default function BlockRenderer({
   pageType,
 }: BlockProps) {
   // Block does exist
-  if (typeof Blocks[block._type] !== "undefined") {
+  if (typeof Blocks[block._type] !== 'undefined') {
     return (
       <div
         key={block._key}
@@ -47,8 +47,8 @@ export default function BlockRenderer({
       >
         {React.createElement(Blocks[block._type], {
           key: block._key,
-          block: block,
-          index: index,
+          block,
+          index,
         })}
       </div>
     );
@@ -57,7 +57,9 @@ export default function BlockRenderer({
   return React.createElement(
     () => (
       <div className="w-full bg-gray-100 text-center text-gray-500 p-20 rounded">
-        A &ldquo;{block._type}&rdquo; block hasn&apos;t been created
+        A &ldquo;
+        {block._type}
+        &rdquo; block hasn&apos;t been created
       </div>
     ),
     { key: block._key },
