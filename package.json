@@ -1,0 +1,44 @@
+{
+  "name": "this-is-akmal",
+  "description": "Next.js + Sanity: A Powerful Website Starter with Real-time Visual Editing",
+  "homepage": "https://github.com/sanity-io/sanity-template-nextjs-clean#readme",
+  "bugs": {
+    "url": "https://github.com/sanity-io/sanity-template-nextjs-clean/issues"
+  },
+  "keywords": [
+    "Sanity",
+    "Next.js",
+    "Headless CMS",
+    "Visual Editing",
+    "Live Content API (LCAPI)",
+    "Real-time"
+  ],
+  "scripts": {
+    "dev:all": "pnpm --stream -r run dev",
+    "dev:next": "pnpm --filter frontend dev",
+    "dev:studio": "pnpm --filter studio dev",
+    "import-sample-data": "cd studio && sanity dataset import sample-data.tar.gz --replace"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@vinicunca/eslint-config": "^3.19.0",
+    "eslint": "^9.31.0",
+    "lint-staged": "^16.1.2",
+    "simple-git-hooks": "^2.13.0",
+    "typescript": "^5.8.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "npx --no-install commitlint --edit \"$1\""
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
