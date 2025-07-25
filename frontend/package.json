@@ -2,9 +2,9 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "predev": "npm run typegen",
+    "predev": "pnpm run typegen",
     "dev": "next dev --turbopack",
-    "prebuild": "npm run typegen",
+    "prebuild": "pnpm run typegen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

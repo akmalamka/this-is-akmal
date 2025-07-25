@@ -1,62 +1,77 @@
-import { DocumentIcon } from '@sanity/icons';
+import { slugify } from '@vinicunca/perkakas';
+import { RiPagesLine } from 'react-icons/ri';
 import { defineField, defineType } from 'sanity';
+import { componentMembers } from '../components';
+import { isUniqueAcrossAllDocuments } from '../utils/is-unique-sanity';
 
-/**
- * Page schema.  Define and edit the fields for the 'page' content type.
- * Learn more: https://www.sanity.io/docs/schema-types
- */
+const seo = [
+  defineField({
+    name: 'title',
+    title: 'Site Title',
+    description: 'The title of the site',
+    type: 'string',
+    group: 'seo',
+  }),
+
+  defineField({
+    name: 'url',
+    title: 'URL',
+    type: 'slug',
+    group: 'seo',
+    validation: (rule) => [
+      rule.required(),
+      rule.custom((slug) => {
+        if (!slug?.current?.startsWith('/')) {
+          return 'URL must start with a forward slash';
+        }
+
+        return true;
+      }),
+    ],
+    options: {
+      source: 'title',
+      slugify: (str) => `/${slugify(str)}`,
+      isUnique: isUniqueAcrossAllDocuments,
+    },
+  }),
+];
+
+const components = [
+  defineField({
+    name: 'components',
+    type: 'array',
+    group: 'components',
+    of: componentMembers,
+  }),
+];
 
 export const page = defineType({
-  name: 'page',
-  title: 'Page',
+  name: 'pag',
   type: 'document',
-  icon: DocumentIcon,
-  fields: [
-    defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      validation: (Rule) => Rule.required(),
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
-    }),
-    defineField({
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'subheading',
-      title: 'Subheading',
-      type: 'string',
-    }),
-    defineField({
-      name: 'pageBuilder',
-      title: 'Page builder',
-      type: 'array',
-      of: [{ type: 'callToAction' }, { type: 'infoSection' }],
-      options: {
-        insertMenu: {
-          // Configure the "Add Item" menu to display a thumbnail preview of the content type. https://www.sanity.io/docs/array-type#efb1fe03459d
-          views: [
-            {
-              name: 'grid',
-              previewImageUrl: (schemaTypeName) =>
-                `/static/page-builder-thumbnails/${schemaTypeName}.webp`,
-            },
-          ],
-        },
-      },
-    }),
+  icon: RiPagesLine,
+  groups: [
+    {
+      name: 'components',
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
+    },
   ],
+  fields: [
+    ...seo,
+    ...components,
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      path: 'url.current',
+    },
+    prepare({ title, path }) {
+      return {
+        title,
+        subtitle: path,
+      };
+    },
+  },
 });

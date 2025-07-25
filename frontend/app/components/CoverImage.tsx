@@ -1,4 +1,5 @@
-import { getImageDimensions } from '@sanity/asset-utils';
+/* eslint-disable sonar/no-commented-code */
+// import { getImageDimensions } from '@sanity/asset-utils';
 import { stegaClean } from '@sanity/client/stega';
 import { Image } from 'next-sanity/image';
 import { urlForImage } from '@/sanity/lib/utils';
@@ -14,8 +15,8 @@ export default function CoverImage(props: CoverImageProps) {
     ? (
         <Image
           className="object-cover"
-          width={getImageDimensions(source).width}
-          height={getImageDimensions(source).height}
+          width={120}
+          height={120}
           alt={stegaClean(source?.alt) || ''}
           src={urlForImage(source)?.url() as string}
           priority={priority}
