@@ -95,7 +95,9 @@ export default {
         },
       },
       fontFamily: {
+        display: ['var(--font-tusker)'],
         sans: ['var(--font-inter)'],
+        mono: ['var(--font-jetbrains-mono)'],
       },
     },
   },
