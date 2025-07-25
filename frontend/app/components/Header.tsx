@@ -23,7 +23,7 @@ export default async function Header() {
               className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-display font-medium"
             >
               <li>
-                <Link href="/about" className="hover:underline">
+                <Link href="/about" className="hover:underline text-h1 text-primary">
                   About
                 </Link>
               </li>

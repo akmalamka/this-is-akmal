@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import { toPlainText } from 'next-sanity';
 // eslint-disable-next-line camelcase
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
-
 import Footer from '@/app/components/Footer';
+
 import Header from '@/app/components/Header';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
