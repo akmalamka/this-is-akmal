@@ -12,7 +12,7 @@ export default async function Header() {
       <div className="container py-6 px-2 sm:px-6">
         <div className="flex items-center justify-between gap-5">
           <Link className="flex items-center gap-2" href="/">
-            <span className="text-lg sm:text-2xl pl-2 font-semibold">
+            <span className="text-lg sm:text-2xl pl-2 font-mono">
               {settings?.title || 'Sanity + Next.js'}
             </span>
           </Link>
@@ -20,7 +20,7 @@ export default async function Header() {
           <nav>
             <ul
               role="list"
-              className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-mono"
+              className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-display font-medium"
             >
               <li>
                 <Link href="/about" className="hover:underline">

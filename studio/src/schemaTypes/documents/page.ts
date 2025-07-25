@@ -46,7 +46,7 @@ const components = [
 ];
 
 export const page = defineType({
-  name: 'pag',
+  name: 'page',
   type: 'document',
   icon: RiPagesLine,
   groups: [
