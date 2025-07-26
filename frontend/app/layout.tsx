@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { toPlainText } from 'next-sanity';
 // eslint-disable-next-line camelcase
@@ -106,7 +105,6 @@ export default async function RootLayout({
           <main className="">{children}</main>
           <Footer />
         </section>
-        <SpeedInsights />
       </body>
     </html>
   );

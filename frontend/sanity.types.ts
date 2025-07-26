@@ -13,22 +13,85 @@
  */
 
 // Source: schema.json
-export type Link = {
-  _type: "link";
-  linkType?: "href";
-  href?: string;
-  openInNewTab?: boolean;
-};
-
-export type Pag = {
+export type Hobby = {
   _id: string;
-  _type: "pag";
+  _type: "hobby";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
-  url: Slug;
-  components?: null;
+  description?: string;
+  ctaButton?: {
+    text: string;
+    link: Link;
+  };
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
+export type Link = {
+  _type: "link";
+  href?: string;
+  openInNewTab?: boolean;
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  client?: string;
+  role?: string;
+  dateDuration?: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
+export type Introduction = {
+  _id: string;
+  _type: "introduction";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  description?: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
 };
 
 export type Settings = {
@@ -322,7 +385,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Link | Pag | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Hobby | Link | Project | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -369,39 +432,84 @@ export type SettingsQueryResult = {
     _type: "image";
   };
 } | null;
-// Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
-export type GetPageQueryResult = null;
-// Variable: sitemapData
-// Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
-export type SitemapDataResult = Array<never>;
-// Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type AllPostsQueryResult = Array<never>;
-// Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type MorePostsQueryResult = Array<never>;
-// Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
-export type PostQueryResult = null;
-// Variable: postPagesSlugs
-// Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
-export type PostPagesSlugsResult = Array<never>;
-// Variable: pagesSlugs
-// Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
-export type PagesSlugsResult = Array<never>;
+// Variable: introductionQuery
+// Query: *[_type == "introduction"][0]
+export type IntroductionQueryResult = {
+  _id: string;
+  _type: "introduction";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  description?: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+} | null;
+// Variable: allProjectsQuery
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    client,    role,    dateDuration,    image  }
+export type AllProjectsQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  client: string | null;
+  role: string | null;
+  dateDuration: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+}>;
+// Variable: allHobbiesQuery
+// Query: *[_type == "hobby"] | order(_updatedAt desc) {    _id,    title,    description,    ctaButton,    image  }
+export type AllHobbiesQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  description: string | null;
+  ctaButton: {
+    text: string;
+    link: Link;
+  } | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
-    "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"callToAction\" => {\n        \n  link {\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == \"infoSection\" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n": GetPageQueryResult;
-    "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
-    "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
-    "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;
-    "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": PostQueryResult;
-    "\n  *[_type == \"post\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PostPagesSlugsResult;
-    "\n  *[_type == \"page\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PagesSlugsResult;
+    "*[_type == \"introduction\"][0]": IntroductionQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    image\n  }\n": AllHobbiesQueryResult;
   }
 }

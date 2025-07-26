@@ -1,12 +1,9 @@
-/* eslint-disable sonar/no-commented-code */
-/* eslint-disable sonar/no-fallthrough */
-/* eslint-disable no-fallthrough */
 import type { CreateDataAttributeProps } from 'next-sanity';
 import type { Link } from '@/sanity.types';
+import { getImageDimensions } from '@sanity/asset-utils';
 import createImageUrlBuilder from '@sanity/image-url';
 import { createDataAttribute } from 'next-sanity';
 import { dataset, projectId, studioUrl } from '@/sanity/lib/api';
-// import { getImageDimensions } from "@sanity/asset-utils";
 
 const imageBuilder = createImageUrlBuilder({
   projectId: projectId || '',
@@ -19,26 +16,26 @@ export function urlForImage(source: any) {
     return undefined;
   }
 
-  // const imageRef = source?.asset?._ref;
+  const imageRef = source?.asset?._ref;
   const crop = source.crop;
 
   // get the image's og dimensions
-  // const { width, height } = getImageDimensions(imageRef);
+  const { width, height } = getImageDimensions(imageRef);
 
   if (crop) {
     // compute the cropped image's area
-    // const croppedWidth = Math.floor(width * (1 - (crop.right + crop.left)));
+    const croppedWidth = Math.floor(width * (1 - (crop.right + crop.left)));
 
-    // const croppedHeight = Math.floor(height * (1 - (crop.top + crop.bottom)));
+    const croppedHeight = Math.floor(height * (1 - (crop.top + crop.bottom)));
 
     // // compute the cropped image's position
-    // const left = Math.floor(width * crop.left);
-    // const top = Math.floor(height * crop.top);
+    const left = Math.floor(width * crop.left);
+    const top = Math.floor(height * crop.top);
 
     // gather into a url
     return imageBuilder
       ?.image(source)
-      // .rect(left, top, croppedWidth, croppedHeight)
+      .rect(left, top, croppedWidth, croppedHeight)
       .auto('format');
   }
 
@@ -61,26 +58,7 @@ export function linkResolver(link: Link | undefined) {
   if (!link) {
     return null;
   }
-
-  // If linkType is not set but href is, lets set linkType to "href".  This comes into play when pasting links into the portable text editor because a link type is not assumed.
-  if (!link.linkType && link.href) {
-    link.linkType = 'href';
-  }
-
-  switch (link.linkType) {
-    case 'href':
-      return link.href || null;
-    case 'page':
-      if (link?.page && typeof link.page === 'string') {
-        return `/${link.page}`;
-      }
-    case 'post':
-      if (link?.post && typeof link.post === 'string') {
-        return `/posts/${link.post}`;
-      }
-    default:
-      return null;
-  }
+  return link.href || null;
 }
 
 type DataAttributeConfig = CreateDataAttributeProps

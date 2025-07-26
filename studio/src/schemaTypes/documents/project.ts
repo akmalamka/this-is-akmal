@@ -7,19 +7,19 @@ export const project = defineType({
   icon: RiPagesLine,
   fields: [
     defineField({
-      name: 'name',
-      title: 'name',
-      description: 'Project name',
+      name: 'title',
+      title: 'Title',
+      description: 'Project title',
       type: 'string',
     }),
     defineField({
       name: 'client',
-      title: 'client',
+      title: 'Client',
       type: 'string',
     }),
     defineField({
       name: 'role',
-      title: 'role',
+      title: 'Role',
       type: 'string',
     }),
     defineField({
@@ -60,7 +60,7 @@ export const project = defineType({
   ],
   preview: {
     select: {
-      title: 'name',
+      title: 'title',
       subtitle: 'client',
       media: 'image',
     },

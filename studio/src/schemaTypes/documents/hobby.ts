@@ -7,14 +7,14 @@ export const hobby = defineType({
   icon: RiPagesLine,
   fields: [
     defineField({
-      name: 'name',
-      title: 'name',
-      description: 'Hobby name',
+      name: 'title',
+      title: 'Title',
+      description: 'Hobby title',
       type: 'string',
     }),
     defineField({
       name: 'description',
-      title: 'description',
+      title: 'Description',
       type: 'text',
     }),
     defineField({
@@ -70,7 +70,7 @@ export const hobby = defineType({
   ],
   preview: {
     select: {
-      title: 'name',
+      title: 'title',
       subtitle: 'description',
       media: 'image',
     },
