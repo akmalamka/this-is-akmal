@@ -8,11 +8,11 @@ export default async function Header() {
   });
 
   return (
-    <header className="fixed z-50 h-24 inset-0 bg-white/80 flex items-center backdrop-blur-lg">
+    <header className="fixed z-50 h-24 inset-0 flex items-center backdrop-blur-lg">
       <div className="container py-6 px-2 sm:px-6">
         <div className="flex items-center justify-between gap-5">
-          <Link className="flex items-center gap-2" href="/">
-            <span className="text-lg sm:text-2xl pl-2 font-display">
+          <Link className="flex items-center gap-2 text-white" href="/">
+            <span className="font-display font-semibold text-[24px] uppercase">
               {settings?.title}
             </span>
           </Link>
@@ -20,32 +20,22 @@ export default async function Header() {
           <nav>
             <ul
               role="list"
-              className="flex items-center gap-4 md:gap-6 leading-5 text-xs sm:text-base tracking-tight font-mono font-medium"
+              className="text-white flex items-center gap-4 md:gap-6 leading-5 text-[16px] font-mono"
             >
               <li>
-                <Link href="/about" className="hover:underline">
-                  Hi, it&apos;s me
-                </Link>
+                Hi, it&apos;s me
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
-                  Projects
-                </Link>
+                Projects
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
-                  Skills
-                </Link>
+                Skills
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
-                  Hobbies
-                </Link>
+                Hobbies
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
-                  Let&apos;s talk
-                </Link>
+                Let&apos;s talk
               </li>
 
             </ul>

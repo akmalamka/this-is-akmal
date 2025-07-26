@@ -1,6 +1,7 @@
 import { hobby } from './documents/hobby';
 import { introduction } from './documents/introduction';
 import { project } from './documents/project';
+import { social } from './documents/social';
 import { link } from './objects/link';
 import { settings } from './singletons/settings';
 
@@ -13,6 +14,7 @@ export const schemaTypes = [
   introduction,
   project,
   hobby,
+  social,
   // Objects
   link,
 ];

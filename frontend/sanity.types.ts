@@ -13,6 +13,16 @@
  */
 
 // Source: schema.json
+export type Social = {
+  _id: string;
+  _type: "social";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  url: Link;
+};
+
 export type Hobby = {
   _id: string;
   _type: "hobby";
@@ -385,7 +395,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Hobby | Link | Project | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Social | Hobby | Link | Project | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -502,6 +512,13 @@ export type AllHobbiesQueryResult = Array<{
     _type: "image";
   };
 }>;
+// Variable: allSocialsQuery
+// Query: *[_type == "social"] | order(_updatedAt desc) {    _id,    title,    url  }
+export type AllSocialsQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  url: Link;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -511,5 +528,6 @@ declare module "@sanity/client" {
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
     "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    image\n  }\n": AllHobbiesQueryResult;
+    "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }
 }

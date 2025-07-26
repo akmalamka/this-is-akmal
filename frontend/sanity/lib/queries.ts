@@ -23,3 +23,11 @@ export const allHobbiesQuery = defineQuery(`
     image
   }
 `);
+
+export const allSocialsQuery = defineQuery(`
+  *[_type == "social"] | order(_updatedAt desc) {
+    _id,
+    title,
+    url
+  }
+`);
