@@ -1,4 +1,6 @@
-import { page } from './documents/page';
+import { hobby } from './documents/hobby';
+import { introduction } from './documents/introduction';
+import { project } from './documents/project';
 import { link } from './objects/link';
 import { settings } from './singletons/settings';
 
@@ -8,7 +10,9 @@ export const schemaTypes = [
   // Singletons
   settings,
   // Documents
-  page,
+  introduction,
+  project,
+  hobby,
   // Objects
   link,
 ];
