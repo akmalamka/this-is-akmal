@@ -6,7 +6,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2em',
+      padding: '2rem',
     },
     extend: {
       boxShadow: {
