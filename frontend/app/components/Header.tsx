@@ -8,40 +8,37 @@ export default async function Header() {
   });
 
   return (
-    <header className="fixed z-50 h-24 inset-0 flex items-center backdrop-blur-lg">
-      <div className="container py-6 px-2 sm:px-6">
-        <div className="flex items-center justify-between gap-5">
-          <Link className="flex items-center gap-2 text-white" href="/">
-            <span className="text-xl font-display uppercase font-light">
-              {settings?.title}
-            </span>
-          </Link>
+    <header className=" text-white fixed z-50 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
+      <div className="h-24 flex items-center justify-between container">
+        <Link className="gap-2 text-white text-xl font-display uppercase font-light" href="/">
+          {settings?.title}
+        </Link>
+        <nav>
+          <ul
+            role="list"
+            className="flex items-center gap-12 text-[16px] font-mono uppercase font-light"
+          >
+            <li>
+              <Link href="#projects">Projects</Link>
+            </li>
+            <li>
+              <Link href="#skills">Skills</Link>
+            </li>
+            <li>
+              <Link href="#hobbies">Hobbies</Link>
+            </li>
 
-          <nav>
-            <ul
-              role="list"
-              className="text-white flex items-center gap-4 md:gap-6 text-[16px] font-mono uppercase font-light"
-            >
-              <li>
-                Hi, it&apos;s me
+          </ul>
+        </nav>
 
-              </li>
-              <li>
-                Projects
-              </li>
-              <li>
-                Skills
-              </li>
-              <li>
-                Hobbies
-              </li>
-              <li>
-                Let&apos;s talk
-              </li>
-
-            </ul>
-          </nav>
-        </div>
+        <a
+          href="mailto:akmalmuhammad51@gmail.com"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="font-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
+        >
+          Let&apos;s talk
+        </a>
       </div>
     </header>
   );
