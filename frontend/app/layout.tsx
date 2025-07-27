@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 
 import { toPlainText } from 'next-sanity';
-// eslint-disable-next-line camelcase
-import { Inter, JetBrains_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import Footer from '@/app/components/Footer';
@@ -52,22 +50,22 @@ export async function generateMetadata(): Promise<Metadata> {
 const tuskerGrotesk = localFont({
   src: [
     {
-      path: './fonts/TuskerGrotesk-5500Medium.woff2',
+      path: './fonts/tuskerGrotesk/TuskerGrotesk-5500Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: './fonts/TuskerGrotesk-5600Semibold.woff2',
+      path: './fonts/tuskerGrotesk/TuskerGrotesk-5600Semibold.woff2',
       weight: '600',
       style: 'normal',
     },
     {
-      path: './fonts/TuskerGrotesk-6600Semibold.woff2',
+      path: './fonts/tuskerGrotesk/TuskerGrotesk-6600Semibold.woff2',
       weight: '700',
       style: 'normal',
     },
     {
-      path: './fonts/TuskerGrotesk-7700Bold.woff2',
+      path: './fonts/tuskerGrotesk/TuskerGrotesk-7700Bold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -76,16 +74,64 @@ const tuskerGrotesk = localFont({
   variable: '--font-tusker',
 });
 
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
+// TODO: investigate why next/font/google doesn't work for Inter and Jetbrain Mono
+const inter = localFont({
+  src: [
+    {
+      path: './fonts/inter/Inter-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/inter/Inter-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/inter/Inter-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/inter/Inter-Semibold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: './fonts/inter/Inter-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
+  variable: '--font-inter',
 });
 
-const jetBrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
-  subsets: ['latin'],
+const jetbrainsMono = localFont({
+  src: [
+    {
+      path: './fonts/jetbrainsMono/JetBrainsMono-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/jetbrainsMono/JetBrainsMono-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/jetbrainsMono/JetBrainsMono-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/jetbrainsMono/JetBrainsMono-Semibold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
+  variable: '--font-jetbrains-mono',
 });
 
 export default async function RootLayout({
@@ -94,7 +140,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetBrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
         <section className="min-h-screen pt-24">
           {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}

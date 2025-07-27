@@ -23,9 +23,9 @@ html {
   /**
     TODO: move this fontSize definition into tailwind.config.ts
   **/
-  --text-h1: 150px;
+  /* --text-h1: 150px;
   --text-h1-font-family: var(--font-tusker);
-  --text-h1-font-weight: 700;
+  --text-h1-font-weight: 700; */
 
   --default-transition-duration: 250ms;
 }

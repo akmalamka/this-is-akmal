@@ -12,7 +12,7 @@ export default async function Header() {
       <div className="container py-6 px-2 sm:px-6">
         <div className="flex items-center justify-between gap-5">
           <Link className="flex items-center gap-2 text-white" href="/">
-            <span className="font-display font-semibold text-[24px] uppercase">
+            <span className="text-xl font-display uppercase font-light">
               {settings?.title}
             </span>
           </Link>
@@ -20,10 +20,11 @@ export default async function Header() {
           <nav>
             <ul
               role="list"
-              className="text-white flex items-center gap-4 md:gap-6 leading-5 text-[16px] font-mono"
+              className="text-white flex items-center gap-4 md:gap-6 text-[16px] font-mono uppercase font-light"
             >
               <li>
                 Hi, it&apos;s me
+
               </li>
               <li>
                 Projects
