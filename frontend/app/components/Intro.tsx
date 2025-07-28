@@ -8,11 +8,11 @@ export default async function Intro() {
 
   return (
     <div className="text-white grid grid-cols-12 gap-6 items-end">
-      <span className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</span>
+      <h2 className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
-        <CoreRotatedText text={intro?.name || ''} className="col-span-3" />
+        <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[250px]" />
         {intro?.image && (
-          <CoreImage image={intro.image} className="w-[330px] h-[70dvh] col-span-3 col-start-4" priority />
+          <CoreImage image={intro.image} className="max-w-[300px] h-[70dvh] col-span-3 col-start-4" priority />
         )}
       </div>
       <div className="col-span-3 flex flex-col gap-15">

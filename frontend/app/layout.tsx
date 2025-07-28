@@ -50,6 +50,11 @@ export async function generateMetadata(): Promise<Metadata> {
 const tuskerGrotesk = localFont({
   src: [
     {
+      path: './fonts/tuskerGrotesk/TuskerGrotesk-3700Bold.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
       path: './fonts/tuskerGrotesk/TuskerGrotesk-5500Medium.woff2',
       weight: '500',
       style: 'normal',
@@ -77,6 +82,11 @@ const tuskerGrotesk = localFont({
 // TODO: investigate why next/font/google doesn't work for Inter and Jetbrain Mono
 const inter = localFont({
   src: [
+    {
+      path: './fonts/inter/Inter-ExtraLight.woff2',
+      weight: '200',
+      style: 'normal',
+    },
     {
       path: './fonts/inter/Inter-Light.woff2',
       weight: '300',

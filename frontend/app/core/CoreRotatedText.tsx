@@ -8,9 +8,10 @@ import { useLayoutEffect, useRef } from 'react';
 // TODO: make sure layout effect happen before rendering so that no layout shift occurs
 interface CoreRotatedTextProps extends CompProps {
   text: string;
+  childrenClassName?: string;
 }
 
-export default function CoreRotatedText({ text, className }: CoreRotatedTextProps) {
+export default function CoreRotatedText({ text, className, childrenClassName = 'text-[250px]' }: CoreRotatedTextProps) {
   const textRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +24,7 @@ export default function CoreRotatedText({ text, className }: CoreRotatedTextProp
   }, []);
   return (
     <div className={classNames('flex items-center justify-center', className)} ref={wrapperRef}>
-      <h1 className="font-display text-[250px] font-semibold uppercase -rotate-90" ref={textRef}>
+      <h1 className={classNames('font-display font-semibold uppercase -rotate-90', childrenClassName)} ref={textRef}>
         {text}
       </h1>
     </div>
