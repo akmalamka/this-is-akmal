@@ -4,6 +4,7 @@
 
 html {
   @apply bg-[#0b0b0b];
+  overflow-x: hidden;
 }
 
 @utility container {
@@ -21,12 +22,6 @@ html {
   --font-display: var(--font-tusker);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
-  /**
-    TODO: move this fontSize definition into tailwind.config.ts
-  **/
-  /* --text-h1: 150px;
-  --text-h1-font-family: var(--font-tusker);
-  --text-h1-font-weight: 700; */
 
   --default-transition-duration: 280ms;
 }

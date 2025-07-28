@@ -20,5 +20,12 @@ module.exports = vinicuncaESLint({
         'vinicunca/cognitive-complexity': 'off',
       },
     },
+    {
+      // TODO: why this doesn't work?
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'ts/no-use-before-define': 'off',
+      },
+    },
   ],
 });
