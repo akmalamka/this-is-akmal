@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import CoreImage from '@/app/components/CoreImage';
+import CoreImage from '@/app/core/CoreImage';
+import CoreRotatedText from '@/app/core/CoreRotatedText';
 import { sanityFetch } from '@/sanity/lib/live';
 import { introductionQuery } from '@/sanity/lib/queries';
 
@@ -7,15 +7,25 @@ export default async function Intro() {
   const { data: intro } = await sanityFetch({ query: introductionQuery });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">{intro?.name}</h1>
-      <p className="text-gray-700 mb-6">{intro?.description}</p>
-      {intro?.image && (
-        <CoreImage image={intro.image} priority />
-      )}
-      <Link href="/projects" className="inline-block bg-blue-500 text-white px-4 py-2 rounded">
-        View Projects
-      </Link>
+    <div className="text-white grid grid-cols-12 gap-6 items-end">
+      <span className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</span>
+      <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
+        <CoreRotatedText text={intro?.name || ''} className="col-span-3" />
+        {intro?.image && (
+          <CoreImage image={intro.image} className="w-[330px] h-[70dvh] col-span-3 col-start-4" priority />
+        )}
+      </div>
+      <div className="col-span-3 flex flex-col gap-15">
+        <p className="font-sans text-[18px]">{intro?.description}</p>
+        <a
+          href="mailto:akmalmuhammad51@gmail.com"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="w-fit font-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
+        >
+          Let&apos;s talk
+        </a>
+      </div>
     </div>
   );
 }

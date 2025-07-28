@@ -1,19 +1,21 @@
+import type { CompProps } from '@/app/typings/props';
 import { getImageDimensions } from '@sanity/asset-utils';
 import { stegaClean } from '@sanity/client/stega';
+import classNames from 'classnames';
 import { Image } from 'next-sanity/image';
 import { urlForImage } from '@/sanity/lib/utils';
 
-interface CoverImageProps {
+interface CoverImageProps extends CompProps {
   image: any;
   priority?: boolean;
 }
 
 export default function CoreImage(props: CoverImageProps) {
-  const { image: source, priority } = props;
-  const image = source?.asset?._ref
+  const { image: source, priority, className } = props;
+  return source?.asset?._ref
     ? (
         <Image
-          className="object-cover"
+          className={classNames('object-cover object-center', className)}
           width={getImageDimensions(source).width}
           height={getImageDimensions(source).height}
           alt={stegaClean(source?.alt) || ''}
@@ -22,6 +24,4 @@ export default function CoreImage(props: CoverImageProps) {
         />
       )
     : null;
-
-  return <div className="relative">{image}</div>;
 }

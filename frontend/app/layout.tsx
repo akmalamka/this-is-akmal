@@ -148,6 +148,7 @@ export default async function RootLayout({
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
           <Header />
+          {/* TODO: fix hydration mismatch, detail in console */}
           <main className="">{children}</main>
           <Footer />
         </section>

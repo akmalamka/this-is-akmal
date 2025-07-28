@@ -1,4 +1,4 @@
-import CoreImage from '@/app/components/CoreImage';
+import CoreImage from '@/app/core/CoreImage';
 import { sanityFetch } from '@/sanity/lib/live';
 import { allProjectsQuery } from '@/sanity/lib/queries';
 

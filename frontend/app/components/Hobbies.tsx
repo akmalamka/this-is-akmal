@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CoreImage from '@/app/components/CoreImage';
+import CoreImage from '@/app/core/CoreImage';
 import { sanityFetch } from '@/sanity/lib/live';
 import { allHobbiesQuery } from '@/sanity/lib/queries';
 

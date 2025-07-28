@@ -50,6 +50,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.1.11)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       next:
         specifier: ^15.3.4
         version: 15.4.3(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
