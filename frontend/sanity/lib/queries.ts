@@ -7,6 +7,7 @@ export const allProjectsQuery = defineQuery(`
   *[_type == "project"] | order(_updatedAt desc) {
     _id,
     title,
+    description,
     client,
     role,
     dateDuration,

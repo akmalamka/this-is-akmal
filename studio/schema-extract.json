@@ -274,6 +274,13 @@
         },
         "optional": true
       },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "client": {
         "type": "objectAttribute",
         "value": {

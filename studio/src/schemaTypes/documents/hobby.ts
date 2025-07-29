@@ -18,23 +18,28 @@ export const hobby = defineType({
       type: 'text',
     }),
     defineField({
+      name: 'withCTA',
+      title: 'With CTA Button?',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'ctaButton',
       title: 'CTA Button',
       type: 'object',
+      hidden: ({ parent }) => parent?.withCTA === false,
       fields: [
         defineField({
           name: 'text',
           type: 'string',
           title: 'Button Text',
           description: 'The text to display on the button.',
-          validation: (rule) => rule.required(),
         }),
         defineField({
           name: 'link',
           type: 'link',
           title: 'Button Link',
           description: 'The link to navigate to when the button is clicked.',
-          validation: (rule) => rule.required(),
         }),
       ],
     }),

@@ -30,7 +30,7 @@ export default async function Header() {
 
           </ul>
         </nav>
-
+        {/* TODO: add microinteraction like in ftrprf */}
         <a
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"

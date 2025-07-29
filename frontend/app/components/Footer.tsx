@@ -7,7 +7,7 @@ export default async function Footer() {
   return (
     <footer className="relative">
       <div className="container mx-auto px-4 py-8">
-        <div className="font-sans font-light text-[28px] flex justify-between text-white">
+        {/* <div className="font-sans font-light text-[28px] flex justify-between text-white">
           <span>
             let's
           </span>
@@ -20,12 +20,13 @@ export default async function Footer() {
         </div>
         <span className="font-display font-extrabold text-[400px] uppercase text-white">
           Cool
-        </span>
+        </span> */}
         <div className="flex justify-between items-center text-[20px]">
           <Link className="gap-2 text-white font-display uppercase font-light" href="/">
             This is Akmal
           </Link>
           <ul className="flex text-white ">
+            {/* TODO: add microinteraction like in C2 Montreal */}
             {socials?.map((social, index) => (
               <li key={social._id}>
                 <a
