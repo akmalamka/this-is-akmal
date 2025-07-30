@@ -12,6 +12,7 @@ import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
 import { handleError } from './client-utils';
 import { CtaTextProvider } from './context/CtaTextContext';
+import LenisScroll from './core/CoreLenisScroll';
 import CoreCursor from './core/cursor/CoreCursor';
 import './globals.css';
 
@@ -155,22 +156,24 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
-        <CtaTextProvider>
-          <CoreCursor />
-          <section className="min-h-screen pt-24">
-            {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
-            <Toaster />
-            {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
-            <SanityLive onError={handleError} />
-            {/* TODO: decide whether to use running text or not */}
-            <CoreRunningText />
-            <Header />
+        <LenisScroll>
+          <CtaTextProvider>
+            <CoreCursor />
+            <section className="min-h-screen pt-24">
+              {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+              <Toaster />
+              {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
+              <SanityLive onError={handleError} />
+              {/* TODO: decide whether to use running text or not */}
+              <CoreRunningText />
+              <Header />
 
-            {/* TODO: fix hydration mismatch, detail in console */}
-            <main className="">{children}</main>
-            <Footer />
-          </section>
-        </CtaTextProvider>
+              {/* TODO: fix hydration mismatch, detail in console */}
+              <main className="">{children}</main>
+              <Footer />
+            </section>
+          </CtaTextProvider>
+        </LenisScroll>
       </body>
     </html>
   );

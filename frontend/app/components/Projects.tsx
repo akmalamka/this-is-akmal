@@ -3,13 +3,13 @@
 import type { AllProjectsQueryResult } from '@/sanity.types';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import CoreImage from '@/app/core/CoreImage';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
 // TODO: update all import using @/
 import CoreAnimatePresent from '../animations/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
 import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';
+import CoreParallaxImage from '../core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
@@ -80,7 +80,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               className="col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreImage image={selectedProject.image} className="max-w-[300px] h-[70dvh] " priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[70dvh] " priority />
               </ResolvedLink>
             </motion.div>
           </CoreAnimatePresent>

@@ -1,7 +1,7 @@
-import CoreImage from '@/app/core/CoreImage';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
 import { sanityFetch } from '@/sanity/lib/live';
 import { introductionQuery } from '@/sanity/lib/queries';
+import CoreParallaxImage from '../core/CoreParallaxImage';
 
 export default async function Intro() {
   const { data: intro } = await sanityFetch({ query: introductionQuery });
@@ -12,7 +12,7 @@ export default async function Intro() {
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
         <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
         {intro?.image && (
-          <CoreImage image={intro.image} className="max-w-full h-[70dvh] col-span-3 col-start-4 self-end" priority />
+          <CoreParallaxImage image={intro.image} className="max-w-full h-[70dvh] col-span-3 col-start-4 self-end" priority />
         )}
       </div>
       <div className="col-span-3 flex flex-col gap-15">

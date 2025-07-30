@@ -3,11 +3,11 @@
 import type { AllHobbiesQueryResult } from '@/sanity.types';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import CoreImage from '@/app/core/CoreImage';
 import CoreAnimatePresent from '../animations/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
 import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';
+import CoreParallaxImage from '../core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
@@ -74,7 +74,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               >
                 {/* TODO: add image filter mirip di ftrprf */}
                 <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                  <CoreImage image={selectedHobby.image} className="h-[65dvh]" priority />
+                  <CoreParallaxImage image={selectedHobby.image} className="h-[65dvh]" priority />
                 </ResolvedLink>
               </motion.div>
             </CoreAnimatePresent>
