@@ -4,9 +4,9 @@ import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import CoreRunningText from '@/app/core/CoreRunningText';
-import Footer from '@/app/layouts/LayoutFooter';
+import LayoutFooter from '@/app/layouts/LayoutFooter';
 
-import Header from '@/app/layouts/LayoutHeader';
+import LayoutHeader from '@/app/layouts/LayoutHeader';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
@@ -154,24 +154,31 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { data: settings } = await sanityFetch({
+    query: settingsQuery,
+    // Metadata should never contain stega
+    stega: false,
+  });
+
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
         <LenisScroll>
           <CtaTextProvider>
             <CoreCursor />
-            <section className="min-h-screen pt-24">
+            <section className="min-h-screen pt-[var(--navbar-height)]">
               {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
               <Toaster />
               {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
               <SanityLive onError={handleError} />
               {/* TODO: decide whether to use running text or not */}
               <CoreRunningText />
-              <Header />
+              {/* TODO: remove title props as we will use icon for the headerr */}
+              <LayoutHeader title={settings?.title} />
 
               {/* TODO: fix hydration mismatch, detail in console */}
               <main className="">{children}</main>
-              <Footer />
+              <LayoutFooter />
             </section>
           </CtaTextProvider>
         </LenisScroll>

@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { sanityFetch } from '@/sanity/lib/live';
 import { allSocialsQuery } from '@/sanity/lib/queries';
 
-export default async function Footer() {
+export default async function LayoutFooter() {
   const { data: socials } = await sanityFetch({ query: allSocialsQuery });
   return (
     <footer className="relative">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 flex flex-col gap-24 md:gap-4">
+        {/* TODO: for next release, we should make this up! */}
         {/* <div className="font-sans font-light text-[28px] flex justify-between text-white">
           <span>
             let's
@@ -21,11 +22,11 @@ export default async function Footer() {
         <span className="font-display font-extrabold text-[400px] uppercase text-white">
           Cool
         </span> */}
-        <div className="flex justify-between items-center text-[20px]">
-          <Link className="gap-2 text-white font-display uppercase font-light" href="/">
+        <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
+          <Link className="text-white font-display uppercase font-semibold text-[100px] md:text-[20px]" href="/">
             This is Akmal
           </Link>
-          <ul className="flex text-white ">
+          <ul className="inline-flex text-white justify-between w-full md:w-fit">
             {/* TODO: add microinteraction like in C2 Montreal */}
             {socials?.map((social, index) => (
               <li key={social._id}>
@@ -37,26 +38,28 @@ export default async function Footer() {
                 >
                   {social.title}
                 </a>
-                {index < socials.length - 1 ? ',' : ''}
+                <span className="hidden md:inline-block">
+                  {index < socials.length - 1 ? ',' : ''}
+                </span>
               </li>
             ))}
           </ul>
         </div>
-        <div className="flex justify-between items-center text-white my-4">
+        {/* TODO: should we add go back to top? */}
+        <div className="flex justify-between items-center text-white my-4 text-center flex-col md:flex-row">
           <span className="font-mono text-[14px] uppercase">
             { new Date().getFullYear() }
             {' '}
             © Muhammad Akmal
           </span>
-          <div className="font-sans text-[16px]">
-            made with
+          <span className="font-mono text-[14px] uppercase">
+            Design and Development with
             {' '}
-            <span className="text-primary">
+            <span className="text-primary text-[24px]">
               ❤
             </span>
-          </div>
-          <span className="font-mono text-[14px] uppercase">
-            Design and Development by Muhammad Akmal
+            {' '}
+            by Muhammad Akmal
           </span>
         </div>
 

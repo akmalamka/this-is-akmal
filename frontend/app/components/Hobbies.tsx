@@ -23,7 +23,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
   }, [selectedIndex]);
 
   return (
-    <div className="flex flex-col gap-6 text-white">
+    <section className="flex flex-col gap-6 text-white scroll-m-24" id="#hobbies">
       <div className="grid grid-cols-12 gap-6 items-end">
         <div className="col-span-3 flex flex-col justify-between h-full">
           <div>
@@ -109,6 +109,6 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

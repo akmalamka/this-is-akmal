@@ -1,21 +1,24 @@
+'use client';
+
 import Link from 'next/link';
-import { sanityFetch } from '@/sanity/lib/live';
-import { settingsQuery } from '@/sanity/lib/queries';
+import { useState } from 'react';
 import CoreDrawer from '../core/CoreDrawer';
 import LayoutHamburgerButton from './LayoutHamburgerButton';
 import LayoutHeaderMobile from './LayoutHeaderMobile';
 
-export default async function Header() {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-  });
+export default function LayoutHeader({ title }: { title?: string }) {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // TODO: close navbar when the route changes
+
+  // TODO: close navbar when the width of the screen changes from mobile to desktop
 
   return (
     <header className=" text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       {/* TODO: logo using my head when I was little, ask abang to edit it */}
-      <div className="h-24 flex items-center justify-between container">
+      <div className="h-[var(--navbar-height)] flex items-center justify-between container">
         <Link className="gap-2 text-white text-[20px] font-display uppercase font-semibold" href="/">
-          {settings?.title}
+          {title}
         </Link>
         <nav className="hidden md:block">
           <ul
@@ -23,13 +26,13 @@ export default async function Header() {
             className="flex items-center gap-12 text-[16px] font-mono uppercase font-light"
           >
             <li>
-              <Link href="#projects">Projects</Link>
+              <Link href="#projects" scroll={false}>Projects</Link>
             </li>
             <li>
-              <Link href="#skills">Skills</Link>
+              <Link href="#skills" scroll={false}>Skills</Link>
             </li>
             <li>
-              <Link href="#hobbies">Hobbies</Link>
+              <Link href="#hobbies" scroll={false}>Hobbies</Link>
             </li>
           </ul>
         </nav>
@@ -44,9 +47,14 @@ export default async function Header() {
         </Link>
 
         <CoreDrawer
-          trigger={
-            <LayoutHamburgerButton isOpen={false} className=" bg-white text-black" />
-          }
+          state={[isDrawerOpen, setIsDrawerOpen]}
+          trigger={(
+            <LayoutHamburgerButton
+              isOpen={false}
+              className=" bg-white text-black"
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            />
+          )}
         >
           <LayoutHeaderMobile />
         </CoreDrawer>

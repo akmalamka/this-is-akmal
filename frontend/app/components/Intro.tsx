@@ -7,7 +7,7 @@ export default async function Intro() {
   const { data: intro } = await sanityFetch({ query: introductionQuery });
 
   return (
-    <div className="text-white grid grid-cols-12 gap-6 items-end">
+    <section className="text-white grid grid-cols-12 gap-6 items-end" id="skills">
       <h2 className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
         <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
@@ -26,6 +26,6 @@ export default async function Intro() {
           Let&apos;s talk
         </a>
       </div>
-    </div>
+    </section>
   );
 }

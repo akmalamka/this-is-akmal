@@ -1,8 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function LayoutHeaderMobile() {
   return (
-    <div className="h-[85dvh] pb-5 flex flex-col justify-between md:hidden">
+    <div className="h-[calc(100dvh-var(--navbar-height))] pb-5 flex flex-col justify-between md:hidden">
       <div className="flex flex-col  gap-y-8 text-[24px] font-mono uppercase font-light ">
         <Link
           href="/"
