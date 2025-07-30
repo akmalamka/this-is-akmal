@@ -13,6 +13,33 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'withCTA',
+      title: 'With CTA Button?',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'ctaButton',
+      title: 'CTA Button',
+      type: 'object',
+      hidden: ({ parent }) => parent?.withCTA === false,
+      fields: [
+        defineField({
+          name: 'text',
+          type: 'string',
+          title: 'Button Text',
+          description: 'The text to display on the button.',
+          initialValue: 'View live site',
+        }),
+        defineField({
+          name: 'link',
+          type: 'link',
+          title: 'Link',
+          description: 'The live site url or any url related to the project',
+        }),
+      ],
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',

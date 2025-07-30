@@ -31,10 +31,42 @@ export type Hobby = {
   _rev: string;
   title?: string;
   description?: string;
+  withCTA?: boolean;
   ctaButton?: {
-    text: string;
-    link: Link;
+    text?: string;
+    link?: Link;
   };
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  withCTA?: boolean;
+  ctaButton?: {
+    text?: string;
+    link?: Link;
+  };
+  description?: string;
+  client?: string;
+  role?: string;
+  dateDuration?: string;
   image: {
     asset?: {
       _ref: string;
@@ -54,32 +86,6 @@ export type Link = {
   _type: "link";
   href?: string;
   openInNewTab?: boolean;
-};
-
-export type Project = {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-  client?: string;
-  role?: string;
-  dateDuration?: string;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
 };
 
 export type Introduction = {
@@ -396,7 +402,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Social | Hobby | Link | Project | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Social | Hobby | Project | Link | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -468,10 +474,14 @@ export type IntroductionQueryResult = {
   };
 } | null;
 // Variable: allProjectsQuery
-// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    description,    client,    role,    dateDuration,    image  }
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    ctaButton,    description,    client,    role,    dateDuration,    image  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string | null;
+  ctaButton: {
+    text?: string;
+    link?: Link;
+  } | null;
   description: string | null;
   client: string | null;
   role: string | null;
@@ -497,8 +507,8 @@ export type AllHobbiesQueryResult = Array<{
   title: string | null;
   description: string | null;
   ctaButton: {
-    text: string;
-    link: Link;
+    text?: string;
+    link?: Link;
   } | null;
   image: {
     asset?: {
@@ -528,7 +538,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
-    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    image\n  }\n": AllHobbiesQueryResult;
     "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }

@@ -4,12 +4,15 @@ import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import Footer from '@/app/components/Footer';
-
 import Header from '@/app/components/Header';
+
+import CoreRunningText from '@/app/core/CoreRunningText';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
 import { handleError } from './client-utils';
+import { CtaTextProvider } from './context/CtaTextContext';
+import CoreCustomCursor from './core/CoreCustomCursor';
 import './globals.css';
 
 /**
@@ -152,16 +155,22 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
-        <section className="min-h-screen pt-24">
-          {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
-          <Toaster />
-          {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
-          <SanityLive onError={handleError} />
-          <Header />
-          {/* TODO: fix hydration mismatch, detail in console */}
-          <main className="">{children}</main>
-          <Footer />
-        </section>
+        <CtaTextProvider>
+          <CoreCustomCursor />
+          <section className="min-h-screen pt-24">
+            {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+            <Toaster />
+            {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
+            <SanityLive onError={handleError} />
+            {/* TODO: decide whether to use running text or not */}
+            <CoreRunningText />
+            <Header />
+
+            {/* TODO: fix hydration mismatch, detail in console */}
+            <main className="">{children}</main>
+            <Footer />
+          </section>
+        </CtaTextProvider>
       </body>
     </html>
   );

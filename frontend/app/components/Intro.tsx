@@ -12,7 +12,7 @@ export default async function Intro() {
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
         <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
         {intro?.image && (
-          <CoreImage image={intro.image} className="max-w-[300px] h-[70dvh] col-span-3 col-start-4 self-start" priority />
+          <CoreImage image={intro.image} className="max-w-full h-[70dvh] col-span-3 col-start-4 self-end" priority />
         )}
       </div>
       <div className="col-span-3 flex flex-col gap-15">

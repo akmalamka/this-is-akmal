@@ -2,15 +2,27 @@
 
 import type { AllProjectsQueryResult } from '@/sanity.types';
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import CoreImage from '@/app/core/CoreImage';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
+// TODO: update all import using @/
 import CoreAnimatePresent from '../animation/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
+import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';
+import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
+  const { setCtaText } = useCtaText();
   const { selectedIndex, direction, setSlide } = useCarousel(projects.length);
+  const [selectedProject, setSelectedProject] = useState(projects[selectedIndex]);
 
+  useEffect(() => {
+    setSelectedProject(projects[selectedIndex]);
+    if (projects[selectedIndex].ctaButton?.text) {
+      setCtaText(projects[selectedIndex].ctaButton.text);
+    }
+  }, [selectedIndex]);
   return (
     <div className="text-white grid grid-cols-12 gap-6 items-end">
       <div className="col-span-3 flex flex-col justify-between h-full">
@@ -24,7 +36,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
         <div className="font-display col-span-2 grid grid-cols-3 items-end">
           <CoreAnimatePresent>
             <motion.span
-              key={projects[selectedIndex]._id}
+              key={selectedProject._id}
               initial={{ opacity: 0, y: direction * 50 }}
               animate={{
                 opacity: 1,
@@ -49,10 +61,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
         </div>
       </div>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
-        {projects[selectedIndex]?.image && (
+        {selectedProject?.image && (
           <CoreAnimatePresent>
             <motion.div
-              key={projects[selectedIndex]._id}
+              key={selectedProject._id}
               initial={{ opacity: 0, x: direction * 50 }}
               animate={{
                 opacity: 1,
@@ -67,13 +79,15 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               exit={{ opacity: 0, x: direction * -50 }}
               className="col-span-3"
             >
-              <CoreImage image={projects[selectedIndex].image} className="max-w-[300px] h-[70dvh]" priority />
+              <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
+                <CoreImage image={selectedProject.image} className="max-w-[300px] h-[70dvh] " priority />
+              </ResolvedLink>
             </motion.div>
           </CoreAnimatePresent>
         )}
         <CoreAnimatePresent>
           <motion.div
-            key={projects[selectedIndex]._id}
+            key={selectedProject._id}
             custom={direction}
             initial={{ opacity: 0, x: direction * 50 }}
             exit={{ opacity: 0, x: direction * -50 }}
@@ -89,7 +103,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             }}
             className="col-span-3 h-[70dvh]"
           >
-            <CoreRotatedText text={projects[selectedIndex].title || ''} className="col-span-3" childrenClassName="text-[107px]" />
+            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-[107px]" />
           </motion.div>
         </CoreAnimatePresent>
       </div>
@@ -104,7 +118,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           <div>
             <CoreAnimatePresent>
               <motion.h3
-                key={projects[selectedIndex]._id}
+                key={selectedProject._id}
                 initial={{ opacity: 0, y: direction * 50 }}
                 animate={{
                   opacity: 1,
@@ -119,7 +133,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 exit={{ opacity: 0, y: direction * -50 }}
                 className="font-sans font-extralight text-[16px]"
               >
-                {projects[selectedIndex].description}
+                {selectedProject.description}
               </motion.h3>
             </CoreAnimatePresent>
           </div>
@@ -129,7 +143,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             </h4>
             <CoreAnimatePresent>
               <motion.h5
-                key={projects[selectedIndex]._id}
+                key={selectedProject._id}
                 initial={{ opacity: 0, y: direction * 50 }}
                 animate={{
                   opacity: 1,
@@ -144,7 +158,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 exit={{ opacity: 0, y: direction * -50 }}
                 className="font-sans font-extralight text-[20px]"
               >
-                {projects[selectedIndex].client}
+                {selectedProject.client}
               </motion.h5>
             </CoreAnimatePresent>
           </div>
@@ -154,7 +168,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             </h4>
             <CoreAnimatePresent>
               <motion.h5
-                key={projects[selectedIndex]._id}
+                key={selectedProject._id}
                 initial={{ opacity: 0, y: direction * 50 }}
                 animate={{
                   opacity: 1,
@@ -169,14 +183,14 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 exit={{ opacity: 0, y: direction * -50 }}
                 className="font-sans font-extralight text-[20px]"
               >
-                {projects[selectedIndex].role}
+                {selectedProject.role}
               </motion.h5>
             </CoreAnimatePresent>
 
           </div>
           <CoreAnimatePresent>
             <motion.h5
-              key={projects[selectedIndex]._id}
+              key={selectedProject._id}
               initial={{ opacity: 0, y: direction * 50 }}
               animate={{
                 opacity: 1,
@@ -191,11 +205,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               exit={{ opacity: 0, y: direction * -50 }}
               className="font-sans font-semibold text-[14px] uppercase"
             >
-              {projects[selectedIndex].dateDuration}
+              {selectedProject.dateDuration}
             </motion.h5>
           </CoreAnimatePresent>
         </div>
-
       </div>
     </div>
   );

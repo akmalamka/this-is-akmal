@@ -20,7 +20,6 @@
     "@sanity/icons": "^3.7.0",
     "@sanity/vision": "^3.93.0",
     "@vinicunca/perkakas": "^1.7.0",
-    "date-fns": "^3.6.0",
     "pluralize-esm": "^9.0.5",
     "react": "^19.1",
     "react-dom": "^19.1",

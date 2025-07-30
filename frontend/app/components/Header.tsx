@@ -9,6 +9,7 @@ export default async function Header() {
 
   return (
     <header className=" text-white fixed z-50 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
+
       <div className="h-24 flex items-center justify-between container">
         <Link className="gap-2 text-white text-xl font-display uppercase font-light" href="/">
           {settings?.title}

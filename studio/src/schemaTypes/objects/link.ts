@@ -17,6 +17,16 @@ export const link = defineType({
       name: 'href',
       title: 'URL',
       type: 'url',
+      validation: (Rule) =>
+        // Custom validation to ensure URL is provided if the link type is 'href'
+        Rule.custom((value, context: any) => {
+          if (context.parent?.withCTA) {
+            return true;
+          } else if (!value) {
+            return 'URL is required';
+          }
+          return true;
+        }),
     }),
     defineField({
       name: 'openInNewTab',

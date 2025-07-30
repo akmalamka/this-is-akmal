@@ -26,3 +26,8 @@ html {
 
   --default-transition-duration: 280ms;
 }
+
+/* Disable default cursor */
+* {
+  cursor: none;
+}
