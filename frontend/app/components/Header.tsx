@@ -8,8 +8,7 @@ export default async function Header() {
   });
 
   return (
-    <header className=" text-white fixed z-50 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
-
+    <header className=" text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       <div className="h-24 flex items-center justify-between container">
         <Link className="gap-2 text-white text-xl font-display uppercase font-light" href="/">
           {settings?.title}
@@ -32,14 +31,14 @@ export default async function Header() {
           </ul>
         </nav>
         {/* TODO: add microinteraction like in ftrprf */}
-        <a
+        <Link
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"
           rel="noreferrer noopener"
           className="font-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
         >
           Let&apos;s talk
-        </a>
+        </Link>
       </div>
     </header>
   );

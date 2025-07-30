@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import CoreImage from '@/app/core/CoreImage';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
 // TODO: update all import using @/
-import CoreAnimatePresent from '../animation/CoreAnimatePresent';
+import CoreAnimatePresent from '../animations/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
 import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';

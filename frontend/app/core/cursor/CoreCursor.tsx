@@ -3,10 +3,10 @@
 import classNames from 'classnames';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { useCtaText } from '../context/CtaTextContext';
+import { useCtaText } from '../../context/CtaTextContext';
 import CoreRotatingTextCursor from './CoreRotatingTextCursor';
 
-export default function CoreCustomCursor() {
+export default function CoreCursor() {
   const { ctaText } = useCtaText();
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
