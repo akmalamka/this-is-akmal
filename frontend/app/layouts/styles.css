@@ -1,0 +1,7 @@
+.line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}

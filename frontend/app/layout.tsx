@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
-import Footer from '@/app/components/Footer';
-import Header from '@/app/components/Header';
-
 import CoreRunningText from '@/app/core/CoreRunningText';
+import Footer from '@/app/layouts/LayoutFooter';
+
+import Header from '@/app/layouts/LayoutHeader';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
@@ -20,6 +20,7 @@ import './globals.css';
  * Generate metadata for the page.
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
+// TODO: add favicon
 export async function generateMetadata(): Promise<Metadata> {
   const { data: settings } = await sanityFetch({
     query: settingsQuery,

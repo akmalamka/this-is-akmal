@@ -11,6 +11,7 @@
     "typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@radix-ui/react-visually-hidden": "^1.2.3",
     "@sanity/asset-utils": "^2.2.1",
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.1.0",
@@ -28,7 +29,8 @@
     "sanity": "^3.93.0",
     "sonner": "^1.7.0",
     "styled-components": "^6.1.13",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.1.10",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.17",
