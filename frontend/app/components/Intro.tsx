@@ -10,14 +10,14 @@ export default async function Intro() {
     <section className="text-white grid grid-cols-12 gap-6 items-end" id="skills">
       <h2 className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
-        <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-h1" />
+        <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
         {intro?.image && (
           <CoreParallaxImage image={intro.image} className="max-w-full h-[70dvh] col-span-3 col-start-4 self-end" priority />
         )}
       </div>
       <div className="col-span-3 flex flex-col gap-15">
         {/* TODO: check if using just 2 fonts (tusker and jetbrains mono can works) */}
-        <p className="text-sh4">{intro?.description}</p>
+        <p className="font-sans text-[16px] font-extralight">{intro?.description}</p>
         <a
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"

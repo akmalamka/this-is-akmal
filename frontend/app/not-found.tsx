@@ -8,7 +8,7 @@ export default function NotFound() {
           404
         </h2>
         <p
-          className="text-sh2"
+          className="font-sans text-[20px] font-extralight"
         >
           Nothing to see here. The page or URL you are looking for doesn't exist.
         </p>

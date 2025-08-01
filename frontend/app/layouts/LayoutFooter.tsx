@@ -34,7 +34,7 @@ export default async function LayoutFooter() {
                   href={social.url.href}
                   target={social.url.openInNewTab ? '_blank' : '_self'}
                   rel={social.url.openInNewTab ? 'noopener noreferrer' : undefined}
-                  className="text-links uppercase hover:underline"
+                  className="font-sans text-[16px] font-medium uppercase hover:underline"
                 >
                   {social.title}
                 </a>
@@ -55,7 +55,7 @@ export default async function LayoutFooter() {
           <span className="font-mono text-[14px] uppercase">
             Design and Development with
             {' '}
-            <span className="text-primary text-sh1">
+            <span className="text-primary font-sans text-[24px]">
               ❤
             </span>
             {' '}

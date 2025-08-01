@@ -14,10 +14,10 @@ export default function LayoutHeader({ title }: { title?: string }) {
   // TODO: close navbar when the width of the screen changes from mobile to desktop
 
   return (
-    <header className=" color-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
+    <header className=" text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       {/* TODO: logo using my head when I was little, ask abang to edit it */}
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
-        <Link className="gap-2 text-white text-[20px] font-display uppercase font-semibold" href="/">
+        <Link className="gap-2 text-[20px] font-display uppercase font-semibold" href="/">
           {title}
         </Link>
         <nav className="hidden md:block">

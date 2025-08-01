@@ -27,8 +27,8 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
       <div className="grid grid-cols-12 gap-6 items-end">
         <div className="col-span-3 flex flex-col justify-between h-full">
           <div>
-            <h2 className="text-label uppercase">Hobbies</h2>
-            <h3 className="text-sh4 max-w-[230px]">
+            <h2 className="font-mono text-[16px] uppercase">Hobbies</h2>
+            <h3 className="font-sans text-[16px] font-extralight max-w-[230px]">
               Something that I longed for after a loong working day
             </h3>
           </div>
@@ -47,7 +47,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-sh4 max-w-[230px]"
+              className="font-sans text-[16px] font-extralight max-w-[230px]"
             >
               {selectedHobby.description}
             </motion.h4>

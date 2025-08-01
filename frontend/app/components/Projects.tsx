@@ -28,7 +28,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     <section className="text-white grid grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
       <div className="col-span-3 flex flex-col justify-between h-full">
         <div>
-          <h2 className="font-mono text-[16px] uppercase ">Projects</h2>
+          <h2 className="font-mono text-[16px] uppercase">Projects</h2>
           <h3 className="font-sans font-extralight text-[16px] max-w-[230px]">
             Something that I am proud to work on, even though it&apos;s not that much
           </h3>
@@ -50,12 +50,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-h2 col-span-1"
+              className="text-[100px] font-semibold line-height-[120%] col-span-1"
             >
               {String(selectedIndex + 1).padStart(2, '0')}
             </motion.span>
           </CoreAnimatePresent>
-          <span className="text-h5 col-span-1">
+          <span className="text-[75px] font-semibold line-height-[120%] col-span-1">
             /
             {projects.length}
           </span>
@@ -104,7 +104,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             }}
             className="col-span-3 h-[70dvh]"
           >
-            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-h3" />
+            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-[108px]" />
           </motion.div>
         </CoreAnimatePresent>
       </div>
@@ -132,14 +132,14 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="text-sh4"
+                className="font-sans text-[16px] font-extralight"
               >
                 {selectedProject.description}
               </motion.h3>
             </CoreAnimatePresent>
           </div>
           <div>
-            <h4 className="text-sh5 uppercase">
+            <h4 className="font-sans text-[14px] font-bold uppercase">
               Client
             </h4>
             <CoreAnimatePresent>
@@ -157,14 +157,14 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="text-sh2"
+                className="font-sans text-[20px] font-extralight"
               >
                 {selectedProject.client}
               </motion.h5>
             </CoreAnimatePresent>
           </div>
           <div>
-            <h4 className="text-sh5 uppercase">
+            <h4 className="font-sans text-[14px] font-bold uppercase">
               Role
             </h4>
             <CoreAnimatePresent>
@@ -182,7 +182,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="text-sh2"
+                className="font-sans text-[20px] font-extralight"
               >
                 {selectedProject.role}
               </motion.h5>
@@ -204,7 +204,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-sh6 uppercase"
+              className="font-sans text-[14px] font-semibold uppercase"
             >
               {selectedProject.dateDuration}
             </motion.h5>
