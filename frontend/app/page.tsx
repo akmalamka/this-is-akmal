@@ -8,7 +8,7 @@ export default async function Page() {
   const { data: projects } = await sanityFetch({ query: allProjectsQuery });
   const { data: hobbies } = await sanityFetch({ query: allHobbiesQuery });
   return (
-    <div className="container">
+    <div className="container my-8">
       <div className="relative min-h-[40vh] flex flex-col items-center justify-center gap-30">
         <Intro />
         <Projects projects={projects} />

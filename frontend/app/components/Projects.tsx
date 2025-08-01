@@ -25,7 +25,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
   }, [selectedIndex]);
   return (
     // TODO: check why this id only works on projects and not the others
-    <section className="text-white grid grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
+    <section className="text-white grid grid-cols-12 gap-6 items-end" id="projects">
       <div className="col-span-3 flex flex-col justify-between h-full">
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>
