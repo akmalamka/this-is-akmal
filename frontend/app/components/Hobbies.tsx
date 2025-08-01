@@ -27,8 +27,8 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
       <div className="grid grid-cols-12 gap-6 items-end">
         <div className="col-span-3 flex flex-col justify-between h-full">
           <div>
-            <h2 className="font-mono text-[16px] uppercase ">Hobbies</h2>
-            <h3 className="font-sans font-extralight text-[16px] max-w-[230px]">
+            <h2 className="text-label uppercase">Hobbies</h2>
+            <h3 className="text-sh4 max-w-[230px]">
               Something that I longed for after a loong working day
             </h3>
           </div>
@@ -47,7 +47,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="font-sans font-extralight text-[16px] max-w-[230px]"
+              className="text-sh4 max-w-[230px]"
             >
               {selectedHobby.description}
             </motion.h4>
@@ -98,13 +98,14 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="font-tusker text-[81px] font-medium"
+              className="text-h4"
             >
               {selectedHobby.title}
             </motion.h3>
           </CoreAnimatePresent>
           <div className="flex gap-2">
             <CoreArrowCircle onClick={() => setSlide(-1)} />
+            {/* TODO: investigate why the rotate 180 happens when user hover it */}
             <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
           </div>
         </div>

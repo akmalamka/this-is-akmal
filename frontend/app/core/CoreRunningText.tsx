@@ -8,7 +8,7 @@ export default function RunningText() {
   const content = Array(10).fill('Currently available for freelance work, let\'s talk.');
 
   return (
-    <div className="relative w-screen overflow-hidden whitespace-nowrap my-2 py-2 border-y-2 border-white text-white">
+    <div className="relative w-screen overflow-hidden whitespace-nowrap my-2 py-2 border-y-2 border-white color-white">
       <MotionDiv
         animate={{ x: ['0%', '-50%'] }}
         transition={{
@@ -19,12 +19,12 @@ export default function RunningText() {
         className="flex w-max"
       >
         {content.map((text, index) => (
-          <span key={index} className="mx-1 font-sans text-[16px] font-light shrink-0">
+          <span key={index} className="mx-1 text-sh3 shrink-0">
             {text}
           </span>
         ))}
         {content.map((text, index) => (
-          <span key={`repeat-${index}`} className="mx-1 font-sans text-[16px] font-light shrink-0">
+          <span key={`repeat-${index}`} className="mx-1 text-sh3 shrink-0">
             {text}
           </span>
         ))}

@@ -6,7 +6,6 @@ export default function CoreArrowCircle({ className, onClick }: CompProps & Reac
   return (
     <motion.button
       initial={false}
-      // animate={{ backgroundColor: color }}
       aria-label="Previous"
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}

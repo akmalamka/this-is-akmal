@@ -8,20 +8,21 @@ export default async function Intro() {
 
   return (
     <section className="text-white grid grid-cols-12 gap-6 items-end" id="skills">
-      <h2 className="text-caption uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
+      <h2 className="text-label uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
-        <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
+        <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-h1" />
         {intro?.image && (
           <CoreParallaxImage image={intro.image} className="max-w-full h-[70dvh] col-span-3 col-start-4 self-end" priority />
         )}
       </div>
       <div className="col-span-3 flex flex-col gap-15">
-        <p className="font-sans text-[18px]">{intro?.description}</p>
+        {/* TODO: check if using just 2 fonts (tusker and jetbrains mono can works) */}
+        <p className="text-sh4">{intro?.description}</p>
         <a
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"
           rel="noreferrer noopener"
-          className="w-fit font-jetbrains-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
+          className="w-fit text-label py-2.5 px-6 bg-primary uppercase border-4 border-white hover:(bg-white text-black) transition-colors inline-block"
         >
           Let&apos;s talk
         </a>

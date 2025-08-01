@@ -5,7 +5,6 @@ import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import CoreRunningText from '@/app/core/CoreRunningText';
 import LayoutFooter from '@/app/layouts/LayoutFooter';
-
 import LayoutHeader from '@/app/layouts/LayoutHeader';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';

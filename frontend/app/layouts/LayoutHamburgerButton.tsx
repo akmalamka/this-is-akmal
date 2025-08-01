@@ -5,7 +5,7 @@ import './styles.css';
 export default function LayoutHamburgerButton({ isOpen, className, ...rest }: { isOpen: boolean } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
   return (
     <button
-      className={classNames('relative w-10 h-10 flex justify-center items-center rounded-full', className)}
+      className={classNames('relative w-10 h-10 justify-center items-center rounded-full flex', className)}
       {...rest}
     >
       {isOpen
