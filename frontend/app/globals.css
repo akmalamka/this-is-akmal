@@ -1,8 +1,9 @@
-@unocss all;
+@import "tailwindcss";
+@import 'lenis/dist/lenis.css';
+@plugin "@tailwindcss/typography";
 
 :root {
   --navbar-height: 80px;
-  @apply bg-black;
 }
 
 @media (min-width: 768px) {
@@ -12,6 +13,7 @@
 }
 
 html {
+  @apply bg-[#0b0b0b];
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -28,31 +30,11 @@ html {
   --color-white: #fff;
   --color-primary: #eb110A;
 
+  --font-display: var(--font-tusker);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
   --default-transition-duration: 280ms;
-}
-
-/* Lenis recommended css https://github.com/darkroomengineering/lenis/blob/main/README.md#recommended-css */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis:not(.lenis-autoToggle).lenis-stopped {
-  overflow: clip;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
-.lenis.lenis-autoToggle {
-  transition-property: overflow;
-  transition-duration: 1ms;
-  transition-behavior: allow-discrete;
 }
 
 /* Disable default cursor */
