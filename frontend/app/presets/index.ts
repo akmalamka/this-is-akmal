@@ -5,6 +5,7 @@ const TUSKER_STR = 'var(--font-tusker)';
 const INTER_STR = 'var(--font-inter)';
 const JETBRAINS_MONO_STR = 'var(--font-jetbrains-mono)';
 
+// Find a way to trigger fast refresh when this file is changes
 export function presetCore(): Preset<Theme> {
   return {
     name: 'preset-core',
@@ -24,8 +25,22 @@ export function presetCore(): Preset<Theme> {
       fontSize: {
         // TODO: add desktop and mobile fontsize definition
         // Desktop
-        h1: ['300px', { 'font-family': TUSKER_STR }],
-        caption: ['12px', { 'font-family': JETBRAINS_MONO_STR }],
+        h1: ['200px', { 'font-weight': 600, 'font-family': TUSKER_STR }],
+        h2: ['130px', { 'line-height': '120%', 'font-weight': 600, 'font-family': TUSKER_STR }],
+        h3: ['107px', { 'font-family': TUSKER_STR }],
+        h4: ['81px', { 'font-weight': 500, 'font-family': TUSKER_STR }],
+        h5: ['75px', { 'line-height': '120%', 'font-weight': 600, 'font-family': TUSKER_STR }],
+        sh1: ['24px', { 'font-family': INTER_STR }],
+        sh2: ['20px', { 'font-weight': 200, 'font-family': INTER_STR }],
+        sh3: ['18px', { 'font-family': INTER_STR }],
+        sh4: ['16px', { 'font-weight': 200, 'font-family': INTER_STR }],
+        sh5: ['14px', { 'font-weight': 700, 'font-family': INTER_STR }],
+        sh6: ['14px', { 'font-weight': 600, 'font-family': INTER_STR }],
+        body: ['20px', { 'font-weight': 600, 'font-family': TUSKER_STR }],
+        navigation: ['16px', { 'font-weight': 300, 'font-family': JETBRAINS_MONO_STR }],
+        links: ['16px', { 'font-weight': 500, 'font-family': INTER_STR }],
+        label: ['16px', { 'font-family': JETBRAINS_MONO_STR }],
+        caption: ['14px', { 'font-family': JETBRAINS_MONO_STR }],
       },
 
       zIndex: {
@@ -37,13 +52,11 @@ export function presetCore(): Preset<Theme> {
       },
 
       colors: {
-        white: '#FFFFFF',
-        grey: {
-          light: '#F4F4F4',
-          medium: '#D9D9D9',
-          dark: '#888A8B',
+        primary: {
+          DEFAULT: '#eb110A',
         },
-        black: '#000000',
+        white: '#FFFFFF',
+        black: '#0b0b0b',
       },
     },
 

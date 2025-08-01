@@ -14,16 +14,16 @@ export default function LayoutHeader({ title }: { title?: string }) {
   // TODO: close navbar when the width of the screen changes from mobile to desktop
 
   return (
-    <header className=" text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
+    <header className=" color-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       {/* TODO: logo using my head when I was little, ask abang to edit it */}
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
-        <Link className="gap-2 text-white text-[20px] font-tusker uppercase font-semibold" href="/">
+        <Link className="text-body uppercase" href="/">
           {title}
         </Link>
         <nav className="hidden md:block">
           <ul
             role="list"
-            className="flex items-center gap-12 text-[16px] font-jetbrains-mono uppercase font-light"
+            className="flex items-center gap-12 text-navigation uppercase"
           >
             <li>
               <Link href="#projects" scroll={false}>Projects</Link>
@@ -41,11 +41,11 @@ export default function LayoutHeader({ title }: { title?: string }) {
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"
           rel="noreferrer noopener"
-          className="font-jetbrains-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors hidden md:inline-block"
+          className="text-label py-2.5 px-6 bg-primary uppercase border-4 border-white hover:(bg-white text-black) transition-colors hidden md:inline-block"
         >
           Let&apos;s talk
         </Link>
-
+        {/* TODO: make the drawer hidden in md screen */}
         <CoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(

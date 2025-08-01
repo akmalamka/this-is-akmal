@@ -28,13 +28,13 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     <section className="text-white grid grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
       <div className="col-span-3 flex flex-col justify-between h-full">
         <div>
-          <h2 className="font-jetbrains-mono text-[16px] uppercase ">Projects</h2>
-          <h3 className="font-sans font-extralight text-[16px] max-w-[230px]">
+          <h2 className="text-label uppercase ">Projects</h2>
+          <h3 className="text-sh4 max-w-[230px]">
             Something that I am proud to work on, even though it&apos;s not that much
           </h3>
         </div>
 
-        <div className="font-tusker col-span-2 grid grid-cols-3 items-end">
+        <div className="col-span-2 grid grid-cols-3 items-end">
           <CoreAnimatePresent>
             <motion.span
               key={selectedProject._id}
@@ -50,12 +50,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-[130px] leading-[120%] col-span-1"
+              className="text-h2 col-span-1"
             >
               {String(selectedIndex + 1).padStart(2, '0')}
             </motion.span>
           </CoreAnimatePresent>
-          <span className="text-[75px] leading-[120%] col-span-1">
+          <span className="text-h5 col-span-1">
             /
             {projects.length}
           </span>
@@ -104,7 +104,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             }}
             className="col-span-3 h-[70dvh]"
           >
-            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-[107px]" />
+            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-h3" />
           </motion.div>
         </CoreAnimatePresent>
       </div>
@@ -132,14 +132,14 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans font-extralight text-[16px]"
+                className="text-sh4"
               >
                 {selectedProject.description}
               </motion.h3>
             </CoreAnimatePresent>
           </div>
           <div>
-            <h4 className="font-sans text-[14px] uppercase font-bold">
+            <h4 className="text-sh5 uppercase">
               Client
             </h4>
             <CoreAnimatePresent>
@@ -157,14 +157,14 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans font-extralight text-[20px]"
+                className="text-sh2"
               >
                 {selectedProject.client}
               </motion.h5>
             </CoreAnimatePresent>
           </div>
           <div>
-            <h4 className="font-sans text-[14px] uppercase font-bold">
+            <h4 className="text-sh5 uppercase">
               Role
             </h4>
             <CoreAnimatePresent>
@@ -182,7 +182,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   },
                 }}
                 exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans font-extralight text-[20px]"
+                className="text-sh2"
               >
                 {selectedProject.role}
               </motion.h5>
@@ -204,7 +204,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="font-sans font-semibold text-[14px] uppercase"
+              className="text-sh6 uppercase"
             >
               {selectedProject.dateDuration}
             </motion.h5>

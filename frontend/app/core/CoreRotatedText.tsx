@@ -25,7 +25,7 @@ export default function CoreRotatedText({ text, className, childrenClassName = '
   return (
     <div className={classNames('flex items-center justify-center', className)} ref={wrapperRef}>
       {/* TODO: change so that h1 can only be the name */}
-      <h1 className={classNames('text-h1 font-semibold uppercase -rotate-90', childrenClassName)} ref={textRef}>
+      <h1 className={classNames('uppercase -rotate-90', childrenClassName)} ref={textRef}>
         {text}
       </h1>
     </div>
