@@ -28,13 +28,13 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     <section className="text-white grid grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
       <div className="col-span-3 flex flex-col justify-between h-full">
         <div>
-          <h2 className="font-mono text-[16px] uppercase ">Projects</h2>
+          <h2 className="font-jetbrains-mono text-[16px] uppercase ">Projects</h2>
           <h3 className="font-sans font-extralight text-[16px] max-w-[230px]">
             Something that I am proud to work on, even though it&apos;s not that much
           </h3>
         </div>
 
-        <div className="font-display col-span-2 grid grid-cols-3 items-end">
+        <div className="font-tusker col-span-2 grid grid-cols-3 items-end">
           <CoreAnimatePresent>
             <motion.span
               key={selectedProject._id}

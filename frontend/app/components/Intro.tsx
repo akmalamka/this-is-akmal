@@ -8,7 +8,7 @@ export default async function Intro() {
 
   return (
     <section className="text-white grid grid-cols-12 gap-6 items-end" id="skills">
-      <h2 className="font-mono text-[16px] uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
+      <h2 className="text-caption uppercase col-span-3 self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
         <CoreRotatedText text={intro?.name || ''} className="col-span-3" childrenClassName="text-[200px]" />
         {intro?.image && (
@@ -21,7 +21,7 @@ export default async function Intro() {
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"
           rel="noreferrer noopener"
-          className="w-fit font-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
+          className="w-fit font-jetbrains-mono py-2.5 px-6 bg-primary uppercase text-white border-4 border-white hover:bg-white hover:text-black transition-colors inline-block"
         >
           Let&apos;s talk
         </a>

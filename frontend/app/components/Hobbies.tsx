@@ -98,7 +98,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="font-display text-[81px] font-medium"
+              className="font-tusker text-[81px] font-medium"
             >
               {selectedHobby.title}
             </motion.h3>

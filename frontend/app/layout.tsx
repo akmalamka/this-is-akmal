@@ -14,6 +14,7 @@ import { handleError } from './client-utils';
 import { CtaTextProvider } from './context/CtaTextContext';
 import LenisScroll from './core/CoreLenisScroll';
 import CoreCursor from './core/cursor/CoreCursor';
+import '@unocss/reset/tailwind.css';
 import './globals.css';
 
 /**
@@ -52,6 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// TODO: investigate should we worry about the font family definition "tuskerGrotesk", "tuskerGrotesk Fallback"
 const tuskerGrotesk = localFont({
   src: [
     {
@@ -82,6 +84,7 @@ const tuskerGrotesk = localFont({
   ],
   display: 'swap',
   variable: '--font-tusker',
+
 });
 
 // TODO: investigate why next/font/google doesn't work for Inter and Jetbrain Mono
@@ -161,7 +164,7 @@ export default async function RootLayout({
   });
 
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} antialiased bg-white text-black`}>
       <body>
         <LenisScroll>
           <CtaTextProvider>

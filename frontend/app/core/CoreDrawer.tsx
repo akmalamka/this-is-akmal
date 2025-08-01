@@ -22,7 +22,7 @@ export default function CoreDrawer({ children, trigger, state }: CoreDrawerProps
         <Drawer.Content className="bg-white h-[100dvh] fixed bottom-0 left-0 right-0 outline-none z-30">
           <div className="container">
             <Drawer.Title className="flex items-center justify-between h-[var(--navbar-height)]">
-              <Link className="text-black text-[20px] font-display uppercase font-semibold" href="/">
+              <Link className="text-black text-[20px] font-tusker uppercase font-semibold" href="/">
                 This is Akmal
               </Link>
               <Drawer.Close>
