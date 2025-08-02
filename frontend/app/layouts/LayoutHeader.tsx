@@ -47,6 +47,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(
             <Drawer.Trigger className="text-white md:hidden">
+              {/* TODO: Make sure the focus can be removed before it was being hide */}
               <LayoutHamburgerButton
                 isOpen={false}
                 className=" bg-white text-black"

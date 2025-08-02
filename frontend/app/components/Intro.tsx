@@ -11,7 +11,7 @@ export default async function Intro() {
     <section className="text-white grid grid-rows-[50px_repeat(4,1fr)] lg:grid-rows-none max-h-[80dvh] lg:max-h-[70dvh] lg:grid-cols-12 gap-6 lg:items-end" id="intro">
       <h2 className="font-mono text-[16px] uppercase row-span-1 lg:row-auto lg:col-span-3 lg:self-start">Hi, it&apos;s me,</h2>
       <div className="grid grid-rows-2 row-span-2 lg:grid-rows-none lg:row-auto lg:grid-cols-6 lg:col-span-6 lg:justify-center lg:items-end relative">
-        <CoreRotatedText text={intro?.name || ''} className="row-span-1 lg:row-auto lg:col-span-3" childrenClassName="text-[80px] sm:text-[100px] md:text-[140px] lg:text-[180px]" />
+        <CoreRotatedText as="h1" text={intro?.name || ''} className="row-span-1 lg:row-auto lg:col-span-3" childrenClassName="text-[80px] sm:text-[100px] md:text-[140px] lg:text-[180px]" />
         {intro?.image && (
           <CoreParallaxImage image={intro.image} className="max-w-full row-span-1 lg:row-auto lg:h-[70dvh] lg:col-span-3 lg:col-start-4 lg:self-end" priority />
         )}

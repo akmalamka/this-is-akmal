@@ -133,7 +133,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             }}
             className="lg:col-span-3 lg:h-[70dvh]"
           >
-            <CoreRotatedText text={selectedProject.title || ''} className="" childrenClassName="text-[50px] md:text-[70px] lg:text-[108px]" />
+            <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[50px] md:text-[70px] lg:text-[108px]" />
           </motion.div>
         </CoreAnimatePresent>
       </div>

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import classNames from 'classnames';
-import '@/app/styles.css';
+import './styles.css';
 
 export default function LayoutHamburgerButton({ isOpen, className, ...rest }: { isOpen: boolean } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
   return (

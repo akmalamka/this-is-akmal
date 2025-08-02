@@ -30,7 +30,6 @@ export default function CoreDrawer({
 
   return (
     <Drawer.Root direction="top" open={isDrawerOpen}>
-      {/* <Drawer.Trigger className="text-white lg:hidden">{trigger}</Drawer.Trigger> */}
       {trigger}
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-30" />
