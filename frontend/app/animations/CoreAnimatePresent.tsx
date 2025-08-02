@@ -1,4 +1,4 @@
-import type { CompProps } from '../typings/props';
+import type { CompProps } from '@/app/typings/props';
 import { AnimatePresence, usePresenceData } from 'motion/react';
 
 export default function AnimatePresentProjects({ children }: CompProps) {

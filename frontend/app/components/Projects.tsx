@@ -1,21 +1,20 @@
 'use client';
 
-import type { Direction } from '../composables/useCarousel';
-import type { CompProps } from '../typings/props';
+import type { Direction } from '@/app/composables/useCarousel';
+import type { CompProps } from '@/app/typings/props';
 import type { AllProjectsQueryResult } from '@/sanity.types';
 import classNames from 'classnames';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
+import CoreAnimatePresent from '@/app/animations/CoreAnimatePresent';
+import { useCarousel } from '@/app/composables/useCarousel';
+import { useCtaText } from '@/app/context/CtaTextContext';
+import CoreArrowCircle from '@/app/core/CoreArrowCircle';
+import CoreDrawer from '@/app/core/CoreDrawer';
+import CoreImage from '@/app/core/CoreImage';
+import CoreParallaxImage from '@/app/core/CoreParallaxImage';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
-// TODO: update all import using @/
-import CoreAnimatePresent from '../animations/CoreAnimatePresent';
-import { useCarousel } from '../composables/useCarousel';
-import { useCtaText } from '../context/CtaTextContext';
-import CoreArrowCircle from '../core/CoreArrowCircle';
-import CoreDrawer from '../core/CoreDrawer';
-import CoreImage from '../core/CoreImage';
-import CoreParallaxImage from '../core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
@@ -33,8 +32,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
   }, [selectedIndex]);
   return (
     // TODO: change responsive rows into cols
-    // TODO: check why this id only works on projects and not the others
-    <section className="text-white grid grid-rows-[auto_50dvh_auto_auto] lg:grid-cols-12 lg:grid-rows-none gap-6 items-end" id="projects">
+    <section className="text-white grid grid-rows-[auto_50dvh_auto_auto] lg:grid-cols-12 lg:grid-rows-none gap-6 items-end scroll-m-24" id="projects">
       <div className="row-span-1 flex lg:row-auto lg:col-span-3 lg:flex-col justify-between h-full">
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>

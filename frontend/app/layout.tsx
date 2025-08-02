@@ -3,23 +3,22 @@ import type { Metadata } from 'next';
 import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
+import { handleError } from '@/app/client-utils';
+import { CtaTextProvider } from '@/app/context/CtaTextContext';
+import LenisScroll from '@/app/core/CoreLenisScroll';
 import CoreRunningText from '@/app/core/CoreRunningText';
+import CoreCursor from '@/app/core/cursor/CoreCursor';
 import LayoutFooter from '@/app/layouts/LayoutFooter';
 import LayoutHeader from '@/app/layouts/LayoutHeader';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
-import { handleError } from './client-utils';
-import { CtaTextProvider } from './context/CtaTextContext';
-import LenisScroll from './core/CoreLenisScroll';
-import CoreCursor from './core/cursor/CoreCursor';
-import './globals.css';
+import '@/app/globals.css';
 
 /**
  * Generate metadata for the page.
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
-// TODO: add favicon
 export async function generateMetadata(): Promise<Metadata> {
   const { data: settings } = await sanityFetch({
     query: settingsQuery,
@@ -170,9 +169,8 @@ export default async function RootLayout({
               <Toaster />
               {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
               <SanityLive onError={handleError} />
-              {/* TODO: decide whether to use running text or not */}
               <CoreRunningText />
-              {/* TODO: remove title props as we will use icon for the headerr */}
+              {/* TODO: remove title props as we will use icon for the header */}
               <LayoutHeader title={settings?.title} />
 
               {/* TODO: fix hydration mismatch, detail in console */}

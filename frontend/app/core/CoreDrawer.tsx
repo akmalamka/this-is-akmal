@@ -1,11 +1,11 @@
 'use client';
 
-import type { CompProps } from '../typings/props';
+import type { CompProps } from '@/app/typings/props';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Link from 'next/link';
 import { Drawer } from 'vaul';
-import LayoutHamburgerButton from '../layouts/LayoutHamburgerButton';
+import LayoutHamburgerButton from '@/app/layouts/LayoutHamburgerButton';
 
 interface CoreDrawerProps extends CompProps {
   title?: React.ReactNode;
@@ -27,6 +27,7 @@ export default function CoreDrawer({
   ),
 }: CoreDrawerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = state;
+
   return (
     <Drawer.Root direction="top" open={isDrawerOpen}>
       {/* <Drawer.Trigger className="text-white lg:hidden">{trigger}</Drawer.Trigger> */}

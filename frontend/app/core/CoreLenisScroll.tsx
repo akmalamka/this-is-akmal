@@ -1,4 +1,3 @@
-// components/LenisScroll.tsx
 'use client';
 
 // TODO: fix motion animation glitch on carousel

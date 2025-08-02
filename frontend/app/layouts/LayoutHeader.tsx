@@ -27,13 +27,10 @@ export default function LayoutHeader({ title }: { title?: string }) {
             className="flex items-center gap-12 text-[16px] font-mono uppercase font-light"
           >
             <li>
-              <Link href="#projects" scroll={false}>Projects</Link>
+              <Link href="#projects">Projects</Link>
             </li>
             <li>
-              <Link href="#skills" scroll={false}>Skills</Link>
-            </li>
-            <li>
-              <Link href="#hobbies" scroll={false}>Hobbies</Link>
+              <Link href="#hobbies">Hobbies</Link>
             </li>
           </ul>
         </nav>

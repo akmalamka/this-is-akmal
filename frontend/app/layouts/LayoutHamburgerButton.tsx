@@ -1,17 +1,17 @@
 import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import classNames from 'classnames';
-import './styles.css';
+import '@/app/styles.css';
 
-export default function LayoutHamburgerButton({ isOpen, className, ...rest }: { isOpen: boolean } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
+export default function LayoutHamburgerButton({ isOpen, className, ...rest }: { isOpen: boolean } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
   return (
-    <button
+    <div
       className={classNames('relative w-10 h-10 justify-center items-center rounded-full flex', className)}
       {...rest}
     >
       {isOpen
         ? <CloseIcon />
         : <HamburgerIcon />}
-    </button>
+    </div>
   );
 }
 

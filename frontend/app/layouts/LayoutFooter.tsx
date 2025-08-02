@@ -7,21 +7,7 @@ export default async function LayoutFooter() {
   return (
     <footer className="relative">
       <div className="container mx-auto px-4 py-8 flex flex-col gap-24 md:gap-4">
-        {/* TODO: for next release, we should make this up! */}
-        {/* <div className="font-sans font-light text-[28px] flex justify-between text-white">
-          <span>
-            let's
-          </span>
-          <span>
-            make
-          </span>
-          <span>
-            something
-          </span>
-        </div>
-        <span className="font-display font-extrabold text-[400px] uppercase text-white">
-          Cool
-        </span> */}
+
         <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
           <Link className="text-white text-center font-display uppercase font-semibold text-[100px] md:text-[20px]" href="/">
             This is Akmal
@@ -31,9 +17,9 @@ export default async function LayoutFooter() {
             {socials?.map((social, index) => (
               <li key={social._id}>
                 <a
-                  href={social.url.href}
-                  target={social.url.openInNewTab ? '_blank' : '_self'}
-                  rel={social.url.openInNewTab ? 'noopener noreferrer' : undefined}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-sans text-[16px] font-medium uppercase hover:underline"
                 >
                   {social.title}

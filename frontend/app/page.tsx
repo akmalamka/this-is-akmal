@@ -1,8 +1,8 @@
+import Hobbies from '@/app/components/Hobbies';
+import Intro from '@/app/components/Intro';
+import Projects from '@/app/components/Projects';
 import { sanityFetch } from '@/sanity/lib/live';
 import { allHobbiesQuery, allProjectsQuery } from '@/sanity/lib/queries';
-import Hobbies from './components/Hobbies';
-import Intro from './components/Intro';
-import Projects from './components/Projects';
 
 export default async function Page() {
   const { data: projects } = await sanityFetch({ query: allProjectsQuery });

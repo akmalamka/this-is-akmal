@@ -27,7 +27,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
   }, [selectedIndex]);
 
   return (
-    <section className="grid grid-cols-6 lg:grid-cols-12 gap-6 text-white">
+    <section className="grid grid-cols-6 lg:grid-cols-12 gap-6 text-white scroll-m-24" id="hobbies">
       <div className="col-span-6 lg:col-span-3 flex flex-col justify-between h-full">
         <div>
           <h2 className="font-mono text-[16px] uppercase">Hobbies</h2>
