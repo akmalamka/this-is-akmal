@@ -25,16 +25,16 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
   }, [selectedIndex]);
   return (
     // TODO: check why this id only works on projects and not the others
-    <section className="text-white grid grid-cols-12 gap-6 items-end" id="projects">
-      <div className="col-span-3 flex flex-col justify-between h-full">
+    <section className="text-white grid grid-rows-[auto_50dvh_auto_auto] lg:grid-cols-12 lg:grid-rows-none gap-6 items-end" id="projects">
+      <div className="row-span-1 flex lg:row-auto lg:col-span-3 lg:flex-col justify-between h-full">
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>
-          <h3 className="font-sans font-extralight text-[16px] max-w-[230px]">
+          <h3 className="hidden lg:block font-sans font-extralight text-[16px] max-w-[230px]">
             Something that I am proud to work on, even though it&apos;s not that much
           </h3>
         </div>
 
-        <div className="font-display col-span-2 grid grid-cols-3 items-end">
+        <div className="font-display items-end">
           <CoreAnimatePresent>
             <motion.span
               key={selectedProject._id}
@@ -50,18 +50,18 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-[100px] font-semibold line-height-[120%] col-span-1"
+              className="text-[50px] md:text-[70px] lg:text-[100px] font-semibold line-height-[120%] col-span-1"
             >
               {String(selectedIndex + 1).padStart(2, '0')}
             </motion.span>
           </CoreAnimatePresent>
-          <span className="text-[75px] font-semibold line-height-[120%] col-span-1">
+          <span className="text-[30px] md:text-[50px] lg:text-[75px] font-semibold line-height-[120%] col-span-1">
             /
             {projects.length}
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-6 justify-center items-end col-span-6 relative">
+      <div className="grid lg:row-auto lg:grid-cols-6 row-span-2 lg:col-span-6 justify-center items-end gap-6">
         {selectedProject?.image && (
           <CoreAnimatePresent>
             <motion.div
@@ -78,10 +78,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, x: direction * -50 }}
-              className="col-span-3"
+              className="lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[70dvh] " priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] lg:h-[70dvh]" priority />
               </ResolvedLink>
             </motion.div>
           </CoreAnimatePresent>
@@ -102,20 +102,21 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 bounce: 0.4,
               },
             }}
-            className="col-span-3 h-[70dvh]"
+            className="lg:col-span-3 lg:h-[70dvh]"
           >
-            <CoreRotatedText text={selectedProject.title || ''} className="col-span-3" childrenClassName="text-[108px]" />
+            {/* TODO: add masking to text in less than lg screen */}
+            <CoreRotatedText text={selectedProject.title || ''} className="" childrenClassName="text-[50px] md:text-[70px] lg:text-[108px]" />
           </motion.div>
         </CoreAnimatePresent>
       </div>
 
-      <div className="col-span-3 flex flex-col justify-between h-full items-end">
-        <div className="flex gap-2">
+      <div className="flex row-span-1 lg:row-auto lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
+        <div className="flex gap-8 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
         </div>
 
-        <div className="flex flex-col gap-9 w-full">
+        <div className="hidden lg:flex flex-col gap-9 w-full">
           <div>
             <CoreAnimatePresent>
               <motion.h3
