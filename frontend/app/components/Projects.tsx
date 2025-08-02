@@ -32,6 +32,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     }
   }, [selectedIndex]);
   return (
+    // TODO: change responsive rows into cols
     // TODO: check why this id only works on projects and not the others
     <section className="text-white grid grid-rows-[auto_50dvh_auto_auto] lg:grid-cols-12 lg:grid-rows-none gap-6 items-end" id="projects">
       <div className="row-span-1 flex lg:row-auto lg:col-span-3 lg:flex-col justify-between h-full">
@@ -97,7 +98,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 title={<h3 className="font-display font-semibold text-[32px]">{selectedProject.title}</h3>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedProject.image} className="lg:hidden h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >

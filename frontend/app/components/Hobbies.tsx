@@ -3,14 +3,18 @@
 import type { AllHobbiesQueryResult } from '@/sanity.types';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { Drawer } from 'vaul';
 import CoreAnimatePresent from '../animations/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
 import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';
+import CoreDrawer from '../core/CoreDrawer';
+import CoreImage from '../core/CoreImage';
 import CoreParallaxImage from '../core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { setCtaText } = useCtaText();
   const { selectedIndex, direction, setSlide } = useCarousel(hobbies.length);
   const [selectedHobby, setSelectedHobby] = useState(hobbies[selectedIndex]);
@@ -73,8 +77,33 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
             >
               {/* TODO: add image filter mirip di ftrprf */}
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[65dvh]" priority />
+                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" priority />
               </ResolvedLink>
+
+              <CoreDrawer
+                state={[isDrawerOpen, setIsDrawerOpen]}
+                title={<h3 className="font-display font-semibold text-[32px]">{selectedHobby.title}</h3>}
+                trigger={(
+                  <Drawer.Trigger className="text-white lg:hidden">
+                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  </Drawer.Trigger>
+                )}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" priority />
+                  <h4 className='className="font-sans text-[16px] font-extralight'>
+                    {selectedHobby.description}
+                  </h4>
+                  {String(selectedHobby.ctaButton?.link)}
+                  {selectedHobby.ctaButton?.link
+                    ? (
+                        <ResolvedLink link={selectedHobby.ctaButton?.link} className="self-end">
+                          <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
+                        </ResolvedLink>
+                      )
+                    : null}
+                </div>
+              </CoreDrawer>
             </motion.div>
           </CoreAnimatePresent>
         )}

@@ -1,5 +1,5 @@
 import { LinkIcon } from '@sanity/icons';
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 
 /**
  * Link schema object. This link object lets the user first select the type of link and then
@@ -10,29 +10,16 @@ import { defineField, defineType } from 'sanity';
 export const link = defineType({
   name: 'link',
   title: 'Link',
-  type: 'object',
+  type: 'url',
   icon: LinkIcon,
-  fields: [
-    defineField({
-      name: 'href',
-      title: 'URL',
-      type: 'url',
-      validation: (Rule) =>
-        // Custom validation to ensure URL is provided if the link type is 'href'
-        Rule.custom((value, context: any) => {
-          if (context.parent?.withCTA) {
-            return true;
-          } else if (!value) {
-            return 'URL is required';
-          }
-          return true;
-        }),
+  validation: (Rule) =>
+  // Custom validation to ensure URL is provided if the link type is 'href'
+    Rule.custom((value, context: any) => {
+      if (context.parent?.withCTA) {
+        return true;
+      } else if (!value) {
+        return 'URL is required';
+      }
+      return true;
     }),
-    defineField({
-      name: 'openInNewTab',
-      title: 'Open in new tab',
-      type: 'boolean',
-      initialValue: false,
-    }),
-  ],
 });

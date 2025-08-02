@@ -1,5 +1,4 @@
 import type { CreateDataAttributeProps } from 'next-sanity';
-import type { Link } from '@/sanity.types';
 import { getImageDimensions } from '@sanity/asset-utils';
 import createImageUrlBuilder from '@sanity/image-url';
 import { createDataAttribute } from 'next-sanity';
@@ -51,14 +50,6 @@ export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
     return;
   }
   return { url, alt: image?.alt as string, width, height };
-}
-
-// Depending on the type of link, we need to fetch the corresponding page, post, or URL.  Otherwise return null.
-export function linkResolver(link: Link | undefined) {
-  if (!link) {
-    return null;
-  }
-  return link.href || null;
 }
 
 type DataAttributeConfig = CreateDataAttributeProps

@@ -1,5 +1,12 @@
 [
   {
+    "name": "link",
+    "type": "type",
+    "value": {
+      "type": "string"
+    }
+  },
+  {
     "name": "social",
     "type": "document",
     "attributes": {
@@ -385,36 +392,6 @@
           }
         },
         "optional": false
-      }
-    }
-  },
-  {
-    "name": "link",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "link"
-          }
-        },
-        "href": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "openInNewTab": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
       }
     }
   },
