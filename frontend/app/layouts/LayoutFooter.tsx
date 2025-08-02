@@ -23,7 +23,7 @@ export default async function LayoutFooter() {
           Cool
         </span> */}
         <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
-          <Link className="text-white font-display uppercase font-semibold text-[100px] md:text-[20px]" href="/">
+          <Link className="text-white text-center font-display uppercase font-semibold text-[100px] md:text-[20px]" href="/">
             This is Akmal
           </Link>
           <ul className="inline-flex text-white justify-between w-full md:w-fit">

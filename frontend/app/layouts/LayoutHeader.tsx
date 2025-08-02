@@ -46,7 +46,6 @@ export default function LayoutHeader({ title }: { title?: string }) {
         >
           Let&apos;s talk
         </Link>
-        {/* TODO: make the drawer hidden in md screen */}
         <CoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(

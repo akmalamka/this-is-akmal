@@ -141,7 +141,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
 
       <div className="flex row-span-1 lg:row-auto lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
         {/* TODO: disable the button while animate still happening */}
-        <div className="flex gap-8 lg:gap-2">
+        <div className="flex gap-6 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
         </div>
