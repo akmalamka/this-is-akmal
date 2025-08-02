@@ -1,19 +1,27 @@
 'use client';
 
+import type { Direction } from '../composables/useCarousel';
+import type { CompProps } from '../typings/props';
 import type { AllProjectsQueryResult } from '@/sanity.types';
+import classNames from 'classnames';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { Drawer } from 'vaul';
 import CoreRotatedText from '@/app/core/CoreRotatedText';
 // TODO: update all import using @/
 import CoreAnimatePresent from '../animations/CoreAnimatePresent';
 import { useCarousel } from '../composables/useCarousel';
 import { useCtaText } from '../context/CtaTextContext';
 import CoreArrowCircle from '../core/CoreArrowCircle';
+import CoreDrawer from '../core/CoreDrawer';
+import CoreImage from '../core/CoreImage';
 import CoreParallaxImage from '../core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
   const { setCtaText } = useCtaText();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const { selectedIndex, direction, setSlide } = useCarousel(projects.length);
   const [selectedProject, setSelectedProject] = useState(projects[selectedIndex]);
 
@@ -81,8 +89,30 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               className="lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] lg:h-[70dvh]" priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] hidden lg:block lg:h-[70dvh]" priority />
               </ResolvedLink>
+
+              <CoreDrawer
+                state={[isDrawerOpen, setIsDrawerOpen]}
+                title={<h3 className="font-display font-semibold text-[32px]">{selectedProject.title}</h3>}
+                trigger={(
+                  <Drawer.Trigger className="text-white lg:hidden">
+                    <CoreParallaxImage image={selectedProject.image} className="lg:hidden h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  </Drawer.Trigger>
+                )}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <CoreImage image={selectedProject.image} className="h-[30dvh]" priority />
+                  <ProjectDetail direction={direction} selectedProject={selectedProject} />
+                  {selectedProject.ctaButton?.link
+                    ? (
+                        <ResolvedLink link={selectedProject.ctaButton?.link} className="self-end">
+                          <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
+                        </ResolvedLink>
+                      )
+                    : null}
+                </div>
+              </CoreDrawer>
             </motion.div>
           </CoreAnimatePresent>
         )}
@@ -104,114 +134,86 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             }}
             className="lg:col-span-3 lg:h-[70dvh]"
           >
-            {/* TODO: add masking to text in less than lg screen */}
             <CoreRotatedText text={selectedProject.title || ''} className="" childrenClassName="text-[50px] md:text-[70px] lg:text-[108px]" />
           </motion.div>
         </CoreAnimatePresent>
       </div>
 
       <div className="flex row-span-1 lg:row-auto lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
+        {/* TODO: disable the button while animate still happening */}
         <div className="flex gap-8 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
         </div>
 
-        <div className="hidden lg:flex flex-col gap-9 w-full">
-          <div>
-            <CoreAnimatePresent>
-              <motion.h3
-                key={selectedProject._id}
-                initial={{ opacity: 0, y: direction * 50 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    delay: 0.2,
-                    type: 'spring',
-                    visualDuration: 0.3,
-                    bounce: 0.4,
-                  },
-                }}
-                exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans text-[16px] font-extralight"
-              >
-                {selectedProject.description}
-              </motion.h3>
-            </CoreAnimatePresent>
-          </div>
-          <div>
-            <h4 className="font-sans text-[14px] font-bold uppercase">
-              Client
-            </h4>
-            <CoreAnimatePresent>
-              <motion.h5
-                key={selectedProject._id}
-                initial={{ opacity: 0, y: direction * 50 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    delay: 0.2,
-                    type: 'spring',
-                    visualDuration: 0.3,
-                    bounce: 0.4,
-                  },
-                }}
-                exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans text-[20px] font-extralight"
-              >
-                {selectedProject.client}
-              </motion.h5>
-            </CoreAnimatePresent>
-          </div>
-          <div>
-            <h4 className="font-sans text-[14px] font-bold uppercase">
-              Role
-            </h4>
-            <CoreAnimatePresent>
-              <motion.h5
-                key={selectedProject._id}
-                initial={{ opacity: 0, y: direction * 50 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    delay: 0.2,
-                    type: 'spring',
-                    visualDuration: 0.3,
-                    bounce: 0.4,
-                  },
-                }}
-                exit={{ opacity: 0, y: direction * -50 }}
-                className="font-sans text-[20px] font-extralight"
-              >
-                {selectedProject.role}
-              </motion.h5>
-            </CoreAnimatePresent>
-
-          </div>
-          <CoreAnimatePresent>
-            <motion.h5
-              key={selectedProject._id}
-              initial={{ opacity: 0, y: direction * 50 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  delay: 0.2,
-                  type: 'spring',
-                  visualDuration: 0.3,
-                  bounce: 0.4,
-                },
-              }}
-              exit={{ opacity: 0, y: direction * -50 }}
-              className="font-sans text-[14px] font-semibold uppercase"
-            >
-              {selectedProject.dateDuration}
-            </motion.h5>
-          </CoreAnimatePresent>
-        </div>
+        <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
       </div>
     </section>
+  );
+}
+
+interface ProjectDetailProps extends CompProps {
+  selectedProject: AllProjectsQueryResult[number];
+  direction: Direction;
+}
+
+function ProjectDetail({
+  selectedProject,
+  direction,
+  className,
+}: ProjectDetailProps) {
+  return (
+    <CoreAnimatePresent>
+      <motion.div
+        key={selectedProject._id}
+        initial={{ opacity: 0, y: direction * 50 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            delay: 0.2,
+            type: 'spring',
+            visualDuration: 0.3,
+            bounce: 0.4,
+          },
+        }}
+        exit={{ opacity: 0, y: direction * -50 }}
+        className={classNames('flex flex-col gap-9 w-full', className)}
+      >
+        <div>
+          <h3
+            className="font-sans text-[16px] font-extralight"
+          >
+            {selectedProject.description}
+          </h3>
+        </div>
+        <div>
+          <h4 className="font-sans text-[14px] font-bold uppercase">
+            Client
+          </h4>
+          <h5
+            className="font-sans text-[20px] font-extralight"
+          >
+            {selectedProject.client}
+          </h5>
+        </div>
+        <div>
+          <h4 className="font-sans text-[14px] font-bold uppercase">
+            Role
+          </h4>
+          <h5
+            className="font-sans text-[20px] font-extralight"
+          >
+            {selectedProject.role}
+          </h5>
+
+        </div>
+        <h5
+          className="font-sans text-[14px] font-semibold uppercase"
+        >
+          {selectedProject.dateDuration}
+        </h5>
+      </motion.div>
+    </CoreAnimatePresent>
   );
 }

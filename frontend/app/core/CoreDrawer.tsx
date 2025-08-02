@@ -8,23 +8,35 @@ import { Drawer } from 'vaul';
 import LayoutHamburgerButton from '../layouts/LayoutHamburgerButton';
 
 interface CoreDrawerProps extends CompProps {
+  title?: React.ReactNode;
   trigger: React.ReactNode;
   state: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
-export default function CoreDrawer({ children, trigger, state }: CoreDrawerProps) {
+export default function CoreDrawer({
+  children,
+  trigger,
+  state,
+  title = (
+    <Link
+      className="text-black text-[20px] font-display uppercase font-semibold"
+      href="/"
+    >
+      This is Akmal
+    </Link>
+  ),
+}: CoreDrawerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = state;
   return (
     <Drawer.Root direction="top" open={isDrawerOpen}>
-      <Drawer.Trigger className="text-white md:hidden">{trigger}</Drawer.Trigger>
+      {/* <Drawer.Trigger className="text-white lg:hidden">{trigger}</Drawer.Trigger> */}
+      {trigger}
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-30" />
         <Drawer.Content className="bg-white h-[100dvh] fixed bottom-0 left-0 right-0 outline-none z-30">
           <div className="container">
             <Drawer.Title className="flex items-center justify-between h-[var(--navbar-height)]">
-              <Link className="text-black text-[20px] font-display uppercase font-semibold" href="/">
-                This is Akmal
-              </Link>
+              {title}
               <Drawer.Close>
                 <LayoutHamburgerButton
                   isOpen={true}

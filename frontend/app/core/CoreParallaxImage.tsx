@@ -1,6 +1,5 @@
 'use client';
 
-import type { CompProps } from '@/app/typings/props';
 import { getImageDimensions } from '@sanity/asset-utils';
 import { stegaClean } from '@sanity/client/stega';
 import classNames from 'classnames';
@@ -9,13 +8,18 @@ import { Image } from 'next-sanity/image';
 import { useRef } from 'react';
 import { urlForImage } from '@/sanity/lib/utils';
 
-interface CoverImageProps extends CompProps {
+interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
   image: any;
   priority?: boolean;
 }
 
 export default function CoreParallaxImage(props: CoverImageProps) {
-  const { image: source, priority, className } = props;
+  const {
+    image: source,
+    priority,
+    className,
+    ...rest
+  } = props;
 
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -28,7 +32,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
 
   return source?.asset?._ref
     ? (
-        <div className={classNames('overflow-hidden', className)} ref={container}>
+        <div className={classNames('overflow-hidden', className)} ref={container} {...rest}>
           <motion.div style={{ y }} className="relative h-full">
             <Image
               className="object-cover object-center h-full"

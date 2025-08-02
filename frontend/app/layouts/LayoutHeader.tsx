@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { Drawer } from 'vaul';
 import CoreDrawer from '../core/CoreDrawer';
 import LayoutHamburgerButton from './LayoutHamburgerButton';
 import LayoutHeaderMobile from './LayoutHeaderMobile';
@@ -49,11 +50,13 @@ export default function LayoutHeader({ title }: { title?: string }) {
         <CoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(
-            <LayoutHamburgerButton
-              isOpen={false}
-              className=" bg-white text-black"
-              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-            />
+            <Drawer.Trigger className="text-white md:hidden">
+              <LayoutHamburgerButton
+                isOpen={false}
+                className=" bg-white text-black"
+                onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              />
+            </Drawer.Trigger>
           )}
         >
           <LayoutHeaderMobile />
