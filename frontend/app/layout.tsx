@@ -73,7 +73,7 @@ const tuskerGrotesk = localFont({
       style: 'normal',
     },
     {
-      path: '//fonts/tuskerGrotesk/TuskerGrotesk-7700Bold.woff2',
+      path: '/fonts/tuskerGrotesk/TuskerGrotesk-7700Bold.woff2',
       weight: '800',
       style: 'normal',
     },
