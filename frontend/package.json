@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "prebuild": "pnpm run typegen",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
     "typegen": "sanity typegen generate"
