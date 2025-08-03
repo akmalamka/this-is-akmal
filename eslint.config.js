@@ -9,6 +9,8 @@ module.exports = vinicuncaESLint({
       tsconfigPath: ['tsconfig.eslint.json'],
     },
   },
+  // TODO: don't ignore the sanity types, just turn off the rules that give warn or error
+  ignores: ['**/sanity.types.ts'],
 
   userConfigs: [
     {
@@ -21,14 +23,6 @@ module.exports = vinicuncaESLint({
       files: ['**/*.ts', '**/*.tsx'],
       rules: {
         'ts/no-use-before-define': 'off',
-      },
-    },
-    {
-      files: ['**/sanity.entity.ts'],
-      rules: {
-        'ts/consistent-type-definitions': 'off',
-        'ts/no-use-before-define': 'off',
-        'sonar/redundant-type-aliases': 'off',
       },
     },
   ],

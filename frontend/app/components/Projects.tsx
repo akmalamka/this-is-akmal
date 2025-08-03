@@ -30,6 +30,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
       setCtaText(projects[selectedIndex].ctaButton.text);
     }
   }, [selectedIndex]);
+
   return (
     <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
       <div className="flex col-span-6 lg:col-span-3 lg:flex-col justify-between h-full">
@@ -92,7 +93,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
 
               <CoreDrawer
                 state={[isDrawerOpen, setIsDrawerOpen]}
-                title={<h3 className="font-display font-semibold text-[32px]">{selectedProject.title}</h3>}
+                title={<div className="font-display font-semibold text-[32px]">{selectedProject.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
                     <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
@@ -141,7 +142,6 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
       </div>
 
       <div className="flex col-span-6 lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
-        {/* TODO: disable the button while animate still happening */}
         <div className="flex gap-6 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />

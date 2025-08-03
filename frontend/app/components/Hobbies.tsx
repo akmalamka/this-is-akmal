@@ -75,14 +75,14 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               exit={{ opacity: 0, x: direction * -50 }}
               className="col-span-3 w-full"
             >
-              {/* TODO: add image filter mirip di ftrprf */}
+              {/* TODO: add image noise effect. Priority: low */}
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
                 <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" priority />
               </ResolvedLink>
 
               <CoreDrawer
                 state={[isDrawerOpen, setIsDrawerOpen]}
-                title={<h3 className="font-display font-semibold text-[32px]">{selectedHobby.title}</h3>}
+                title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
                     <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />

@@ -2,21 +2,24 @@
 
 import Link from 'next/link';
 
-export default function LayoutHeaderMobile() {
+export default function LayoutHeaderMobile({ onClick }: { onClick: () => void }) {
   return (
     <div className="h-[calc(100dvh-var(--navbar-height))] pb-5 flex flex-col justify-between md:hidden">
       <div className="flex flex-col gap-y-8 text-[24px] font-mono uppercase font-light ">
         <Link
+          onClick={onClick}
           href="/"
         >
           Home
         </Link>
         <Link
+          onClick={onClick}
           href="#projects"
         >
           Projects
         </Link>
         <Link
+          onClick={onClick}
           href="#hobbies"
         >
           Hobbies

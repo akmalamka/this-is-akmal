@@ -10,12 +10,10 @@ import LayoutHeaderMobile from './LayoutHeaderMobile';
 export default function LayoutHeader({ title }: { title?: string }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // TODO: close navbar when the route changes
-
   // TODO: close navbar when the width of the screen changes from mobile to desktop
 
   return (
-    <header className=" text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
+    <header className="text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       {/* TODO: logo using my head when I was little, ask abang to edit it */}
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
         <Link className="gap-2 text-[20px] font-display uppercase font-semibold" href="/">
@@ -56,7 +54,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
             </Drawer.Trigger>
           )}
         >
-          <LayoutHeaderMobile />
+          <LayoutHeaderMobile onClick={() => setIsDrawerOpen(false)} />
         </CoreDrawer>
       </div>
     </header>

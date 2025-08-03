@@ -172,12 +172,13 @@ export default async function RootLayout({
               <CoreRunningText />
               {/* TODO: remove title props as we will use icon for the header */}
               <LayoutHeader title={settings?.title} />
-
-              <main className="">{children}</main>
+              {/* TODO: disable aria-hidden in main so that no warning appear about aria-hidden */}
+              <main>{children}</main>
               <LayoutFooter />
             </section>
           </CtaTextProvider>
         </LenisScroll>
+
       </body>
     </html>
   );
