@@ -1,17 +1,13 @@
 {
   "name": "this-is-akmal",
-  "description": "Next.js + Sanity: A Powerful Website Starter with Real-time Visual Editing",
-  "homepage": "https://github.com/sanity-io/sanity-template-nextjs-clean#readme",
-  "bugs": {
-    "url": "https://github.com/sanity-io/sanity-template-nextjs-clean/issues"
-  },
+  "description": "A personal portfolio of Muhammad Akmal",
+  "homepage": "https://thisisakmal.xyz",
   "keywords": [
+    "Portfolio",
     "Sanity",
     "Next.js",
     "Headless CMS",
-    "Visual Editing",
-    "Live Content API (LCAPI)",
-    "Real-time"
+    "Visual Editing"
   ],
   "scripts": {
     "dev:all": "pnpm --stream -r run dev",
@@ -23,7 +19,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@vinicunca/eslint-config": "^3.19.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "lint-staged": "^16.1.2",
     "simple-git-hooks": "^2.13.0",
     "typescript": "^5.8.3"

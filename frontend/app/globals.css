@@ -1,6 +1,25 @@
 @import "tailwindcss";
-
+@import 'lenis/dist/lenis.css';
 @plugin "@tailwindcss/typography";
+
+:root {
+  --navbar-height: 80px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --navbar-height: 96px;
+  }
+}
+
+html {
+  /**
+  * Position relative to fix react warning https://github.com/motiondivision/motion/issues/1853#issuecomment-2122841818
+  **/
+  position: relative;
+  @apply bg-[#0b0b0b];
+  overflow-x: hidden;
+}
 
 @utility container {
   margin: 0 auto;
@@ -10,26 +29,28 @@
 @theme {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
-  --color-framework: #000;
   --color-black: #0b0b0b;
   --color-white: #fff;
-  --color-brand: #f50;
-  --color-blue: #0052ff;
-  --color-yellow: #cdea19;
-  --color-gray-50: #f6f6f8;
-  --color-gray-100: #eeeef1;
-  --color-gray-200: #e3e4e8;
-  --color-gray-300: #bbbdc9;
-  --color-gray-400: #9499ad;
-  --color-gray-500: #727892;
-  --color-gray-600: #515870;
-  --color-gray-700: #383d51;
-  --color-gray-800: #252837;
-  --color-gray-900: #1b1d27;
-  --color-gray-950: #13141b;
+  --color-primary: #eb110A;
 
-  --font-display: "Inter", "sans-serif";
-  --font-sans: "Inter", "sans-serif";
+  --font-display: var(--font-tusker);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 
-  --default-transition-duration: 250ms;
+  --default-transition-duration: 280ms;
+}
+
+/* Disable default cursor */
+* {
+  cursor: none;
+}
+
+.no-scroll {
+  overflow: hidden;             /* disables scroll */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+
+.no-scroll::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
 }

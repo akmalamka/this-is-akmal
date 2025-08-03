@@ -1,9 +1,7 @@
-import { page } from './documents/page';
-import { person } from './documents/person';
-import { post } from './documents/post';
-import { blockContent } from './objects/blockContent';
-import { callToAction } from './objects/callToAction';
-import { infoSection } from './objects/infoSection';
+import { hobby } from './documents/hobby';
+import { introduction } from './documents/introduction';
+import { project } from './documents/project';
+import { social } from './documents/social';
 import { link } from './objects/link';
 import { settings } from './singletons/settings';
 
@@ -13,12 +11,10 @@ export const schemaTypes = [
   // Singletons
   settings,
   // Documents
-  page,
-  post,
-  person,
+  introduction,
+  project,
+  hobby,
+  social,
   // Objects
-  blockContent,
-  infoSection,
-  callToAction,
   link,
 ];

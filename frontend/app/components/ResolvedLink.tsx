@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import { linkResolver } from '@/sanity/lib/utils';
-
 interface ResolvedLinkProps {
   link: any;
   children: React.ReactNode;
@@ -13,15 +11,14 @@ export default function ResolvedLink({
   children,
   className,
 }: ResolvedLinkProps) {
-  // resolveLink() is used to determine the type of link and return the appropriate URL.
-  const resolvedLink = linkResolver(link);
+  const resolvedLink = link ?? null;
 
   if (typeof resolvedLink === 'string') {
     return (
       <Link
         href={resolvedLink}
-        target={link?.openInNewTab ? '_blank' : undefined}
-        rel={link?.openInNewTab ? 'noopener noreferrer' : undefined}
+        target="_blank"
+        rel="noopener noreferrer"
         className={className}
       >
         {children}
