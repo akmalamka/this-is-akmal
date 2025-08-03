@@ -63,7 +63,7 @@ const tuskerGrotesk = localFont({
       style: 'normal',
     },
     {
-      path: 'fonts/tusker-grotesk/tuskergrotesk-5600semibold.woff2',
+      path: 'fonts/tusker-grotesk/tuskergrotesk-5500semibold.woff2',
       weight: '600',
       style: 'normal',
     },
@@ -86,7 +86,7 @@ const tuskerGrotesk = localFont({
 const inter = localFont({
   src: [
     {
-      path: 'fonts/inter/inter-extraLight.woff2',
+      path: 'fonts/inter/inter-extralight.woff2',
       weight: '200',
       style: 'normal',
     },
