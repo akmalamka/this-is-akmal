@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "this-is-akmal"
+  },
+  "targets": {
+    "this-is-akmal": {
+      "hosting": {
+        "staging": [
+          "staging-this-is-akmal"
+        ],
+        "production": [
+          "this-is-akmal"
+        ]
+      }
+    }
   }
 }
