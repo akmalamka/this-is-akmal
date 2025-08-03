@@ -1,6 +1,6 @@
 'use client';
 
-import type { AllHobbiesQueryResult } from '@/sanity.types';
+import type { AllHobbiesQueryResult } from '@/studio/sanity.types';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';

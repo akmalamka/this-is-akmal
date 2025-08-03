@@ -1,7 +1,7 @@
 'use client';
 
 import type { Direction } from '@/composables/useCarousel';
-import type { AllProjectsQueryResult } from '@/sanity.types';
+import type { AllProjectsQueryResult } from '@/studio/sanity.types';
 import type { CompProps } from '@/typings/props';
 import classNames from 'classnames';
 import { motion } from 'motion/react';
