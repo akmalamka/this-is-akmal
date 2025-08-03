@@ -133,7 +133,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             className="col-span-6 lg:col-span-3 lg:h-[70dvh]"
           >
             <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[40px] md:text-[60px] lg:text-[108px]" />
-            <h6 className="font-sans w-full text-center text-[20px] font-extralight">
+            <h6 className="font-sans text-center text-[20px] font-extralight lg:hidden">
               {selectedProject.fullTitle}
             </h6>
           </motion.div>

@@ -27,6 +27,7 @@ export default function CoreDrawer({
   ),
 }: CoreDrawerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = state;
+  // TODO: Freeze scroll so user have to close before scroll the content again
 
   return (
     <Drawer.Root direction="top" open={isDrawerOpen}>

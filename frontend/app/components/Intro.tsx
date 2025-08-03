@@ -16,7 +16,6 @@ export default async function Intro() {
         )}
       </div>
       <div className="col-span-6 lg:col-span-3 flex flex-col gap-6 lg:gap-15">
-        {/* TODO: check if using just 2 fonts (tusker and jetbrains mono can works) */}
         <p className="font-sans text-[16px] font-extralight">{intro?.description}</p>
         <a
           href="mailto:akmalmuhammad51@gmail.com"

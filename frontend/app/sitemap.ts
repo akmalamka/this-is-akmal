@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
 import { headers } from 'next/headers';
-// TODO: fix sitemap to make it simple
 /**
  * This file creates a sitemap (sitemap.xml) for the application. Learn more about sitemaps in Next.js here: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  * Be sure to update the `changeFrequency` and `priority` values to match your application's content.

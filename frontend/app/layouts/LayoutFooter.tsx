@@ -31,7 +31,6 @@ export default async function LayoutFooter() {
             ))}
           </ul>
         </div>
-        {/* TODO: should we add go back to top? */}
         <div className="flex justify-between items-center text-white my-4 text-center flex-col md:flex-row">
           <span className="font-mono text-[14px] uppercase" suppressHydrationWarning>
             { new Date().getFullYear() }
