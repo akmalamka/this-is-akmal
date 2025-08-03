@@ -7,12 +7,12 @@ import { handleError } from '@/app/client-utils';
 import { CtaTextProvider } from '@/app/context/CtaTextContext';
 import LenisScroll from '@/app/core/CoreLenisScroll';
 import CoreRunningText from '@/app/core/CoreRunningText';
-import CoreCursor from '@/app/core/cursor/CoreCursor';
 import LayoutFooter from '@/app/layouts/LayoutFooter';
 import LayoutHeader from '@/app/layouts/LayoutHeader';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
+import { CoreCursorClient } from './core';
 import '@/app/globals.css';
 
 /**
@@ -163,9 +163,9 @@ export default async function RootLayout({
       <body>
         <LenisScroll>
           <CtaTextProvider>
-            <CoreCursor />
+            <CoreCursorClient />
             <section className="min-h-screen pt-[var(--navbar-height)]">
-              {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+              {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts */}
               <Toaster />
               {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
               <SanityLive onError={handleError} />
@@ -173,7 +173,6 @@ export default async function RootLayout({
               {/* TODO: remove title props as we will use icon for the header */}
               <LayoutHeader title={settings?.title} />
 
-              {/* TODO: fix hydration mismatch, detail in console */}
               <main className="">{children}</main>
               <LayoutFooter />
             </section>
