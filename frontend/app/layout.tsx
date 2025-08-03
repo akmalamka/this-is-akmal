@@ -85,11 +85,11 @@ const tuskerGrotesk = localFont({
 // TODO: investigate why next/font/google doesn't work for Inter and Jetbrains Mono
 const inter = localFont({
   src: [
-    {
-      path: 'fonts/inter/inter-extralight.woff2',
-      weight: '200',
-      style: 'normal',
-    },
+    // {
+    //   path: 'fonts/inter/inter-extralight.woff2',
+    //   weight: '200',
+    //   style: 'normal',
+    // },
     {
       path: 'fonts/inter/inter-light.woff2',
       weight: '300',
