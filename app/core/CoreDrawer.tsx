@@ -1,11 +1,11 @@
 'use client';
 
-import type { CompProps } from '@/app/typings/props';
+import type { CompProps } from '@/typings/props';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Link from 'next/link';
 import { Drawer } from 'vaul';
-import LayoutHamburgerButton from '@/app/layouts/LayoutHamburgerButton';
+import LayoutHamburgerButton from '@/layouts/LayoutHamburgerButton';
 
 interface CoreDrawerProps extends CompProps {
   title?: React.ReactNode;

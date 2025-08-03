@@ -3,7 +3,7 @@ import type { ElementType } from 'react';
 // This component is used to display rotated text in the introduction section of the portfolio.
 // It uses a ref to adjust the dimensions of the wrapper based on the text size.
 
-import type { CompProps } from '@/app/typings/props';
+import type { CompProps } from '@/typings/props';
 import classNames from 'classnames';
 
 interface CoreRotatedTextProps extends CompProps {

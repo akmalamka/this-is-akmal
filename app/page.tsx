@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic';
-import Intro from '@/app/components/Intro';
-import { sanityFetch } from '@/sanity/lib/live';
-import { allHobbiesQuery, allProjectsQuery } from '@/sanity/lib/queries';
+import Intro from '@/components/Intro';
+import { sanityFetch } from '@/sanity/live';
+import { allHobbiesQuery, allProjectsQuery } from '@/sanity/queries';
 
-const LazyLoadProjects = dynamic(() => import('@/app/components/Projects'));
-const LazyLoadHobbies = dynamic(() => import('@/app/components/Hobbies'));
+const LazyLoadProjects = dynamic(() => import('@/components/Projects'));
+const LazyLoadHobbies = dynamic(() => import('@/components/Hobbies'));
 
 export default async function Page() {
   const { data: projects } = await sanityFetch({ query: allProjectsQuery });

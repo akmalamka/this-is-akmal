@@ -1,20 +1,20 @@
 'use client';
 
-import type { Direction } from '@/app/composables/useCarousel';
-import type { CompProps } from '@/app/typings/props';
+import type { Direction } from '@/composables/useCarousel';
 import type { AllProjectsQueryResult } from '@/sanity.types';
+import type { CompProps } from '@/typings/props';
 import classNames from 'classnames';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
-import CoreAnimatePresent from '@/app/animations/CoreAnimatePresent';
-import { useCarousel } from '@/app/composables/useCarousel';
-import { useCtaText } from '@/app/context/CtaTextContext';
-import CoreArrowCircle from '@/app/core/CoreArrowCircle';
-import CoreDrawer from '@/app/core/CoreDrawer';
-import CoreImage from '@/app/core/CoreImage';
-import CoreParallaxImage from '@/app/core/CoreParallaxImage';
-import CoreRotatedText from '@/app/core/CoreRotatedText';
+import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
+import { useCarousel } from '@/composables/useCarousel';
+import { useCtaText } from '@/context/CtaTextContext';
+import CoreArrowCircle from '@/core/CoreArrowCircle';
+import CoreDrawer from '@/core/CoreDrawer';
+import CoreImage from '@/core/CoreImage';
+import CoreParallaxImage from '@/core/CoreParallaxImage';
+import CoreRotatedText from '@/core/CoreRotatedText';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {

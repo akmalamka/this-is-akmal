@@ -1,6 +1,6 @@
-import CoreRotatedText from '@/app/core/CoreRotatedText';
-import { sanityFetch } from '@/sanity/lib/live';
-import { introductionQuery } from '@/sanity/lib/queries';
+import CoreRotatedText from '@/core/CoreRotatedText';
+import { sanityFetch } from '@/sanity/live';
+import { introductionQuery } from '@/sanity/queries';
 import CoreParallaxImage from '../core/CoreParallaxImage';
 
 export default async function Intro() {

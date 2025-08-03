@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { sanityFetch } from '@/sanity/lib/live';
-import { allSocialsQuery } from '@/sanity/lib/queries';
+import { sanityFetch } from '@/sanity/live';
+import { allSocialsQuery } from '@/sanity/queries';
 
 export default async function LayoutFooter() {
   const { data: socials } = await sanityFetch({ query: allSocialsQuery });

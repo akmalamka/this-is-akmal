@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/studio/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -9,6 +10,15 @@
 # misc
 .DS_Store
 *.pem
+
+# next.js
+/.next/
+/out/
+
+# sanity
+/.sanity/
+/dist/
+
 
 # debug
 npm-debug.log*

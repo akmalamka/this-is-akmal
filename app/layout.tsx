@@ -3,17 +3,17 @@ import type { Metadata } from 'next';
 import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
-import { handleError } from '@/app/client-utils';
-import { CtaTextProvider } from '@/app/context/CtaTextContext';
-import LenisScroll from '@/app/core/CoreLenisScroll';
-import CoreRunningText from '@/app/core/CoreRunningText';
-import LayoutFooter from '@/app/layouts/LayoutFooter';
-import LayoutHeader from '@/app/layouts/LayoutHeader';
-import { sanityFetch, SanityLive } from '@/sanity/lib/live';
-import { settingsQuery } from '@/sanity/lib/queries';
-import { resolveOpenGraphImage } from '@/sanity/lib/utils';
+import { handleError } from '@/client-utils';
+import { CtaTextProvider } from '@/context/CtaTextContext';
+import LenisScroll from '@/core/CoreLenisScroll';
+import CoreRunningText from '@/core/CoreRunningText';
+import LayoutFooter from '@/layouts/LayoutFooter';
+import LayoutHeader from '@/layouts/LayoutHeader';
+import { sanityFetch, SanityLive } from '@/sanity/live';
+import { settingsQuery } from '@/sanity/queries';
+import { resolveOpenGraphImage } from '@/sanity/utils';
 import { CoreCursorClient } from './core';
-import '@/app/globals.css';
+import '@/globals.css';
 
 /**
  * Generate metadata for the page.

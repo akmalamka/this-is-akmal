@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
-    "prebuild": "pnpm run gen:extract",
+    "prebuild": "pnpm run gen:extract && pnpm run typegen",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "typegen": "sanity typegen generate",
     "gen:extract": "sanity schema extract --path schema-extract.json --enforce-required-fields"
   },
   "dependencies": {

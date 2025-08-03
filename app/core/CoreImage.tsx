@@ -1,9 +1,9 @@
-import type { CompProps } from '@/app/typings/props';
+import type { CompProps } from '@/typings/props';
 import { getImageDimensions } from '@sanity/asset-utils';
 import { stegaClean } from '@sanity/client/stega';
 import classNames from 'classnames';
 import { Image } from 'next-sanity/image';
-import { urlForImage } from '@/sanity/lib/utils';
+import { urlForImage } from '@/sanity/utils';
 
 interface CoverImageProps extends CompProps {
   image: any;

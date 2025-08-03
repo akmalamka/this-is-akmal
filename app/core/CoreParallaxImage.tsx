@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Image } from 'next-sanity/image';
 import { useRef } from 'react';
-import { urlForImage } from '@/sanity/lib/utils';
+import { urlForImage } from '@/sanity/utils';
 
 interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
   image: any;
