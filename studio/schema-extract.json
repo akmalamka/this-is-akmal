@@ -258,6 +258,13 @@
         },
         "optional": true
       },
+      "fullTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "withCTA": {
         "type": "objectAttribute",
         "value": {

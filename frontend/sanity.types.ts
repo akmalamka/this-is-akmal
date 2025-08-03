@@ -60,6 +60,7 @@ export type Project = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  fullTitle?: string;
   withCTA?: boolean;
   ctaButton?: {
     text?: string;
@@ -470,10 +471,11 @@ export type IntroductionQueryResult = {
   };
 } | null;
 // Variable: allProjectsQuery
-// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    ctaButton,    description,    client,    role,    dateDuration,    image  }
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    ctaButton,    description,    client,    role,    dateDuration,    image  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string | null;
+  fullTitle: string | null;
   ctaButton: {
     text?: string;
     link?: Link;
@@ -534,7 +536,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
-    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    image\n  }\n": AllHobbiesQueryResult;
     "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }

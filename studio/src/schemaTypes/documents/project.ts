@@ -13,6 +13,12 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'fullTitle',
+      title: 'FullTitle',
+      description: 'Project full title without abbreviation',
+      type: 'string',
+    }),
+    defineField({
       name: 'withCTA',
       title: 'With CTA Button?',
       type: 'boolean',

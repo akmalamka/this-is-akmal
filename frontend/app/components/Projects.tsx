@@ -31,9 +31,8 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     }
   }, [selectedIndex]);
   return (
-    // TODO: change responsive rows into cols
-    <section className="text-white grid grid-rows-[auto_50dvh_auto_auto] lg:grid-cols-12 lg:grid-rows-none gap-6 items-end scroll-m-24" id="projects">
-      <div className="row-span-1 flex lg:row-auto lg:col-span-3 lg:flex-col justify-between h-full">
+    <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
+      <div className="flex col-span-6 lg:col-span-3 lg:flex-col justify-between h-full">
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>
           <h3 className="hidden lg:block font-sans font-extralight text-[16px] max-w-[230px]">
@@ -68,7 +67,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           </span>
         </div>
       </div>
-      <div className="grid lg:row-auto lg:grid-cols-6 row-span-2 lg:col-span-6 justify-center items-end gap-6">
+      <div className="grid col-span-6 lg:grid-cols-6 justify-center items-end gap-6">
         {selectedProject?.image && (
           <CoreAnimatePresent>
             <motion.div
@@ -85,10 +84,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, x: direction * -50 }}
-              className="lg:col-span-3"
+              className="col-span-6 lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] hidden lg:block lg:h-[70dvh]" priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" priority />
               </ResolvedLink>
 
               <CoreDrawer
@@ -96,7 +95,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 title={<h3 className="font-display font-semibold text-[32px]">{selectedProject.title}</h3>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedProject.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >
@@ -131,14 +130,17 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 bounce: 0.4,
               },
             }}
-            className="lg:col-span-3 lg:h-[70dvh]"
+            className="col-span-6 lg:col-span-3 lg:h-[70dvh]"
           >
-            <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[50px] md:text-[70px] lg:text-[108px]" />
+            <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[40px] md:text-[60px] lg:text-[108px]" />
+            <h6 className="font-sans w-full text-center text-[20px] font-extralight">
+              {selectedProject.fullTitle}
+            </h6>
           </motion.div>
         </CoreAnimatePresent>
       </div>
 
-      <div className="flex row-span-1 lg:row-auto lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
+      <div className="flex col-span-6 lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
         {/* TODO: disable the button while animate still happening */}
         <div className="flex gap-6 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
