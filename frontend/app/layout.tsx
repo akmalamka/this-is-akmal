@@ -53,27 +53,27 @@ export async function generateMetadata(): Promise<Metadata> {
 const tuskerGrotesk = localFont({
   src: [
     {
-      path: './fonts/tuskerGrotesk/TuskerGrotesk-3700Bold.woff2',
+      path: '/fonts/tuskerGrotesk/TuskerGrotesk-3700Bold.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/tuskerGrotesk/TuskerGrotesk-5500Medium.woff2',
+      path: '/fonts/tuskerGrotesk/TuskerGrotesk-5500Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: './fonts/tuskerGrotesk/TuskerGrotesk-5600Semibold.woff2',
+      path: '/fonts/tuskerGrotesk/TuskerGrotesk-5600Semibold.woff2',
       weight: '600',
       style: 'normal',
     },
     {
-      path: './fonts/tuskerGrotesk/TuskerGrotesk-6600Semibold.woff2',
+      path: '/fonts/tuskerGrotesk/TuskerGrotesk-6600Semibold.woff2',
       weight: '700',
       style: 'normal',
     },
     {
-      path: './fonts/tuskerGrotesk/TuskerGrotesk-7700Bold.woff2',
+      path: '//fonts/tuskerGrotesk/TuskerGrotesk-7700Bold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -82,36 +82,36 @@ const tuskerGrotesk = localFont({
   variable: '--font-tusker',
 });
 
-// TODO: investigate why next/font/google doesn't work for Inter and Jetbrain Mono
+// TODO: investigate why next/font/google doesn't work for Inter and Jetbrains Mono
 const inter = localFont({
   src: [
     {
-      path: './fonts/inter/Inter-ExtraLight.woff2',
+      path: '/fonts/inter/Inter-ExtraLight.woff2',
       weight: '200',
       style: 'normal',
     },
     {
-      path: './fonts/inter/Inter-Light.woff2',
+      path: '/fonts/inter/Inter-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: './fonts/inter/Inter-Regular.woff2',
+      path: '/fonts/inter/Inter-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/inter/Inter-Medium.woff2',
+      path: '/fonts/inter/Inter-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: './fonts/inter/Inter-Semibold.woff2',
+      path: '/fonts/inter/Inter-Semibold.woff2',
       weight: '600',
       style: 'normal',
     },
     {
-      path: './fonts/inter/Inter-Bold.woff2',
+      path: '/fonts/inter/Inter-Bold.woff2',
       weight: '700',
       style: 'normal',
     },
@@ -123,22 +123,22 @@ const inter = localFont({
 const jetbrainsMono = localFont({
   src: [
     {
-      path: './fonts/jetbrainsMono/JetBrainsMono-Light.woff2',
+      path: '/fonts/jetbrainsMono/JetBrainsMono-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: './fonts/jetbrainsMono/JetBrainsMono-Regular.woff2',
+      path: '/fonts/jetbrainsMono/JetBrainsMono-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/jetbrainsMono/JetBrainsMono-Medium.woff2',
+      path: '/fonts/jetbrainsMono/JetBrainsMono-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: './fonts/jetbrainsMono/JetBrainsMono-Semibold.woff2',
+      path: '/fonts/jetbrainsMono/JetBrainsMono-Semibold.woff2',
       weight: '600',
       style: 'normal',
     },
