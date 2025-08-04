@@ -4,6 +4,9 @@ module.exports = vinicuncaESLint({
   options: {
     react: true,
     nextjs: true,
+    // extends: [
+    //   'plugin:@next/next/recommended',
+    // ],
 
     typescript: {
       tsconfigPath: ['tsconfig.eslint.json'],
