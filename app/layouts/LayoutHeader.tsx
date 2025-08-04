@@ -11,8 +11,6 @@ import LayoutHeaderMobile from './LayoutHeaderMobile';
 export default function LayoutHeader() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // TODO: close navbar when the width of the screen changes from mobile to desktop
-
   return (
     <header className="text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
@@ -37,7 +35,6 @@ export default function LayoutHeader() {
             </li>
           </ul>
         </nav>
-        {/* TODO: add microinteraction like in ftrprf */}
         <Link
           href="mailto:akmalmuhammad51@gmail.com"
           target="_blank"

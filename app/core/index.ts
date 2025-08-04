@@ -3,4 +3,4 @@
 import dynamic from 'next/dynamic';
 
 export const CoreCursorClient = dynamic(() =>
-  import('./cursor/CoreCursor'), { ssr: false });
+  import('./CoreCursor'), { ssr: false });
