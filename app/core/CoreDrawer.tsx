@@ -6,6 +6,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { Drawer } from 'vaul';
+import { useLenisRef } from '@/context/AppProvider';
 import { useIsMobile } from '@/hooks/use-mobile';
 import LayoutHamburgerButton from '@/layouts/LayoutHamburgerButton';
 
@@ -28,6 +29,7 @@ export default function CoreDrawer({
     </Link>
   ),
 }: CoreDrawerProps) {
+  const { lenisRef } = useLenisRef();
   const [isDrawerOpen, setIsDrawerOpen] = state;
 
   const isMobile = useIsMobile();
@@ -35,10 +37,19 @@ export default function CoreDrawer({
   useEffect(() => {
     setIsDrawerOpen(false);
   }, [isMobile]);
-  // TODO: Freeze scroll so user have to close before scroll the content again, it's because of Lenis
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      if (isDrawerOpen) {
+        lenisRef.current.lenis?.stop();
+      } else {
+        lenisRef.current.lenis?.start();
+      }
+    }
+  }, [isDrawerOpen]);
 
   return (
-    <Drawer.Root direction="top" open={isDrawerOpen}>
+    <Drawer.Root direction="top" open={isDrawerOpen} dismissible={false}>
       {trigger}
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-30" data-lenis-prevent />

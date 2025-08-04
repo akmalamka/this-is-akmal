@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
 import { useCarousel } from '@/composables/useCarousel';
-import { useCtaText } from '@/context/CtaTextContext';
+import { useCtaText } from '@/context/AppProvider';
 import CoreArrowCircle from '@/core/CoreArrowCircle';
 import CoreDrawer from '@/core/CoreDrawer';
 import CoreImage from '@/core/CoreImage';

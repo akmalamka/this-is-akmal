@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { useCtaText } from '@/context/CtaTextContext';
+import { useCtaText } from '@/context/AppProvider';
 
 export default function CoreCursor() {
   const { ctaText } = useCtaText();

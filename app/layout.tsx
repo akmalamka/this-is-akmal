@@ -4,8 +4,8 @@ import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import { handleError } from '@/client-utils';
-import { CtaTextProvider } from '@/context/CtaTextContext';
-import LenisScroll from '@/core/CoreLenisScroll';
+import { AppProvider } from '@/context/AppProvider';
+import CoreLenisScroll from '@/core/CoreLenisScroll';
 import CoreRunningText from '@/core/CoreRunningText';
 import LayoutFooter from '@/layouts/LayoutFooter';
 import LayoutHeader from '@/layouts/LayoutHeader';
@@ -155,8 +155,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
-        <LenisScroll>
-          <CtaTextProvider>
+        {/* TODO: hydration mismatch, detail in console */}
+        <AppProvider>
+          <CoreLenisScroll>
             <CoreCursorClient />
             <section className="min-h-screen pt-[var(--navbar-height)]">
               {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts */}
@@ -169,8 +170,8 @@ export default async function RootLayout({
               <main>{children}</main>
               <LayoutFooter />
             </section>
-          </CtaTextProvider>
-        </LenisScroll>
+          </CoreLenisScroll>
+        </AppProvider>
 
       </body>
     </html>

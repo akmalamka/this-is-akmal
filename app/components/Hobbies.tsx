@@ -4,13 +4,13 @@ import type { AllHobbiesQueryResult } from '@/studio/sanity.types';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
-import CoreAnimatePresent from '../animations/CoreAnimatePresent';
-import { useCarousel } from '../composables/useCarousel';
-import { useCtaText } from '../context/CtaTextContext';
-import CoreArrowCircle from '../core/CoreArrowCircle';
-import CoreDrawer from '../core/CoreDrawer';
-import CoreImage from '../core/CoreImage';
-import CoreParallaxImage from '../core/CoreParallaxImage';
+import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
+import { useCarousel } from '@/composables/useCarousel';
+import { useCtaText } from '@/context/AppProvider';
+import CoreArrowCircle from '@/core/CoreArrowCircle';
+import CoreDrawer from '@/core/CoreDrawer';
+import CoreImage from '@/core/CoreImage';
+import CoreParallaxImage from '@/core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
@@ -93,7 +93,6 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                   <h4 className='className="font-sans text-[16px] font-extralight'>
                     {selectedHobby.description}
                   </h4>
-                  {String(selectedHobby.ctaButton?.link)}
                   {selectedHobby.ctaButton?.link
                     ? (
                         <ResolvedLink link={selectedHobby.ctaButton?.link} className="self-end">
