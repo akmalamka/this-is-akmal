@@ -14,7 +14,7 @@ export const project = defineType({
     }),
     defineField({
       name: 'fullTitle',
-      title: 'FullTitle',
+      title: 'Full Title',
       description: 'Project full title without abbreviation',
       type: 'string',
     }),

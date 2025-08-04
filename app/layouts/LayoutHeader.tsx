@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Drawer } from 'vaul';
-import CoreDrawer from '../core/CoreDrawer';
+import CoreDrawer from '@/core/CoreDrawer';
 import LayoutHamburgerButton from './LayoutHamburgerButton';
 import LayoutHeaderMobile from './LayoutHeaderMobile';
 
@@ -14,12 +14,12 @@ export default function LayoutHeader() {
   return (
     <header className="text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
-        <Link className="text-[20px] font-display uppercase font-semibold leading-[100%]" href="/">
+        <Link className="relative w-[40px] h-[40px] md:w-[48px] md:h-[48px]" href="/">
           <Image
             src="/images/akmal-mini-head.svg"
-            width={48}
-            height={48}
+            fill
             alt="Picture of the author"
+            className="object-contain"
           />
         </Link>
         <nav className="hidden md:block">

@@ -1,4 +1,4 @@
-import type { CompProps } from '../typings/props';
+import type { CompProps } from '@/typings/props';
 import classNames from 'classnames';
 import { motion } from 'motion/react';
 

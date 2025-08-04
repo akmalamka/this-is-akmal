@@ -1,13 +1,13 @@
 'use client';
 
 // TODO: fix motion animation glitch on carousel
-import type { LenisRef } from 'lenis/react';
 import { ReactLenis } from 'lenis/react';
 import { cancelFrame, frame } from 'motion';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { useLenisRef } from '@/context/AppProvider';
 
-export default function LenisScroll({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<LenisRef>(null);
+export default function CoreLenisScroll({ children }: { children: React.ReactNode }) {
+  const { lenisRef } = useLenisRef();
 
   useEffect(() => {
     function update(data: { timestamp: number }) {
