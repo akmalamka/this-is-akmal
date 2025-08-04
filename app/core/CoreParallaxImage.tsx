@@ -33,7 +33,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
   return source?.asset?._ref
     ? (
         <div className={classNames('overflow-hidden', className)} ref={container} {...rest}>
-          <motion.div style={{ y }} className="relative h-full">
+          <motion.div style={{ y }} className="relative h-full noise-bg">
             <Image
               className="object-cover object-center h-full"
               width={getImageDimensions(source).width}

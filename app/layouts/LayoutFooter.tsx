@@ -13,7 +13,6 @@ export default async function LayoutFooter() {
             This is Akmal
           </Link>
           <ul className="inline-flex text-white justify-between w-full md:w-fit">
-            {/* TODO: add microinteraction like in C2 Montreal. Priority: low */}
             {socials?.map((social, index) => (
               <li key={social._id}>
                 <a

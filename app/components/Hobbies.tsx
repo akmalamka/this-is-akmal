@@ -75,7 +75,6 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               exit={{ opacity: 0, x: direction * -50 }}
               className="col-span-3 w-full"
             >
-              {/* TODO: add image noise effect. Priority: low */}
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
                 <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" priority />
               </ResolvedLink>

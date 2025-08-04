@@ -152,12 +152,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    // Metadata should never contain stega
-    stega: false,
-  });
-
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
@@ -170,8 +164,7 @@ export default async function RootLayout({
               {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
               <SanityLive onError={handleError} />
               <CoreRunningText />
-              {/* TODO: remove title props as we will use icon for the header */}
-              <LayoutHeader title={settings?.title} />
+              <LayoutHeader />
               {/* TODO: disable aria-hidden in main so that no warning appear about aria-hidden */}
               <main>{children}</main>
               <LayoutFooter />
