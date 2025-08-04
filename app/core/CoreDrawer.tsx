@@ -4,7 +4,9 @@ import type { CompProps } from '@/typings/props';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { Drawer } from 'vaul';
+import { useIsMobile } from '@/hooks/use-mobile';
 import LayoutHamburgerButton from '@/layouts/LayoutHamburgerButton';
 
 interface CoreDrawerProps extends CompProps {
@@ -27,6 +29,12 @@ export default function CoreDrawer({
   ),
 }: CoreDrawerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = state;
+
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    setIsDrawerOpen(false);
+  }, [isMobile]);
   // TODO: Freeze scroll so user have to close before scroll the content again, it's because of Lenis
 
   return (
