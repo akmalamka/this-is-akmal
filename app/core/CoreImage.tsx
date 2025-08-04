@@ -14,14 +14,17 @@ export default function CoreImage(props: CoverImageProps) {
   const { image: source, priority, className } = props;
   return source?.asset?._ref
     ? (
-        <Image
-          className={classNames('object-cover object-center', className)}
-          width={getImageDimensions(source).width}
-          height={getImageDimensions(source).height}
-          alt={stegaClean(source?.alt) || ''}
-          src={urlForImage(source)?.url() as string}
-          priority={priority}
-        />
+        <div className="noise-bg relative">
+          <Image
+            className={classNames('object-cover object-center', className)}
+            width={getImageDimensions(source).width}
+            height={getImageDimensions(source).height}
+            alt={stegaClean(source?.alt) || ''}
+            src={urlForImage(source)?.url() as string}
+            priority={priority}
+          />
+        </div>
+
       )
     : null;
 }
