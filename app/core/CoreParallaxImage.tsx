@@ -11,6 +11,7 @@ import { urlForImage } from '@/sanity/utils';
 
 interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
   image: any;
+  imageType: 'clickable' | 'hoverable' | null;
   priority?: boolean;
   hoverMe?: boolean;
 }
@@ -18,6 +19,7 @@ interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
 export default function CoreParallaxImage(props: CoverImageProps) {
   const {
     image: source,
+    imageType,
     priority,
     className,
     hoverMe = false,
@@ -43,7 +45,18 @@ export default function CoreParallaxImage(props: CoverImageProps) {
 
   return source?.asset?._ref
     ? (
-        <div className={classNames('overflow-hidden relative', className)} ref={container} {...rest}>
+        <div
+          className={classNames(
+            'overflow-hidden relative',
+            className,
+            {
+              'img-clickable': imageType === 'clickable',
+              'img-hoverable': imageType === 'hoverable',
+            },
+          )}
+          ref={container}
+          {...rest}
+        >
           <div
             className={classNames('w-full h-full bg-black/10 absolute inset-0 z-10 animate-pulse flex justify-center items-center font-mono uppercase lg:text-[40px]', {
               block: hoverMe,

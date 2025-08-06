@@ -18,7 +18,7 @@ import CoreRotatedText from '@/core/CoreRotatedText';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
-  const { isImageHovered } = useAppProvider();
+  const { ctaProps, setCtaProps, isImageHovered } = useAppProvider();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const { selectedIndex, direction, setSlide } = useCarousel(projects.length);
@@ -26,11 +26,19 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
 
   useEffect(() => {
     setSelectedProject(projects[selectedIndex]);
-    if (projects[selectedIndex].ctaButton?.text) {
-      setCtaText(projects[selectedIndex].ctaButton.text);
-    }
   }, [selectedIndex]);
-  // TODO: let user know if the project doesn't have live site, and need to contact me
+
+  function hoverImageHandler() {
+    if (selectedProject.ctaButton) {
+      let className;
+      if (selectedProject.imageType === 'clickable') {
+        className = 'fill-primary';
+      } else if (selectedProject.imageType === 'hoverable') {
+        className = 'fill-secondary';
+      }
+      setCtaProps({ ...ctaProps, text: selectedProject.ctaButton.text, className });
+    }
+  }
 
   return (
     <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
@@ -88,11 +96,15 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-6 lg:col-span-3"
             >
-              <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
+              <ResolvedLink link={selectedProject.ctaButton?.link}>
                 <CoreParallaxImage
                   image={selectedProject.image}
+                  imageType={selectedProject.imageType}
                   className="h-[40dvh] hidden lg:block lg:h-[70dvh]"
                   hoverMe={!isImageHovered}
+                  onMouseEnter={hoverImageHandler}
+                  data-image-type={selectedProject.imageType}
+                  data-cta-text={selectedProject.ctaButton?.text}
                 />
               </ResolvedLink>
 
@@ -101,7 +113,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 title={<div className="font-display font-semibold text-[32px]">{selectedProject.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage
+                      image={selectedProject.image}
+                      imageType={selectedProject.imageType}
+                      className="h-[40dvh] lg:h-[70dvh]"
+                      onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                    />
                   </Drawer.Trigger>
                 )}
               >

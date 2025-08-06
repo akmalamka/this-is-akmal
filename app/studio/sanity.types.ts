@@ -471,7 +471,7 @@ export type IntroductionQueryResult = {
   };
 } | null;
 // Variable: allProjectsQuery
-// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    withCTA,    ctaButton,    description,    client,    role,    dateDuration,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    withCTA,    ctaButton,    description,    client,    role,    dateDuration,      "imageType": select(    withCTA == false => null,    withCTA == true && defined(ctaButton.link) => "clickable",    withCTA == true && !defined(ctaButton.link) => "hoverable"  ),      image {    ...,    "lqip": asset->metadata.lqip,  }  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -485,6 +485,7 @@ export type AllProjectsQueryResult = Array<{
   client: string | null;
   role: string | null;
   dateDuration: string | null;
+  imageType: null | "clickable" | "hoverable";
   image: {
     asset?: {
       _ref: string;
@@ -501,7 +502,7 @@ export type AllProjectsQueryResult = Array<{
   };
 }>;
 // Variable: allHobbiesQuery
-// Query: *[_type == "hobby"] | order(_updatedAt desc) {    _id,    title,    description,    ctaButton,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
+// Query: *[_type == "hobby"] | order(_updatedAt desc) {    _id,    title,    description,    ctaButton,      "imageType": select(    withCTA == false => null,    withCTA == true && defined(ctaButton.link) => "clickable",    withCTA == true && !defined(ctaButton.link) => "hoverable"  ),      image {    ...,    "lqip": asset->metadata.lqip,  }  }
 export type AllHobbiesQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -510,6 +511,7 @@ export type AllHobbiesQueryResult = Array<{
     text?: string;
     link?: Link;
   } | null;
+  imageType: null | "clickable" | "hoverable";
   image: {
     asset?: {
       _ref: string;
@@ -539,8 +541,8 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
-    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    withCTA,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllProjectsQueryResult;
-    "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllHobbiesQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    withCTA,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    \n  \"imageType\": select(\n    withCTA == false => null,\n    withCTA == true && defined(ctaButton.link) => \"clickable\",\n    withCTA == true && !defined(ctaButton.link) => \"hoverable\"\n  )\n,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    \n  \"imageType\": select(\n    withCTA == false => null,\n    withCTA == true && defined(ctaButton.link) => \"clickable\",\n    withCTA == true && !defined(ctaButton.link) => \"hoverable\"\n  )\n,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllHobbiesQueryResult;
     "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }
 }

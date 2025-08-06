@@ -1,5 +1,12 @@
 import { defineQuery } from 'next-sanity';
 
+const IMAGE_TYPE_QUERY = `
+  "imageType": select(
+    withCTA == false => null,
+    withCTA == true && defined(ctaButton.link) => "clickable",
+    withCTA == true && !defined(ctaButton.link) => "hoverable"
+  )
+`;
 const IMAGE_ASSET_QUERY = `
   image {
     ...,
@@ -20,6 +27,7 @@ export const allProjectsQuery = defineQuery(`
     client,
     role,
     dateDuration,
+    ${IMAGE_TYPE_QUERY},
     ${IMAGE_ASSET_QUERY}
   }
 `);
@@ -30,6 +38,7 @@ export const allHobbiesQuery = defineQuery(`
     title,
     description,
     ctaButton,
+    ${IMAGE_TYPE_QUERY},
     ${IMAGE_ASSET_QUERY}
   }
 `);

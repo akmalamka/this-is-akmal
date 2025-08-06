@@ -4,7 +4,7 @@ import type { LenisRef } from 'lenis/react';
 import type { RefObject } from 'react';
 import { createContext, useContext, useRef, useState } from 'react';
 
-interface CtaPropsProps { text: string; className: string };
+interface CtaPropsProps { text?: string; className?: string };
 interface AppContextType {
   ctaProps: CtaPropsProps;
   setCtaProps: (newProps: CtaPropsProps) => void;
@@ -16,7 +16,7 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-  const [ctaProps, setCtaProps] = useState({ text: '', className: '' });
+  const [ctaProps, setCtaProps] = useState<CtaPropsProps>({ text: '', className: '' });
   const [isImageHovered, setIsImageHovered] = useState(false);
   const lenisRef = useRef<LenisRef>(null);
 

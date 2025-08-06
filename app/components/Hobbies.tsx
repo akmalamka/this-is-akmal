@@ -15,16 +15,26 @@ import ResolvedLink from './ResolvedLink';
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { isImageHovered } = useAppProvider();
+  const { ctaProps, setCtaProps, isImageHovered } = useAppProvider();
   const { selectedIndex, direction, setSlide } = useCarousel(hobbies.length);
   const [selectedHobby, setSelectedHobby] = useState(hobbies[selectedIndex]);
 
   useEffect(() => {
     setSelectedHobby(hobbies[selectedIndex]);
-    if (hobbies[selectedIndex].ctaButton?.text) {
-      setCtaText(hobbies[selectedIndex].ctaButton.text);
-    }
   }, [selectedIndex]);
+
+  // TODO: convert this into custom hook
+  function hoverImageHandler() {
+    if (selectedHobby.ctaButton) {
+      let className;
+      if (selectedHobby.imageType === 'clickable') {
+        className = 'fill-primary';
+      } else if (selectedHobby.imageType === 'hoverable') {
+        className = 'fill-secondary';
+      }
+      setCtaProps({ ...ctaProps, text: selectedHobby.ctaButton.text, className });
+    }
+  }
 
   return (
     <section className="grid grid-cols-6 lg:grid-cols-12 gap-6 text-white scroll-m-24" id="hobbies">
@@ -75,8 +85,14 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-3 w-full"
             >
-              <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" hoverMe={!isImageHovered} />
+              <ResolvedLink link={selectedHobby.ctaButton?.link}>
+                <CoreParallaxImage
+                  image={selectedHobby.image}
+                  imageType={selectedHobby.imageType}
+                  className="h-[50dvh] hidden lg:block lg:h-[65dvh]"
+                  hoverMe={!isImageHovered}
+                  onMouseEnter={hoverImageHandler}
+                />
               </ResolvedLink>
 
               <CoreDrawer
@@ -84,7 +100,12 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage
+                      image={selectedHobby.image}
+                      imageType={selectedHobby.imageType}
+                      className="h-[50dvh] lg:h-[70dvh]"
+                      onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                    />
                   </Drawer.Trigger>
                 )}
               >
