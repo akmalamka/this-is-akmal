@@ -3,10 +3,10 @@
 import { ReactLenis } from 'lenis/react';
 import { cancelFrame, frame } from 'motion';
 import { useEffect } from 'react';
-import { useLenisRef } from '@/context/AppProvider';
+import { useAppProvider } from '@/context/AppProvider';
 
 export default function CoreLenisScroll({ children }: { children: React.ReactNode }) {
-  const { lenisRef } = useLenisRef();
+  const { lenisRef } = useAppProvider();
 
   useEffect(() => {
     function update(data: { timestamp: number }) {

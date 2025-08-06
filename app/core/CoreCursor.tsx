@@ -1,20 +1,24 @@
 'use client';
 
+import type { CompProps } from '@/typings/props';
 import classNames from 'classnames';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { useCtaText } from '@/context/AppProvider';
+import { useAppProvider } from '@/context/AppProvider';
 
 export default function CoreCursor() {
-  const { ctaText } = useCtaText();
+  const { ctaProps } = useAppProvider();
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
 
   const followerX = useSpring(cursorX, { damping: 20, stiffness: 150 });
   const followerY = useSpring(cursorY, { damping: 20, stiffness: 150 });
 
-  const [isClickable, setIsClickable] = useState(false);
-  const [isImgClickable, setIsImgClickable] = useState(false);
+  const [isComponentClickable, setIsClickable] = useState(false);
+  /**
+   * If Image has .img-clickable or img-hoverable, then the image is interactive
+   */
+  const [isImageInteractive, setIsImageInteractive] = useState(false);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -27,8 +31,7 @@ export default function CoreCursor() {
       const isClickTarget
           = target.closest('a, button, [role="button"], [data-cursor-clickable]');
 
-      const isImageClickable = target.closest('.img-clickable');
-      setIsImgClickable(Boolean(isImageClickable));
+      setIsImageInteractive(Boolean(target.closest('.img-clickable')) || Boolean(target.closest('.img-hoverable')));
 
       setIsClickable(Boolean(isClickTarget));
     };
@@ -42,7 +45,7 @@ export default function CoreCursor() {
   return (
     <div className="max-lg:hidden !z-999 pointer-events-none fixed inset-0">
       {/* Follower */}
-      {isImgClickable
+      {isImageInteractive
         ? (
             <motion.div
               style={{
@@ -53,7 +56,7 @@ export default function CoreCursor() {
               }}
               className="w-64 h-64 relative"
             >
-              <CoreRotatingTextCursor text={ctaText} />
+              <CoreRotatingTextCursor {...ctaProps} />
             </motion.div>
           )
         : (
@@ -61,28 +64,28 @@ export default function CoreCursor() {
               <motion.div
                 className={classNames([
                   'w-[50px] h-[50px] rounded-full border-2 mix-blend-difference fixed top-0 left-0',
-                  isClickable ? 'border-primary' : 'border-white',
+                  isComponentClickable ? 'border-primary' : 'border-white',
                 ])}
                 style={{
                   x: followerX,
                   y: followerY,
                   translateX: '-50%',
                   translateY: '-50%',
-                  scale: isClickable ? 1.2 : 1,
+                  scale: isComponentClickable ? 1.2 : 1,
                 }}
               />
               {/* Actual cursor dot */}
               <motion.div
                 className={classNames([
                   'w-[10px] h-[10px] rounded-full mix-blend-difference fixed top-0 left-0',
-                  isClickable ? 'bg-primary' : 'bg-white',
+                  isComponentClickable ? 'bg-primary' : 'bg-white',
                 ])}
                 style={{
                   x: cursorX,
                   y: cursorY,
                   translateX: '-50%',
                   translateY: '-50%',
-                  scale: isClickable ? 1.2 : 1,
+                  scale: isComponentClickable ? 1.2 : 1,
                 }}
               />
             </>
@@ -91,12 +94,12 @@ export default function CoreCursor() {
   );
 }
 
-function CoreRotatingTextCursor({ text }: { text: string }) {
+function CoreRotatingTextCursor({ text, className = 'fill-primary' }: { text?: string } & CompProps) {
   return (
     <>
-      <svg viewBox="0 0 200 200" className="w-full h-full">
-        {/* Red circle background */}
-        <circle cx="100" cy="100" r="90" fill="red" />
+      <svg viewBox="0 0 200 200" className={classNames('w-full h-full fill-primary', className)}>
+        {/* Filled circle background */}
+        <circle cx="100" cy="100" r="90" />
       </svg>
 
       {/* Rotating text on top using absolute positioning */}

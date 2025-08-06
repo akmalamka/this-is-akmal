@@ -43,7 +43,7 @@ export default function CoreDrawer({
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-30" data-lenis-prevent />
         <Drawer.Content className="overflow-y-auto bg-white h-[100dvh] fixed bottom-0 left-0 right-0 outline-none z-30">
-          <div className="container overflow-y-auto">
+          <div className="container">
             <Drawer.Title className="flex items-center justify-between h-[var(--navbar-height)]">
               {title}
               <Drawer.Close>
@@ -57,7 +57,9 @@ export default function CoreDrawer({
             <VisuallyHidden>
               <Drawer.Description />
             </VisuallyHidden>
-            {children}
+            <div className="overflow-y-auto h-[calc(100dvh-var(--navbar-height))]">
+              {children}
+            </div>
           </div>
         </Drawer.Content>
       </Drawer.Portal>

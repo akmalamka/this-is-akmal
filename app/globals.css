@@ -31,8 +31,9 @@ html {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
   --color-black: #0b0b0b;
-  --color-white: #fff;
+  --color-white: #ffffff;
   --color-primary: #eb110A;
+  --color-secondary: #599BD1;
 
   --font-display: var(--font-tusker);
   --font-sans: var(--font-inter);
@@ -44,16 +45,6 @@ html {
 /* Disable default cursor */
 * {
   cursor: none;
-}
-
-.no-scroll {
-  overflow: hidden;             /* disables scroll */
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* IE/Edge */
-}
-
-.no-scroll::-webkit-scrollbar {
-  display: none;                /* Chrome/Safari */
 }
 
 .noise-bg::after {
