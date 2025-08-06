@@ -32,16 +32,16 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
         <div>
           <h2 className="font-mono text-[16px] uppercase">Hobbies</h2>
           <h3 className="font-sans text-[16px] font-extralight max-w-[230px] hidden lg:block">
-            Something that I longed for after a loong working day
+            My favorite way to unwind after a packed schedule.
           </h3>
         </div>
         <CoreAnimatePresent>
           <motion.h4
             key={selectedHobby._id}
-            initial={{ opacity: 0, y: direction * 50 }}
+            initial={{ opacity: 0, x: direction * 50 }}
             animate={{
               opacity: 1,
-              y: 0,
+              x: 0,
               transition: {
                 delay: 0.2,
                 type: 'spring',
@@ -49,7 +49,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 bounce: 0.4,
               },
             }}
-            exit={{ opacity: 0, y: direction * -50 }}
+            exit={{ opacity: 0, x: direction * -50 }}
             className="font-sans text-[16px] font-extralight max-w-[230px] hidden lg:block"
           >
             {selectedHobby.description}
@@ -61,10 +61,10 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
           <CoreAnimatePresent>
             <motion.div
               key={selectedHobby._id}
-              initial={{ opacity: 0, x: direction * 50 }}
+              initial={{ opacity: 0, y: direction * 50 }}
               animate={{
                 opacity: 1,
-                x: 0,
+                y: 0,
                 transition: {
                   delay: 0.2,
                   type: 'spring',
@@ -72,11 +72,11 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                   bounce: 0.4,
                 },
               }}
-              exit={{ opacity: 0, x: direction * -50 }}
+              exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-3 w-full"
             >
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" priority />
+                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" />
               </ResolvedLink>
 
               <CoreDrawer
@@ -84,12 +84,12 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >
                 <div className="flex flex-col gap-y-4">
-                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" priority />
+                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" />
                   <h4 className='className="font-sans text-[16px] font-extralight'>
                     {selectedHobby.description}
                   </h4>
@@ -109,10 +109,10 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
       <CoreAnimatePresent>
         <motion.h3
           key={selectedHobby._id}
-          initial={{ opacity: 0, y: direction * 50 }}
+          initial={{ opacity: 0, x: direction * 50 }}
           animate={{
             opacity: 1,
-            y: 0,
+            x: 0,
             transition: {
               delay: 0.2,
               type: 'spring',
@@ -120,8 +120,8 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               bounce: 0.4,
             },
           }}
-          exit={{ opacity: 0, y: direction * -50 }}
-          className="text-center lg:text-start lg:col-start-4 col-span-6 lg:col-span-7 font-display text-[40px] md:text-[60px] lg:text-[81px] font-medium"
+          exit={{ opacity: 0, x: direction * -50 }}
+          className="text-center lg:text-start lg:col-start-4 col-span-6 lg:col-span-7 font-display text-[40px] md:text-[50px] lg:text-[70px] font-medium uppercase"
         >
           {selectedHobby.title}
         </motion.h3>

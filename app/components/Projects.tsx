@@ -30,6 +30,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
       setCtaText(projects[selectedIndex].ctaButton.text);
     }
   }, [selectedIndex]);
+  // TODO: let user know if the project doesn't have live site, and need to contact me
 
   return (
     <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
@@ -37,11 +38,11 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>
           <h3 className="hidden lg:block font-sans font-extralight text-[16px] max-w-[230px]">
-            Something that I am proud to work on, even though it&apos;s not that much
+            Something I really enjoyed working on and feel proud of.
           </h3>
         </div>
 
-        <div className="font-display items-end">
+        <div className="font-display leading-[100%]">
           <CoreAnimatePresent>
             <motion.span
               key={selectedProject._id}
@@ -57,12 +58,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-[50px] md:text-[70px] lg:text-[100px] font-semibold line-height-[120%] col-span-1"
+              className="text-[50px] md:text-[70px] lg:text-[100px] font-semibold col-span-1"
             >
               {String(selectedIndex + 1).padStart(2, '0')}
             </motion.span>
           </CoreAnimatePresent>
-          <span className="text-[30px] md:text-[50px] lg:text-[75px] font-semibold line-height-[120%] col-span-1">
+          <span className="text-[20px] md:text-[30px] lg:text-[50px] font-medium col-span-1">
             /
             {projects.length}
           </span>
@@ -73,10 +74,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           <CoreAnimatePresent>
             <motion.div
               key={selectedProject._id}
-              initial={{ opacity: 0, x: direction * 50 }}
+              initial={{ opacity: 0, y: direction * 50 }}
               animate={{
                 opacity: 1,
-                x: 0,
+                y: 0,
                 transition: {
                   delay: 0.2,
                   type: 'spring',
@@ -84,11 +85,11 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   bounce: 0.4,
                 },
               }}
-              exit={{ opacity: 0, x: direction * -50 }}
+              exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-6 lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" />
               </ResolvedLink>
 
               <CoreDrawer
@@ -96,12 +97,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 title={<div className="font-display font-semibold text-[32px]">{selectedProject.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >
                 <div className="flex flex-col gap-y-4">
-                  <CoreImage image={selectedProject.image} className="h-[30dvh]" priority />
+                  <CoreImage image={selectedProject.image} className="h-[30dvh]" />
                   <ProjectDetail direction={direction} selectedProject={selectedProject} />
                   {selectedProject.ctaButton?.link
                     ? (
@@ -119,11 +120,11 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           <motion.div
             key={selectedProject._id}
             custom={direction}
-            initial={{ opacity: 0, x: direction * 50 }}
-            exit={{ opacity: 0, x: direction * -50 }}
+            initial={{ opacity: 0, y: direction * 50 }}
+            exit={{ opacity: 0, y: direction * -50 }}
             animate={{
               opacity: 1,
-              x: 0,
+              y: 0,
               transition: {
                 delay: 0.2,
                 type: 'spring',
@@ -134,20 +135,18 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             className="col-span-6 lg:col-span-3 lg:h-[70dvh]"
           >
             <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[40px] md:text-[60px] lg:text-[108px]" />
-            <h6 className="font-sans text-center text-[20px] font-extralight lg:hidden">
+            <h4 className="font-sans text-center text-[20px] font-extralight lg:hidden">
               {selectedProject.fullTitle}
-            </h6>
+            </h4>
           </motion.div>
         </CoreAnimatePresent>
       </div>
-
       <div className="flex col-span-6 lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
+        <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
         <div className="flex gap-6 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
         </div>
-
-        <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
       </div>
     </section>
   );
@@ -167,10 +166,10 @@ function ProjectDetail({
     <CoreAnimatePresent>
       <motion.div
         key={selectedProject._id}
-        initial={{ opacity: 0, y: direction * 50 }}
+        initial={{ opacity: 0, x: direction * 50 }}
         animate={{
           opacity: 1,
-          y: 0,
+          x: 0,
           transition: {
             delay: 0.2,
             type: 'spring',
@@ -178,9 +177,12 @@ function ProjectDetail({
             bounce: 0.4,
           },
         }}
-        exit={{ opacity: 0, y: direction * -50 }}
+        exit={{ opacity: 0, x: direction * -50 }}
         className={classNames('flex flex-col gap-9 w-full', className)}
       >
+        <h4 className="font-sans text-[20px] font-medium">
+          {selectedProject.fullTitle}
+        </h4>
         <div>
           <h3
             className="font-sans text-[16px] font-extralight"
@@ -193,7 +195,7 @@ function ProjectDetail({
             Client
           </h4>
           <h5
-            className="font-sans text-[20px] font-extralight"
+            className="font-sans text-[16px] font-extralight"
           >
             {selectedProject.client}
           </h5>
@@ -203,7 +205,7 @@ function ProjectDetail({
             Role
           </h4>
           <h5
-            className="font-sans text-[20px] font-extralight"
+            className="font-sans text-[16px] font-extralight"
           >
             {selectedProject.role}
           </h5>

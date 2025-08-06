@@ -25,8 +25,9 @@ export default function CoreParallaxImage(props: CoverImageProps) {
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end start'],
-
   });
+
+  const lqip = source?.asset?.metadata?.lqip;
 
   const y = useTransform(scrollYProgress, [0, 1], ['0vh', '10vh']);
 
@@ -40,6 +41,8 @@ export default function CoreParallaxImage(props: CoverImageProps) {
               height={getImageDimensions(source).height}
               alt={stegaClean(source?.alt) || ''}
               src={urlForImage(source)?.url() as string}
+              loading={priority ? 'eager' : 'lazy'}
+              placeholder={lqip ? 'blur' : 'empty'}
               priority={priority}
             />
           </motion.div>

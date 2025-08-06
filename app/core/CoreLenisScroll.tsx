@@ -1,6 +1,5 @@
 'use client';
 
-// TODO: fix motion animation glitch on carousel
 import { ReactLenis } from 'lenis/react';
 import { cancelFrame, frame } from 'motion';
 import { useEffect } from 'react';
