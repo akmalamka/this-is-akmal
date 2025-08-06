@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
 import { useCarousel } from '@/composables/useCarousel';
-import { useCtaText } from '@/context/AppProvider';
+import { useAppProvider } from '@/context/AppProvider';
 import CoreArrowCircle from '@/core/CoreArrowCircle';
 import CoreDrawer from '@/core/CoreDrawer';
 import CoreImage from '@/core/CoreImage';
@@ -15,7 +15,7 @@ import ResolvedLink from './ResolvedLink';
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { setCtaText } = useCtaText();
+  const { isImageHovered } = useAppProvider();
   const { selectedIndex, direction, setSlide } = useCarousel(hobbies.length);
   const [selectedHobby, setSelectedHobby] = useState(hobbies[selectedIndex]);
 
@@ -76,7 +76,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               className="col-span-3 w-full"
             >
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" />
+                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" hoverMe={!isImageHovered} />
               </ResolvedLink>
 
               <CoreDrawer

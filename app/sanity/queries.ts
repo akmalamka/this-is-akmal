@@ -14,6 +14,7 @@ export const allProjectsQuery = defineQuery(`
     _id,
     title,
     fullTitle,
+    withCTA,
     ctaButton,
     description,
     client,

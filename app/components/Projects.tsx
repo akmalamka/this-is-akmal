@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
 import { useCarousel } from '@/composables/useCarousel';
-import { useCtaText } from '@/context/AppProvider';
+import { useAppProvider } from '@/context/AppProvider';
 import CoreArrowCircle from '@/core/CoreArrowCircle';
 import CoreDrawer from '@/core/CoreDrawer';
 import CoreImage from '@/core/CoreImage';
@@ -18,7 +18,7 @@ import CoreRotatedText from '@/core/CoreRotatedText';
 import ResolvedLink from './ResolvedLink';
 
 export default function Projects({ projects }: { projects: AllProjectsQueryResult }) {
-  const { setCtaText } = useCtaText();
+  const { isImageHovered } = useAppProvider();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const { selectedIndex, direction, setSlide } = useCarousel(projects.length);
@@ -89,7 +89,11 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               className="col-span-6 lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" />
+                <CoreParallaxImage
+                  image={selectedProject.image}
+                  className="h-[40dvh] hidden lg:block lg:h-[70dvh]"
+                  hoverMe={!isImageHovered}
+                />
               </ResolvedLink>
 
               <CoreDrawer

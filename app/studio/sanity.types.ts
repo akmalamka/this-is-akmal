@@ -471,11 +471,12 @@ export type IntroductionQueryResult = {
   };
 } | null;
 // Variable: allProjectsQuery
-// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    ctaButton,    description,    client,    role,    dateDuration,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    withCTA,    ctaButton,    description,    client,    role,    dateDuration,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string | null;
   fullTitle: string | null;
+  withCTA: boolean | null;
   ctaButton: {
     text?: string;
     link?: Link;
@@ -538,7 +539,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
-    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    withCTA,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllHobbiesQueryResult;
     "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }

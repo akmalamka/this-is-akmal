@@ -6,11 +6,13 @@ import classNames from 'classnames';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Image } from 'next-sanity/image';
 import { useRef } from 'react';
+import { useAppProvider } from '@/context/AppProvider';
 import { urlForImage } from '@/sanity/utils';
 
 interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
   image: any;
   priority?: boolean;
+  hoverMe?: boolean;
 }
 
 export default function CoreParallaxImage(props: CoverImageProps) {
@@ -18,6 +20,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
     image: source,
     priority,
     className,
+    hoverMe = false,
     ...rest
   } = props;
 
@@ -26,6 +29,13 @@ export default function CoreParallaxImage(props: CoverImageProps) {
     target: container,
     offset: ['start start', 'end start'],
   });
+  const { isImageHovered, setIsImageHovered } = useAppProvider();
+
+  function imageHoverHandler() {
+    if (hoverMe && !isImageHovered) {
+      setIsImageHovered(true);
+    }
+  }
 
   const lqip = source?.asset?.metadata?.lqip;
 
@@ -33,7 +43,16 @@ export default function CoreParallaxImage(props: CoverImageProps) {
 
   return source?.asset?._ref
     ? (
-        <div className={classNames('overflow-hidden', className)} ref={container} {...rest}>
+        <div className={classNames('overflow-hidden relative', className)} ref={container} {...rest}>
+          <div
+            className={classNames('w-full h-full bg-black/10 absolute inset-0 z-10 animate-pulse flex justify-center items-center font-mono uppercase lg:text-[40px]', {
+              block: hoverMe,
+              hidden: !hoverMe,
+            })}
+            onMouseEnter={imageHoverHandler}
+          >
+            hover me
+          </div>
           <motion.div style={{ y }} className="relative h-full noise-bg">
             <Image
               className="object-cover object-center h-full"
@@ -42,7 +61,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
               alt={stegaClean(source?.alt) || ''}
               src={urlForImage(source)?.url() as string}
               loading={priority ? 'eager' : 'lazy'}
-              placeholder={lqip ? 'blur' : 'empty'}
+              placeholder={lqip || undefined}
               priority={priority}
             />
           </motion.div>

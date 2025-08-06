@@ -172,7 +172,6 @@ export default async function RootLayout({
               <SanityLive onError={handleError} />
               <CoreRunningText />
               <LayoutHeader title={settings?.title} />
-              {/* TODO: disable aria-hidden in main so that no warning appear about aria-hidden */}
               <main>{children}</main>
               <LayoutFooter />
             </section>
