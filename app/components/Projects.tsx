@@ -41,7 +41,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           </h3>
         </div>
 
-        <div className="font-display items-end">
+        <div className="font-display leading-[100%]">
           <CoreAnimatePresent>
             <motion.span
               key={selectedProject._id}
@@ -57,12 +57,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 },
               }}
               exit={{ opacity: 0, y: direction * -50 }}
-              className="text-[50px] md:text-[70px] lg:text-[100px] font-semibold line-height-[120%] col-span-1"
+              className="text-[50px] md:text-[70px] lg:text-[100px] font-semibold col-span-1"
             >
               {String(selectedIndex + 1).padStart(2, '0')}
             </motion.span>
           </CoreAnimatePresent>
-          <span className="text-[30px] md:text-[50px] lg:text-[75px] font-semibold line-height-[120%] col-span-1">
+          <span className="text-[20px] md:text-[30px] lg:text-[50px] font-medium col-span-1">
             /
             {projects.length}
           </span>
@@ -134,9 +134,9 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
             className="col-span-6 lg:col-span-3 lg:h-[70dvh]"
           >
             <CoreRotatedText as="h3" text={selectedProject.title || ''} className="" childrenClassName="text-[40px] md:text-[60px] lg:text-[108px]" />
-            <h6 className="font-sans text-center text-[20px] font-extralight lg:hidden">
+            <h4 className="font-sans text-center text-[20px] font-extralight lg:hidden">
               {selectedProject.fullTitle}
-            </h6>
+            </h4>
           </motion.div>
         </CoreAnimatePresent>
       </div>
@@ -180,6 +180,9 @@ function ProjectDetail({
         exit={{ opacity: 0, x: direction * -50 }}
         className={classNames('flex flex-col gap-9 w-full', className)}
       >
+        <h4 className="font-sans text-[20px] font-medium">
+          {selectedProject.fullTitle}
+        </h4>
         <div>
           <h3
             className="font-sans text-[16px] font-extralight"
