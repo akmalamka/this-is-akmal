@@ -37,7 +37,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
         <div>
           <h2 className="font-mono text-[16px] uppercase">Projects</h2>
           <h3 className="hidden lg:block font-sans font-extralight text-[16px] max-w-[230px]">
-            Something that I am proud to work on, even though it&apos;s not that much
+            Something I really enjoyed working on and feel proud of.
           </h3>
         </div>
 
@@ -73,10 +73,10 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           <CoreAnimatePresent>
             <motion.div
               key={selectedProject._id}
-              initial={{ opacity: 0, x: direction * 50 }}
+              initial={{ opacity: 0, y: direction * 50 }}
               animate={{
                 opacity: 1,
-                x: 0,
+                y: 0,
                 transition: {
                   delay: 0.2,
                   type: 'spring',
@@ -84,7 +84,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   bounce: 0.4,
                 },
               }}
-              exit={{ opacity: 0, x: direction * -50 }}
+              exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-6 lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
@@ -119,11 +119,11 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           <motion.div
             key={selectedProject._id}
             custom={direction}
-            initial={{ opacity: 0, x: direction * 50 }}
-            exit={{ opacity: 0, x: direction * -50 }}
+            initial={{ opacity: 0, y: direction * 50 }}
+            exit={{ opacity: 0, y: direction * -50 }}
             animate={{
               opacity: 1,
-              x: 0,
+              y: 0,
               transition: {
                 delay: 0.2,
                 type: 'spring',
@@ -140,14 +140,13 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           </motion.div>
         </CoreAnimatePresent>
       </div>
-
+      {/* TODO: add scrollable container in drawer */}
       <div className="flex col-span-6 lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
+        <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
         <div className="flex gap-6 lg:gap-2">
           <CoreArrowCircle onClick={() => setSlide(-1)} />
           <CoreArrowCircle className="rotate-180" onClick={() => setSlide(1)} />
         </div>
-
-        <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
       </div>
     </section>
   );
@@ -167,10 +166,10 @@ function ProjectDetail({
     <CoreAnimatePresent>
       <motion.div
         key={selectedProject._id}
-        initial={{ opacity: 0, y: direction * 50 }}
+        initial={{ opacity: 0, x: direction * 50 }}
         animate={{
           opacity: 1,
-          y: 0,
+          x: 0,
           transition: {
             delay: 0.2,
             type: 'spring',
@@ -178,7 +177,7 @@ function ProjectDetail({
             bounce: 0.4,
           },
         }}
-        exit={{ opacity: 0, y: direction * -50 }}
+        exit={{ opacity: 0, x: direction * -50 }}
         className={classNames('flex flex-col gap-9 w-full', className)}
       >
         <div>
@@ -193,7 +192,7 @@ function ProjectDetail({
             Client
           </h4>
           <h5
-            className="font-sans text-[20px] font-extralight"
+            className="font-sans text-[16px] font-extralight"
           >
             {selectedProject.client}
           </h5>
@@ -203,7 +202,7 @@ function ProjectDetail({
             Role
           </h4>
           <h5
-            className="font-sans text-[20px] font-extralight"
+            className="font-sans text-[16px] font-extralight"
           >
             {selectedProject.role}
           </h5>

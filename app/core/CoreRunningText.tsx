@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 const MotionDiv = motion.div;
 
 export default function RunningText() {
-  const content = Array(10).fill('Currently available for freelance work, let\'s talk.');
+  const content = Array(10).fill('Crafting clean code and slick experiences. Open for freelance projects —let\'s create.');
 
   return (
     <div className="relative w-screen overflow-hidden whitespace-nowrap my-2 py-2 border-y-2 border-white text-white">

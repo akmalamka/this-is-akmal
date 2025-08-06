@@ -12,6 +12,7 @@ export default function LayoutHeader() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
+    // TODO: fix performance issue from pagespeed.web.dev
     <header className="text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
         <Link className="relative w-[40px] h-[40px] md:w-[48px] md:h-[48px]" href="/">
