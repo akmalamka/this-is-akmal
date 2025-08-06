@@ -1,5 +1,11 @@
 import { defineQuery } from 'next-sanity';
 
+const IMAGE_ASSET_QUERY = `
+  image {
+    ...,
+    "lqip": asset->metadata.lqip,
+  }
+`;
 export const settingsQuery = defineQuery('*[_type == "settings"][0]');
 export const introductionQuery = defineQuery('*[_type == "introduction"][0]');
 
@@ -13,7 +19,7 @@ export const allProjectsQuery = defineQuery(`
     client,
     role,
     dateDuration,
-    image
+    ${IMAGE_ASSET_QUERY}
   }
 `);
 
@@ -23,7 +29,7 @@ export const allHobbiesQuery = defineQuery(`
     title,
     description,
     ctaButton,
-    image
+    ${IMAGE_ASSET_QUERY}
   }
 `);
 

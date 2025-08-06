@@ -30,6 +30,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
       setCtaText(projects[selectedIndex].ctaButton.text);
     }
   }, [selectedIndex]);
+  // TODO: let user know if the project doesn't have live site, and need to contact me
 
   return (
     <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
@@ -88,7 +89,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               className="col-span-6 lg:col-span-3"
             >
               <ResolvedLink link={selectedProject.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" priority />
+                <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] hidden lg:block lg:h-[70dvh]" />
               </ResolvedLink>
 
               <CoreDrawer
@@ -96,12 +97,12 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 title={<div className="font-display font-semibold text-[32px]">{selectedProject.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedProject.image} className="h-[40dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >
                 <div className="flex flex-col gap-y-4">
-                  <CoreImage image={selectedProject.image} className="h-[30dvh]" priority />
+                  <CoreImage image={selectedProject.image} className="h-[30dvh]" />
                   <ProjectDetail direction={direction} selectedProject={selectedProject} />
                   {selectedProject.ctaButton?.link
                     ? (
@@ -140,7 +141,6 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
           </motion.div>
         </CoreAnimatePresent>
       </div>
-      {/* TODO: add scrollable container in drawer */}
       <div className="flex col-span-6 lg:col-span-3 flex-col justify-between h-full items-center lg:items-end">
         <ProjectDetail direction={direction} selectedProject={selectedProject} className="hidden lg:flex" />
         <div className="flex gap-6 lg:gap-2">

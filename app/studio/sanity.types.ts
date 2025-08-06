@@ -401,7 +401,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes = Link | Social | Hobby | Project | Introduction | Settings | MediaTag | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/queries.ts
+// Source: ../sanity/queries.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0]
 export type SettingsQueryResult = {
@@ -471,7 +471,7 @@ export type IntroductionQueryResult = {
   };
 } | null;
 // Variable: allProjectsQuery
-// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    ctaButton,    description,    client,    role,    dateDuration,    image  }
+// Query: *[_type == "project"] | order(_updatedAt desc) {    _id,    title,    fullTitle,    ctaButton,    description,    client,    role,    dateDuration,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -496,10 +496,11 @@ export type AllProjectsQueryResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
+    lqip: string | null;
   };
 }>;
 // Variable: allHobbiesQuery
-// Query: *[_type == "hobby"] | order(_updatedAt desc) {    _id,    title,    description,    ctaButton,    image  }
+// Query: *[_type == "hobby"] | order(_updatedAt desc) {    _id,    title,    description,    ctaButton,      image {    ...,    "lqip": asset->metadata.lqip,  }  }
 export type AllHobbiesQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -520,6 +521,7 @@ export type AllHobbiesQueryResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
+    lqip: string | null;
   };
 }>;
 // Variable: allSocialsQuery
@@ -536,8 +538,8 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"introduction\"][0]": IntroductionQueryResult;
-    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    image\n  }\n": AllProjectsQueryResult;
-    "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    image\n  }\n": AllHobbiesQueryResult;
+    "\n  *[_type == \"project\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    fullTitle,\n    ctaButton,\n    description,\n    client,\n    role,\n    dateDuration,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"hobby\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    description,\n    ctaButton,\n    \n  image {\n    ...,\n    \"lqip\": asset->metadata.lqip,\n  }\n\n  }\n": AllHobbiesQueryResult;
     "\n  *[_type == \"social\"] | order(_updatedAt desc) {\n    _id,\n    title,\n    url\n  }\n": AllSocialsQueryResult;
   }
 }

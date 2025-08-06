@@ -76,7 +76,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               className="col-span-3 w-full"
             >
               <ResolvedLink link={selectedHobby.ctaButton?.link} className="img-clickable">
-                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" priority />
+                <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] hidden lg:block lg:h-[65dvh]" />
               </ResolvedLink>
 
               <CoreDrawer
@@ -84,12 +84,12 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
                   <Drawer.Trigger className="text-white lg:hidden">
-                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" priority onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+                    <CoreParallaxImage image={selectedHobby.image} className="h-[50dvh] lg:h-[70dvh]" onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
                   </Drawer.Trigger>
                 )}
               >
                 <div className="flex flex-col gap-y-4">
-                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" priority />
+                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" />
                   <h4 className='className="font-sans text-[16px] font-extralight'>
                     {selectedHobby.description}
                   </h4>
