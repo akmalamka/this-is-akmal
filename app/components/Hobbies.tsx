@@ -101,7 +101,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 state={[isDrawerOpen, setIsDrawerOpen]}
                 title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
-                  <Drawer.Trigger className="text-white lg:hidden">
+                  <Drawer.Trigger className="text-white lg:hidden" aria-label="hobby parallax image">
                     <CoreParallaxImage
                       image={selectedHobby.image}
                       imageType={selectedHobby.imageType}
@@ -118,7 +118,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                   </h4>
                   {selectedHobby.ctaButton?.link
                     ? (
-                        <ResolvedLink link={selectedHobby.ctaButton?.link} className="self-end">
+                        <ResolvedLink link={selectedHobby.ctaButton?.link} className="self-end" aria-label="open link for hobby">
                           <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
                         </ResolvedLink>
                       )

@@ -112,7 +112,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 state={[isDrawerOpen, setIsDrawerOpen]}
                 title={<div className="font-display font-semibold text-[32px]">{selectedProject.title}</div>}
                 trigger={(
-                  <Drawer.Trigger className="text-white lg:hidden">
+                  <Drawer.Trigger className="text-white lg:hidden" aria-label="project parallax image">
                     <CoreParallaxImage
                       image={selectedProject.image}
                       imageType={selectedProject.imageType}
@@ -127,7 +127,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                   <ProjectDetail direction={direction} selectedProject={selectedProject} />
                   {selectedProject.ctaButton?.link
                     ? (
-                        <ResolvedLink link={selectedProject.ctaButton?.link} className="self-end">
+                        <ResolvedLink link={selectedProject.ctaButton?.link} className="self-end" aria-label="open link for project">
                           <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
                         </ResolvedLink>
                       )

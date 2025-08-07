@@ -13,7 +13,6 @@ export default function LayoutHeader({ title }: { title?: string }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
-    // TODO: fix performance issue from pagespeed.web.dev
     <header className="text-white fixed z-20 left-0 top-0 w-screen justify-between mx-auto backdrop-blur-lg">
       <div className="h-[var(--navbar-height)] flex items-center justify-between container">
         <Link className="gap-2 text-[20px] font-display uppercase font-semibold" href="/">
@@ -43,7 +42,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
         <LazyLoadCoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(
-            <Drawer.Trigger className="text-white md:hidden">
+            <Drawer.Trigger className="text-white md:hidden" aria-label="hamburger button">
               {/* TODO: Make sure the focus can be removed before it was being hide, detail in warning console */}
               <LayoutHamburgerButton
                 isOpen={false}
