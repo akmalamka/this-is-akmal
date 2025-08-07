@@ -10,7 +10,8 @@ export default function ResolvedLink({
   link,
   children,
   className,
-}: ResolvedLinkProps) {
+  ...props
+}: ResolvedLinkProps & React.HTMLProps<HTMLAnchorElement>) {
   const resolvedLink = link ?? null;
 
   if (typeof resolvedLink === 'string') {
@@ -20,6 +21,7 @@ export default function ResolvedLink({
         target="_blank"
         rel="noopener noreferrer"
         className={className}
+        {...props}
       >
         {children}
       </Link>

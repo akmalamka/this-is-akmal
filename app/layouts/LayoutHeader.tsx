@@ -43,7 +43,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
         <LazyLoadCoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(
-            <Drawer.Trigger className="text-white md:hidden">
+            <Drawer.Trigger className="text-white md:hidden" aria-label="hamburger button">
               {/* TODO: Make sure the focus can be removed before it was being hide, detail in warning console */}
               <LayoutHamburgerButton
                 isOpen={false}
