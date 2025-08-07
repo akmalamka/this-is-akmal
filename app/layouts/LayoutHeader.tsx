@@ -1,11 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Drawer } from 'vaul';
-import CoreDrawer from '@/core/CoreDrawer';
 import LayoutHamburgerButton from './LayoutHamburgerButton';
 import LayoutHeaderMobile from './LayoutHeaderMobile';
+
+const LazyLoadCoreDrawer = dynamic(() => import('@/core/CoreDrawer'));
 
 export default function LayoutHeader({ title }: { title?: string }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -38,7 +40,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
         >
           Let&apos;s talk
         </Link>
-        <CoreDrawer
+        <LazyLoadCoreDrawer
           state={[isDrawerOpen, setIsDrawerOpen]}
           trigger={(
             <Drawer.Trigger className="text-white md:hidden">
@@ -52,7 +54,7 @@ export default function LayoutHeader({ title }: { title?: string }) {
           )}
         >
           <LayoutHeaderMobile onClick={() => setIsDrawerOpen(false)} />
-        </CoreDrawer>
+        </LazyLoadCoreDrawer>
       </div>
     </header>
   );

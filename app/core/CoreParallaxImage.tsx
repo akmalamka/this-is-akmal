@@ -8,6 +8,7 @@ import { Image } from 'next-sanity/image';
 import { useRef } from 'react';
 import { useAppProvider } from '@/context/AppProvider';
 import { urlForImage } from '@/sanity/utils';
+import './styles.css';
 
 interface CoverImageProps extends React.HTMLProps<HTMLDivElement> {
   image: any;
@@ -20,7 +21,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
   const {
     image: source,
     imageType,
-    priority,
+    priority = false,
     className,
     hoverMe = false,
     ...rest

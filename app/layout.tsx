@@ -4,6 +4,7 @@ import type { SettingsQueryResult } from './studio/sanity.types';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { toPlainText } from 'next-sanity';
 import dynamic from 'next/dynamic';
+import { Inter, JetBrains_Mono as JetBrainsMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { AppProvider } from '@/context/AppProvider';
 import CoreLenisScroll from '@/core/CoreLenisScroll';
@@ -87,69 +88,15 @@ const tuskerGrotesk = localFont({
   variable: '--font-tusker',
 });
 
-// TODO: investigate why next/font/google doesn't work for Inter and Jetbrains Mono
-const inter = localFont({
-  src: [
-    {
-      path: 'fonts/inter/inter-extralight.woff2',
-      weight: '200',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/inter/inter-light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/inter/inter-regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/inter/inter-medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/inter/inter-semibold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/inter/inter-bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
+const inter = Inter({
   display: 'swap',
   variable: '--font-inter',
+  subsets: ['latin'],
 });
-
-const jetbrainsMono = localFont({
-  src: [
-    {
-      path: 'fonts/jetbrains-mono/jetbrainsmono-light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/jetbrains-mono/jetbrainsmono-regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/jetbrains-mono/jetbrainsmono-medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/jetbrains-mono/jetbrainsmono-semibold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-  ],
+const jetbrainsMono = JetBrainsMono({
   display: 'swap',
   variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
 });
 
 export default async function RootLayout({
