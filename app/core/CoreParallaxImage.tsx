@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Image } from 'next-sanity/image';
 import { useRef } from 'react';
 import { useAppProvider } from '@/context/AppProvider';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { urlForImage } from '@/sanity/utils';
 import './styles.css';
 
@@ -28,6 +29,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
   } = props;
 
   const container = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end start'],
@@ -66,7 +68,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
             })}
             onMouseEnter={imageHoverHandler}
           >
-            hover me
+            {isMobile ? 'tap me' : 'hover me'}
           </div>
           <motion.div style={{ y }} className="relative h-full noise-bg">
             <Image

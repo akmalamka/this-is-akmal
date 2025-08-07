@@ -118,6 +118,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                       imageType={selectedProject.imageType}
                       className="h-[40dvh] lg:h-[70dvh]"
                       onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                      hoverMe={!isImageHovered}
                     />
                   </Drawer.Trigger>
                 )}
@@ -125,13 +126,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                 <div className="flex flex-col gap-y-4">
                   <CoreImage image={selectedProject.image} className="h-[30dvh]" />
                   <ProjectDetail direction={direction} selectedProject={selectedProject} />
-                  {selectedProject.ctaButton?.link
-                    ? (
-                        <ResolvedLink link={selectedProject.ctaButton?.link} className="self-end" aria-label="open link for project">
-                          <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
-                        </ResolvedLink>
-                      )
-                    : null}
+                  <ProjectDemo selectedProject={selectedProject} />
                 </div>
               </CoreDrawer>
             </motion.div>
@@ -176,6 +171,23 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
 interface ProjectDetailProps extends CompProps {
   selectedProject: AllProjectsQueryResult[number];
   direction: Direction;
+}
+
+function ProjectDemo({ selectedProject }: { selectedProject: AllProjectsQueryResult[number] }) {
+  if (selectedProject.imageType === null) {
+    return;
+  }
+  return selectedProject.imageType === 'clickable'
+    ? (
+        <ResolvedLink link={selectedProject.ctaButton?.link} className="self-end" aria-label="open link for project">
+          <CoreArrowCircle className="rotate-135 w-[100px] h-[100px]" />
+        </ResolvedLink>
+      )
+    : (
+        <h6 className="font-sans text-[14px] font-light">
+          {selectedProject.ctaButton?.text}
+        </h6>
+      );
 }
 
 function ProjectDetail({
@@ -230,7 +242,6 @@ function ProjectDetail({
           >
             {selectedProject.role}
           </h5>
-
         </div>
         <h5
           className="font-sans text-[14px] font-semibold uppercase"
