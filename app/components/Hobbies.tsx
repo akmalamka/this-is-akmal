@@ -2,16 +2,18 @@
 
 import type { AllHobbiesQueryResult } from '@/studio/sanity.types';
 import { motion } from 'motion/react';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import CoreAnimatePresent from '@/animations/CoreAnimatePresent';
 import { useCarousel } from '@/composables/useCarousel';
 import { useAppProvider } from '@/context/AppProvider';
 import CoreArrowCircle from '@/core/CoreArrowCircle';
-import CoreDrawer from '@/core/CoreDrawer';
-import CoreImage from '@/core/CoreImage';
 import CoreParallaxImage from '@/core/CoreParallaxImage';
 import ResolvedLink from './ResolvedLink';
+
+const LazyLoadCoreDrawer = dynamic(() => import('@/core/CoreDrawer'));
+const LazyLoadCoreImage = dynamic(() => import('@/core/CoreImage'));
 
 export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -95,7 +97,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 />
               </ResolvedLink>
 
-              <CoreDrawer
+              <LazyLoadCoreDrawer
                 state={[isDrawerOpen, setIsDrawerOpen]}
                 title={<div className="font-display font-semibold text-[32px]">{selectedHobby.title}</div>}
                 trigger={(
@@ -110,7 +112,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                 )}
               >
                 <div className="flex flex-col gap-y-4">
-                  <CoreImage image={selectedHobby.image} className="h-[30dvh]" />
+                  <LazyLoadCoreImage image={selectedHobby.image} className="h-[30dvh]" />
                   <h4 className='className="font-sans text-[16px] font-extralight'>
                     {selectedHobby.description}
                   </h4>
@@ -122,7 +124,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                       )
                     : null}
                 </div>
-              </CoreDrawer>
+              </LazyLoadCoreDrawer>
             </motion.div>
           </CoreAnimatePresent>
         )}
