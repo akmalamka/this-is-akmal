@@ -1,9 +1,12 @@
+import type { AllSocialsQueryResult } from '@/studio/sanity.types';
 import Link from 'next/link';
-import { sanityFetch } from '@/sanity/live';
+import { client } from '@/sanity/client';
 import { allSocialsQuery } from '@/sanity/queries';
 
 export default async function LayoutFooter() {
-  const { data: socials } = await sanityFetch({ query: allSocialsQuery });
+  const socials = await client.fetch<AllSocialsQueryResult>(
+    allSocialsQuery,
+  );
   return (
     <footer className="relative">
       <div className="container mx-auto px-4 py-8 flex flex-col gap-24 md:gap-4">

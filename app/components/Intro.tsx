@@ -1,10 +1,13 @@
+import type { IntroductionQueryResult } from '@/studio/sanity.types';
 import CoreParallaxImage from '@/core/CoreParallaxImage';
 import CoreRotatedText from '@/core/CoreRotatedText';
-import { sanityFetch } from '@/sanity/live';
+import { client } from '@/sanity/client';
 import { introductionQuery } from '@/sanity/queries';
 
 export default async function Intro() {
-  const { data: intro } = await sanityFetch({ query: introductionQuery });
+  const intro = await client.fetch<IntroductionQueryResult>(
+    introductionQuery,
+  );
 
   return (
     <section className="text-white grid grid-cols-6 max-h-[80dvh] lg:max-h-[70dvh] lg:grid-cols-12 gap-6 lg:items-end" id="intro">

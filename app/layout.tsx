@@ -1,31 +1,35 @@
 import type { Metadata } from 'next';
 
+import type { SettingsQueryResult } from './studio/sanity.types';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { toPlainText } from 'next-sanity';
+import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
-import { Toaster } from 'sonner';
-import { handleError } from '@/client-utils';
 import { AppProvider } from '@/context/AppProvider';
 import CoreLenisScroll from '@/core/CoreLenisScroll';
 import CoreRunningText from '@/core/CoreRunningText';
-import LayoutFooter from '@/layouts/LayoutFooter';
 import LayoutHeader from '@/layouts/LayoutHeader';
-import { sanityFetch, SanityLive } from '@/sanity/live';
 import { settingsQuery } from '@/sanity/queries';
 import { resolveOpenGraphImage } from '@/sanity/utils';
 import { CoreCursorClient } from './core';
+import { client } from './sanity/client';
 import '@/globals.css';
+
+const LazyLoadLayoutFooter = dynamic(() => import('@/layouts/LayoutFooter'));
 
 /**
  * Generate metadata for the page.
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
+  const settings = await client.fetch<SettingsQueryResult>(
+    settingsQuery,
+    {},
+    {
     // Metadata should never contain stega
-    stega: false,
-  });
+      stega: false,
+    },
+  );
   const title = settings?.title;
   const description = settings?.description;
 
@@ -153,11 +157,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
+  const settings = await client.fetch<SettingsQueryResult>(
+    settingsQuery,
+    {},
+    {
     // Metadata should never contain stega
-    stega: false,
-  });
+      stega: false,
+    },
+  );
 
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
@@ -167,14 +174,10 @@ export default async function RootLayout({
           <CoreLenisScroll>
             <CoreCursorClient />
             <section className="min-h-screen pt-[var(--navbar-height)]">
-              {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts */}
-              <Toaster />
-              {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
-              <SanityLive onError={handleError} />
               <CoreRunningText />
               <LayoutHeader title={settings?.title} />
               <main>{children}</main>
-              <LayoutFooter />
+              <LazyLoadLayoutFooter />
             </section>
           </CoreLenisScroll>
         </AppProvider>
