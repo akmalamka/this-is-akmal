@@ -4,6 +4,7 @@ import { stegaClean } from '@sanity/client/stega';
 import classNames from 'classnames';
 import { Image } from 'next-sanity/image';
 import { urlForImage } from '@/sanity/utils';
+import './styles.css';
 
 interface CoverImageProps extends CompProps {
   image: any;
@@ -11,7 +12,7 @@ interface CoverImageProps extends CompProps {
 }
 
 export default function CoreImage(props: CoverImageProps) {
-  const { image: source, priority, className } = props;
+  const { image: source, priority = false, className } = props;
   return source?.asset?._ref
     ? (
         <div className="noise-bg relative">

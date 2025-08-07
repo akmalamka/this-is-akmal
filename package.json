@@ -6,8 +6,7 @@
     "Portfolio",
     "Sanity",
     "Next.js",
-    "Headless CMS",
-    "Visual Editing"
+    "Headless CMS"
   ],
   "scripts": {
     "dev:all": "pnpm --stream -r run dev",
@@ -26,7 +25,6 @@
     "@sanity/asset-utils": "^2.2.1",
     "@sanity/client": "^7.8.1",
     "@sanity/image-url": "^1.1.0",
-    "@sanity/uuid": "^3.0.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/speed-insights": "^1.2.0",
@@ -39,7 +37,6 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sanity": "^3.99.0",
-    "styled-components": "^6.1.19",
     "tailwindcss": "^4.1.11",
     "vaul": "^1.1.2"
   },
