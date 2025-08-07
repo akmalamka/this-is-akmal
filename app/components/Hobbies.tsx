@@ -107,6 +107,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
                       imageType={selectedHobby.imageType}
                       className="h-[50dvh] lg:h-[70dvh]"
                       onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                      hoverMe={!isImageHovered}
                     />
                   </Drawer.Trigger>
                 )}

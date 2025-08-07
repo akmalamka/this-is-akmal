@@ -114,6 +114,7 @@ export default async function RootLayout({
   );
 
   return (
+    // TODO: add loading screen if we have another route
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${tuskerGrotesk.variable} bg-white text-black`}>
       <body>
         {/* TODO: hydration mismatch, detail in console */}

@@ -118,6 +118,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
                       imageType={selectedProject.imageType}
                       className="h-[40dvh] lg:h-[70dvh]"
                       onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                      hoverMe={!isImageHovered}
                     />
                   </Drawer.Trigger>
                 )}
