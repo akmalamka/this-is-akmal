@@ -87,7 +87,7 @@ export default function Hobbies({ hobbies }: { hobbies: AllHobbiesQueryResult })
               exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-3 w-full"
             >
-              <ResolvedLink link={selectedHobby.ctaButton?.link}>
+              <ResolvedLink link={selectedHobby.ctaButton?.link} aria-label="open link for hobby">
                 <CoreParallaxImage
                   image={selectedHobby.image}
                   imageType={selectedHobby.imageType}

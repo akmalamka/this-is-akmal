@@ -96,7 +96,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
               exit={{ opacity: 0, y: direction * -50 }}
               className="col-span-6 lg:col-span-3"
             >
-              <ResolvedLink link={selectedProject.ctaButton?.link}>
+              <ResolvedLink link={selectedProject.ctaButton?.link} aria-label="open link for project">
                 <CoreParallaxImage
                   image={selectedProject.image}
                   imageType={selectedProject.imageType}
