@@ -41,6 +41,7 @@ export default function CoreParallaxImage(props: CoverImageProps) {
 
   const lqip = source?.asset?.metadata?.lqip;
 
+  // TODO: check why in mobile when scroll, the image zoom a little bit
   const y = useTransform(scrollYProgress, [0, 1], ['0vh', '10vh']);
 
   return source?.asset?._ref

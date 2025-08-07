@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { toPlainText } from 'next-sanity';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
@@ -177,7 +178,7 @@ export default async function RootLayout({
             </section>
           </CoreLenisScroll>
         </AppProvider>
-
+        <SpeedInsights />
       </body>
     </html>
   );
