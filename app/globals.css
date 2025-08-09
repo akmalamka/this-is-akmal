@@ -27,8 +27,9 @@ html {
   padding: 0 2rem;
 }
 
+/* TODO: add tech being used in every projects */
 @theme {
-  --color-black: #0b0b0b;
+  --color-black: #0D0E12;
   --color-white: #ffffff;
   --color-primary: #eb110A;
   --color-secondary: #599BD1;

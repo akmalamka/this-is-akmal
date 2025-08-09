@@ -44,7 +44,7 @@ export default function Projects({ projects }: { projects: AllProjectsQueryResul
     <section className="text-white grid grid-cols-6 lg:grid-cols-12 gap-6 items-end scroll-m-24" id="projects">
       <div className="flex col-span-6 lg:col-span-3 lg:flex-col justify-between h-full">
         <div>
-          <h2 className="font-mono text-[16px] uppercase">Projects</h2>
+          <h2 className="font-mono text-[16px] uppercase">Selected Projects</h2>
           <h3 className="hidden lg:block font-sans font-extralight text-[16px] max-w-[230px]">
             Something I really enjoyed working on and feel proud of.
           </h3>
